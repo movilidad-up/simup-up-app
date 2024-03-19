@@ -1,16 +1,30 @@
-# simup_up
+# SIMUP UP - Movilidad Unipamplona
 
-Aplicación informativa para el SIMUP Unipamplona.
+[![Plataformas](https://img.shields.io/badge/Plataformas-Android%20%7C%20iOS-green)]()
 
-## Getting Started
+Bienvenido/a a la aplicación de transporte universitario. Esta aplicación tiene como objetivo facilitar los desplazamientos de los estudiantes dentro del campus universitario, proporcionando información en tiempo real sobre los horarios de los autobuses y recomendaciones de rutas personalizadas.
 
-This project is a starting point for a Flutter application.
+## Características
 
-A few resources to get you started if this is your first Flutter project:
+- Visualización de horarios de autobuses en tiempo real.
+- Planificación de viajes con recomendaciones de rutas basadas en la ubicación del usuario.
+- Notificaciones en tiempo real sobre la llegada y salida de los autobuses.
+- Interfaz intuitiva y fácil de usar para una experiencia de usuario óptima.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Instalación
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clona este repositorio en tu máquina local.
+2. Ejecuta `flutter pub get` para instalar las dependencias.
+3. Ejecuta la aplicación en tu dispositivo o emulador con `flutter run`.
+
+## Contribuciones
+
+¡Estamos abiertos a contribuciones! Si tienes ideas para mejorar esta aplicación, no dudes en abrir un *pull request*.
+
+## Soporte
+
+Si tienes alguna pregunta o necesitas ayuda con la aplicación, por favor, contacta con nuestro equipo de soporte en support@example.com.
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT - consulta el archivo [LICENSE.md](LICENSE.md) para más detalles.
