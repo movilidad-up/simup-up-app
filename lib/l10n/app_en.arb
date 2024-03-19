@@ -1,0 +1,26 @@
+{
+  "onboardTitle1": "Instant Routes!",
+  "@onboardTitle1": {
+    "description": "The first onboarding view title"
+  },
+  "onboardSubtitle1": "Discover real-time routes and easily plan your commutes. Get schedule updates to arrive on time.",
+  "@onboardSubtitle1": {
+    "description": "The first onboarding view subtitle"
+  },
+  "onboardTitle2": "Travel with Ease",
+  "@onboardTitle2": {
+    "description": "The second onboarding view title"
+  },
+  "onboardSubtitle2": "Explore transportation options from campus and choose the best one. Learn about available opportunities at each station.",
+  "@onboardSubtitle2": {
+    "description": "The second onboarding view subtitle"
+  },
+  "onboardTitle3": "Instant Notifications",
+  "@onboardTitle3": {
+    "description": "The third onboarding view title"
+  },
+  "onboardSubtitle3": "Receive alerts about bus status and travel worry-free. Stay informed at all times.",
+  "@onboardSubtitle3": {
+    "description": "The third onboarding view subtitle"
+  }
+}
