@@ -22,5 +22,87 @@
   "onboardSubtitle3": "Receive alerts about bus status and travel worry-free. Stay informed at all times.",
   "@onboardSubtitle3": {
     "description": "The third onboarding view subtitle"
-  }
+  },
+  "yourName": "What is your name?",
+  "@yourName": {
+    "description": "Hint for name input"
+  },
+  "yourNameHint": "Write your name",
+  "@yourNameHint": {
+    "description": "Hint for name input"
+  },
+  "yourZoneName": "Para mejorar tu experiencia, ¿de qué parte de la ciudad eres? \uD83C\uDFD9\uFE0F",
+  "@yourZoneName": {
+    "description": "Hint for zone input"
+  },
+  "yourZoneNameHint": "Choose your zone",
+  "@yourZoneNameHint": {
+    "description": "Hint for zone input"
+  },
+  "continueNext": "Continue",
+  "@continueNext": {
+    "description": "Text for continue button"
+  },
+  "setupExperience": "Preparemos tu experiencia",
+  "@setupExperience": {
+    "description": "Text for onboarding intro"
+  },
+  "allDone": "¡Todo listo! :)",
+  "@allDone": {
+    "description": "Text for continue button"
+  },
+  "enjoyExperience": "Esperamos disfrutes tu experiencia con el sistema de transporte <3",
+  "@enjoyExperience": {
+    "description": "Text for continue button"
+  },
+  "goToDashboard": "Go to my dashboard",
+  "@goToDashboard": {
+    "description": "Text for continue button from onboarding finished."
+  },
+
+  "trigal": "Trigal",
+  "aeropuerto": "Aeropuerto",
+  "molinos": "Molinos",
+  "toledo": "Toledo",
+  "torres": "Torres",
+  "atalaya": "Atalaya",
+  "libertad": "Libertad",
+  "comunaCentro": "Comuna Centro",
+  "aniversarioUno": "Aniversario Uno",
+  "antoniaSantos": "Antonia Santos",
+  "belen": "Belén",
+  "belisario": "Belisario",
+  "blanco": "Blanco",
+  "bocono": "Bocono",
+  "callejon": "Callejón",
+  "carora": "Carora",
+  "ceiba": "Ceiba",
+  "chapinero": "Chapinero",
+  "jardin": "Jardín",
+  "claret": "Claret",
+  "colsag": "Colsag",
+  "comuneros": "Comuneros",
+  "toponimia": "Toponimia",
+  "cundinamarca": "Cundinamarca",
+  "cabrera": "Cabrera",
+  "ermita": "Ermita",
+  "escobal": "Escobal",
+  "guaimaral": "Guaimaral",
+  "insula": "Ínsula",
+  "latino": "Latino",
+  "margaritas": "Margaritas",
+  "niza": "Niza",
+  "pinos": "Pinos",
+  "playa": "Playa",
+  "pradosNorte": "Prados Norte",
+  "pradosEste": "Prados Este",
+  "rodeo": "Rodeo",
+  "bosch": "Bosch",
+  "oriental": "Oriental",
+  "salado": "Salado",
+  "sanLuis": "San Luis",
+  "sanMiguel": "San Miguel",
+  "sanRafael": "San Rafael",
+  "santander": "Santander",
+  "tucunare": "Tucunaré"
 }
