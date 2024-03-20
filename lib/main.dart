@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:simup_up/views/home_view.dart';
 import 'package:simup_up/views/onboarding_view.dart';
 import 'l10n/l10n.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? userName = prefs.getString('userName');
+  bool validUser = (userName != null);
 
   SystemChrome.setPreferredOrientations(
       [
@@ -16,12 +21,16 @@ Future<void> main() async {
   );
 
   runApp(
-    MyApp(),
+    MyApp(
+        userExists: validUser
+    ),
   );
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final bool userExists;
+
+  const MyApp({Key? key, required this.userExists}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -46,7 +55,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: const OnboardingView(),
+      home: widget.userExists ? const HomeView() : const OnboardingView(),
     );
   }
 }
