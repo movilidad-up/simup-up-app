@@ -4,7 +4,9 @@ class ProgressNav extends StatelessWidget {
   final double progressValue;
   final VoidCallback onBackPressed;
 
-  const ProgressNav({Key? key, required this.progressValue, required this.onBackPressed}) : super(key: key);
+  const ProgressNav(
+      {Key? key, required this.progressValue, required this.onBackPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,8 @@ class ProgressNav extends StatelessWidget {
                   value: value,
                   semanticsLabel: 'Onboarding progress indicator',
                   backgroundColor: Theme.of(context).colorScheme.outlineVariant,
-                  valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF0B1215)),
+                  valueColor:
+                      const AlwaysStoppedAnimation<Color>(Color(0xFF0B1215)),
                 );
               },
             ),

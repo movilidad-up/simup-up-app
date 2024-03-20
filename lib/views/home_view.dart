@@ -31,9 +31,7 @@ class _HomeViewState extends State<HomeView> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: SafeArea(
-          child: Text("Welcome, ${userName}")
-      ),
+      body: SafeArea(child: Text("Welcome, ${userName}")),
     );
   }
 }

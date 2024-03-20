@@ -50,52 +50,50 @@ class _OnboardingOutroState extends State<OnboardingOutro> {
                   ),
                 ),
                 Positioned(
-                  bottom: 0.0,
-                  left: 0.0,
-                  right: 0.0,
-                  top: 0.0,
-                  child: FractionallySizedBox(
-                    widthFactor: 0.8,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!.allDone,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xFF0B1215)
+                    bottom: 0.0,
+                    left: 0.0,
+                    right: 0.0,
+                    top: 0.0,
+                    child: FractionallySizedBox(
+                      widthFactor: 0.8,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.allDone,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                fontFamily: 'Inter',
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFF0B1215)),
                           ),
-                        ),
-                        VerticalSpacing(8.0),
-                        Text(
-                          AppLocalizations.of(context)!.enjoyExperience,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xFF646462)
+                          VerticalSpacing(8.0),
+                          Text(
+                            AppLocalizations.of(context)!.enjoyExperience,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                fontFamily: 'Inter',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xFF646462)),
                           ),
-                        ),
-                      ],
-                    ),
-                  )
-                ),
+                        ],
+                      ),
+                    )),
                 Positioned(
                     bottom: 0.0,
                     left: 0.0,
                     right: 0.0,
-                    child: PrimaryButton(buttonText: 'Continuar',
+                    child: PrimaryButton(
+                      buttonText: 'Continuar',
                       onButtonPressed: () {
-                        Navigator.of(context).push(CustomPageRoute(const HomeView()));
+                        Navigator.of(context)
+                            .push(CustomPageRoute(const HomeView()));
                       },
                       isButtonEnabled: true,
-                    )
-                )
+                    ))
               ],
             ),
           ),

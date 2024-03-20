@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:simup_up/models/UserData.dart';
 
-
 class GetStartedName extends StatelessWidget {
   final UserData userData;
   final ValueChanged<String> onNameChanged;
 
-  GetStartedName({super.key, required this.userData, required this.onNameChanged});
+  GetStartedName(
+      {super.key, required this.userData, required this.onNameChanged});
 
   @override
   Widget build(BuildContext context) {
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children:[
+        children: [
           Text(
             AppLocalizations.of(context)!.yourName,
             style: TextStyle(
@@ -26,14 +26,13 @@ class GetStartedName extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           TextFormField(
-            textAlign:  TextAlign.center,
+            textAlign: TextAlign.center,
             onChanged: onNameChanged,
             style: const TextStyle(
-              fontFamily: 'Inter',
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-                color: Colors.black
-            ),
+                fontFamily: 'Inter',
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: Colors.black),
             decoration: InputDecoration(
               hintText: AppLocalizations.of(context)!.yourNameHint,
               border: const OutlineInputBorder(
@@ -49,7 +48,6 @@ class GetStartedName extends StatelessWidget {
               return null;
             },
           ),
-        ]
-    );
+        ]);
   }
 }

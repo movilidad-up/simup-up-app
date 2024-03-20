@@ -56,16 +56,14 @@ class _GetStartedZoneState extends State<GetStartedZone> {
             isDense: true,
             decoration: InputDecoration(
               contentPadding:
-              EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+                  EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16.0),
-                borderSide:
-                const BorderSide(color: Colors.grey, width: 0.0),
+                borderSide: const BorderSide(color: Colors.grey, width: 0.0),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16.0),
-                borderSide:
-                const BorderSide(color: Colors.grey, width: 0.0),
+                borderSide: const BorderSide(color: Colors.grey, width: 0.0),
               ),
               border: const OutlineInputBorder(),
               labelStyle: TextStyle(color: Colors.green),

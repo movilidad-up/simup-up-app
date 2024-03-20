@@ -16,7 +16,8 @@ class OnboardingFrame extends StatefulWidget {
   State<OnboardingFrame> createState() => _OnboardingFrameState();
 }
 
-class _OnboardingFrameState extends State<OnboardingFrame> with SingleTickerProviderStateMixin {
+class _OnboardingFrameState extends State<OnboardingFrame>
+    with SingleTickerProviderStateMixin {
   late int currentStep;
   late UserData userData;
 
@@ -102,7 +103,8 @@ class _OnboardingFrameState extends State<OnboardingFrame> with SingleTickerProv
       case 0:
         return userData.userName.isNotEmpty;
       case 1:
-        return userData.userZone != Zone.unknown;;
+        return userData.userZone != Zone.unknown;
+        ;
       default:
         return false;
     }
@@ -116,7 +118,7 @@ class _OnboardingFrameState extends State<OnboardingFrame> with SingleTickerProv
   }
 
   bool _isContinueButtonEnabled() {
-    switch(currentStep) {
+    switch (currentStep) {
       case 0:
         return userData.userName.isNotEmpty;
       case 1:
@@ -150,7 +152,8 @@ class _OnboardingFrameState extends State<OnboardingFrame> with SingleTickerProv
             ),
             PrimaryButton(
               onButtonPressed: _nextStep,
-              buttonText: AppLocalizations.of(context)!.continueNext, // continue
+              buttonText:
+                  AppLocalizations.of(context)!.continueNext, // continue
               isButtonEnabled: _isContinueButtonEnabled(),
             ),
           ],

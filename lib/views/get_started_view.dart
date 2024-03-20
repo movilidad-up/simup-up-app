@@ -31,10 +31,8 @@ class _GetStartedViewState extends State<GetStartedView> {
         child: Center(
           child: AnimatedSwitcher(
               duration: const Duration(milliseconds: 500),
-              child: showInitialMessage
-                  ? OnboardingIntro()
-                  : OnboardingFrame()
-          ),
+              child:
+                  showInitialMessage ? OnboardingIntro() : OnboardingFrame()),
         ),
       ),
     );
@@ -85,13 +83,11 @@ class OnboardingIntro extends StatelessWidget {
                                 fontFamily: 'Inter',
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
-                                color: Color(0xFF0B1215)
-                            ),
+                                color: Color(0xFF0B1215)),
                           ),
                         ],
                       ),
-                    )
-                ),
+                    )),
               ],
             ),
           ),
