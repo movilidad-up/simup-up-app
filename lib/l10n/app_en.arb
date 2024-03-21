@@ -47,6 +47,18 @@
   "@setupExperience": {
     "description": "Text for onboarding intro"
   },
+  "hello": "¡Hola",
+  "@hello": {
+    "description": "Greeting message shown on dashboard"
+  },
+  "awesomeDay": "Esperamos estes teniendo un asombroso día :)",
+  "@awesomeDay": {
+    "description": "Daily message shown on dashboard"
+  },
+  "guestTitle": "Guest",
+  "@guestTitle": {
+    "description": "Alternative name for user not found."
+  },
   "allDone": "¡Todo listo! :)",
   "@allDone": {
     "description": "Text for continue button"
