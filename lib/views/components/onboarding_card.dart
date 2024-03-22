@@ -16,7 +16,7 @@ class OnboardingCard extends StatelessWidget {
 
     return DecoratedBox(
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: Color(0xFFFAF9F6),
       ),
       child: Padding(
         padding: const EdgeInsets.only(

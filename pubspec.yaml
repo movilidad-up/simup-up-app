@@ -71,6 +71,8 @@ flutter:
     - assets/images/illustrations/get-started-notifications.svg
     - assets/images/illustrations/route-lines.svg
     - assets/images/illustrations/station-icon.svg
+    - assets/images/illustrations/station-line-enabled.svg
+    - assets/images/illustrations/station-line-disabled.svg
 
   fonts:
     - family: Inter

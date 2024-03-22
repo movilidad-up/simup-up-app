@@ -17,6 +17,8 @@
   "allDone": "¡Todo listo! :)",
   "enjoyExperience": "Esperamos disfrutes tu experiencia con el sistema de transporte <3",
   "goToDashboard": "Ir a mi dashboard",
+  "busTracking": "Seguimiento del bus",
+  "busTrackingDescription": "Presiona una estación para conocer sus rutas, niveles de densidad e información útil.",
 
   "trigal": "Trigal",
   "aeropuerto": "Aeropuerto",

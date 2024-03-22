@@ -71,6 +71,22 @@
   "@goToDashboard": {
     "description": "Text for continue button from onboarding finished."
   },
+  "busTracking": "Seguimiento del bus",
+  "@busTracking": {
+    "description": "Title for bus tracking text on routes."
+  },
+  "busTrackingDescription": "Presiona una estación para conocer sus rutas, niveles de densidad e información útil.",
+  "@busTrackingDescription": {
+    "description": "Description for bus tracking text on routes."
+  },
+  "routeOne": "Ruta 1",
+  "@routeOne": {
+    "description": "Text for route number 1."
+  },
+  "routeTwo": "Ruta 2",
+  "@routeTwo": {
+    "description": "Text for route number 2."
+  },
 
   "trigal": "Trigal",
   "aeropuerto": "Aeropuerto",
