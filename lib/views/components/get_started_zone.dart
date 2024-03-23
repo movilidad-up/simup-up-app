@@ -77,7 +77,6 @@ class _GetStartedZoneState extends State<GetStartedZone> {
             onChanged: (int? newValue) {
               if (newValue != null) {
                 handleZoneSelection(context, newValue);
-                print("Selected zone index: $newValue");
               }
             },
             items: UserZones.zoneNames(context)

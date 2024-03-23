@@ -1,3 +1,17 @@
+enum Station {
+  palustre,
+  terminal,
+  cread,
+  fuente,
+  republica,
+  sanMateo,
+  toyota,
+  lomitas,
+  villa,
+  iglesia,
+  salud
+}
+
 enum Zone {
   unknown,
   trigal,

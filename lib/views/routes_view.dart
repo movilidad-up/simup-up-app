@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:simup_up/views/components/current_station_card.dart';
 import 'package:simup_up/views/components/route_tabs.dart';
 import 'package:simup_up/views/styles/spaces.dart';
+import 'package:simup_up/views/utils/station-model.dart';
 
 class RoutesView extends StatefulWidget {
   const RoutesView({super.key});
@@ -12,6 +12,13 @@ class RoutesView extends StatefulWidget {
 }
 
 class _RoutesViewState extends State<RoutesView> {
+  @override
+  void initState() {
+    DateTime dateTime = DateTime.now();
+    print(dateTime);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:simup_up/views/components/custom_tab_bar.dart';
 import 'package:simup_up/views/components/route_queue.dart';
+import 'package:simup_up/views/utils/station-model.dart';
 
 class RouteTabs extends StatefulWidget {
   const RouteTabs({super.key});
@@ -29,6 +30,10 @@ class _RouteTabsState extends State<RouteTabs> {
 
   @override
   Widget build(BuildContext context) {
+    StationModel.calculateStationIntervals(context);
+
+    routeOneStations = StationModel.routeOneStations;
+
     return Column(
       children: [
         Padding(
