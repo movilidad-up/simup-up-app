@@ -103,6 +103,18 @@
   "@currentStation": {
     "description": "Text for route access tooltip."
   },
+  "predictionModelDisclaimer": "Ten en cuenta que el seguimiento puede no ser totalmente preciso, ya que se basa en un modelo predictivo.*",
+  "@predictionModelDisclaimer": {
+    "description": "Disclaimer for prediction model tooltip shown on routes."
+  },
+  "mapGeneralView": "Mapa general del sistema",
+  "@mapGeneralView": {
+    "description": "Title shown on map view."
+  },
+  "mapGeneralViewDescription": "Visualiza el mapa completo del sistema junto a cada una de sus rutas.",
+  "@mapGeneralViewDescription": {
+    "description": "Subtitle shown on map view."
+  },
 
   "trigal": "Trigal",
   "aeropuerto": "Aeropuerto",

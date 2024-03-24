@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:simup_up/views/components/route_tabs.dart';
 import 'package:simup_up/views/styles/spaces.dart';
-import 'package:simup_up/views/utils/station-model.dart';
 
 class RoutesView extends StatefulWidget {
   const RoutesView({super.key});
@@ -67,7 +66,7 @@ class _RoutesViewState extends State<RoutesView> {
                                 ),
                                 margin: const EdgeInsets.symmetric(horizontal: 24.0),
                                 padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                                message: "Ten en cuenta que el seguimiento puede no ser totalmente preciso, ya que se basa en un modelo predictivo.*",
+                                message: AppLocalizations.of(context)!.predictionModelDisclaimer,
                                 child: const Icon(
                                   Icons.help_rounded,
                                   color: Colors.black,

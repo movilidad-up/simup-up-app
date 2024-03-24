@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:simup_up/enums/enums.dart';
 import 'package:simup_up/views/components/user_stations.dart';
 
 class StationModel {

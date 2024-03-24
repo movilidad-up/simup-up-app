@@ -39,6 +39,7 @@ dependencies:
     sdk: flutter
   intl: any
   flutter_svg: ^2.0.9
+  zoom_widget: ^2.0.0
   shared_preferences: ^2.2.1
   flutter_timezone: ^1.0.8
   scrollable_positioned_list: ^0.3.8
@@ -75,6 +76,7 @@ flutter:
     - assets/images/illustrations/station-icon.svg
     - assets/images/illustrations/station-line-enabled.svg
     - assets/images/illustrations/station-line-disabled.svg
+    - assets/images/illustrations/simup-map-system.svg
     - assets/images/stations/palustre-cover.jpg
     - assets/images/stations/terminal-cover.jpg
     - assets/images/stations/cread-cover.jpg
