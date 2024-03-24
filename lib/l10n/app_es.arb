@@ -25,6 +25,7 @@
   "routeAccess": "Acceso a rutas de transporte",
   "arrivalTime": "Hora de llegada: ",
   "currentStation": "Estacion actual: ",
+  "predictionModelDisclaimer": "Ten en cuenta que el seguimiento puede no ser totalmente preciso, ya que se basa en un modelo predictivo.*",
 
   "trigal": "Trigal",
   "aeropuerto": "Aeropuerto",
