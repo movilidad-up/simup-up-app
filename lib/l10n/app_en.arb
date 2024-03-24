@@ -107,6 +107,14 @@
   "@predictionModelDisclaimer": {
     "description": "Disclaimer for prediction model tooltip shown on routes."
   },
+  "mapGeneralView": "Mapa general del sistema",
+  "@mapGeneralView": {
+    "description": "Title shown on map view."
+  },
+  "mapGeneralViewDescription": "Visualiza el mapa completo del sistema junto a cada una de sus rutas.",
+  "@mapGeneralViewDescription": {
+    "description": "Subtitle shown on map view."
+  },
 
   "trigal": "Trigal",
   "aeropuerto": "Aeropuerto",

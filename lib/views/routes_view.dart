@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:simup_up/views/components/route_tabs.dart';
 import 'package:simup_up/views/styles/spaces.dart';
-import 'package:simup_up/views/utils/station-model.dart';
 
 class RoutesView extends StatefulWidget {
   const RoutesView({super.key});
