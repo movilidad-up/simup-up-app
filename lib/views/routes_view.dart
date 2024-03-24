@@ -47,17 +47,32 @@ class _RoutesViewState extends State<RoutesView> {
                             children: [
                               Text(
                                   AppLocalizations.of(context)!.busTracking,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontFamily: 'Inter',
                                       fontSize: 24,
                                       fontWeight: FontWeight.w600,
-                                      color: Colors.black),
+                                      color: Color(0xFF0B1215)),
                                   textAlign: TextAlign.start),
                               HorizontalSpacing(8.0),
-                              Icon(
-                                Icons.help_rounded,
-                                color: Colors.black,
-                                size: 24.0,
+                              Tooltip(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  color: const Color(0xFF0B1215),
+                                ),
+                                triggerMode: TooltipTriggerMode.tap,
+                                textStyle: const TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: 14.0,
+                                  color: Color(0xFFFAF9F6)
+                                ),
+                                margin: const EdgeInsets.symmetric(horizontal: 24.0),
+                                padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                                message: "Ten en cuenta que el seguimiento puede no ser totalmente preciso, ya que se basa en un modelo predictivo.*",
+                                child: const Icon(
+                                  Icons.help_rounded,
+                                  color: Colors.black,
+                                  size: 24.0,
+                                ),
                               )
                             ],
                           ),
