@@ -71,6 +71,38 @@
   "@goToDashboard": {
     "description": "Text for continue button from onboarding finished."
   },
+  "busTracking": "Seguimiento del bus",
+  "@busTracking": {
+    "description": "Title for bus tracking text on routes."
+  },
+  "busTrackingDescription": "Presiona una estación para conocer sus rutas, niveles de densidad e información útil.",
+  "@busTrackingDescription": {
+    "description": "Description for bus tracking text on routes."
+  },
+  "routeOne": "Ruta 1",
+  "@routeOne": {
+    "description": "Text for route number 1."
+  },
+  "routeTwo": "Ruta 2",
+  "@routeTwo": {
+    "description": "Text for route number 2."
+  },
+  "helpfulInfo": "Información útil",
+  "@helpfulInfo": {
+    "description": "Text for helpful info tooltip."
+  },
+  "routeAccess": "Acceso a rutas de transporte",
+  "@routeAccess": {
+    "description": "Text for route access tooltip."
+  },
+  "arrivalTime": "Hora de llegada: ",
+  "@arrivalTime": {
+    "description": "Text for route access tooltip."
+  },
+  "currentStation": "Estacion actual: ",
+  "@currentStation": {
+    "description": "Text for route access tooltip."
+  },
 
   "trigal": "Trigal",
   "aeropuerto": "Aeropuerto",
@@ -116,5 +148,29 @@
   "sanMiguel": "San Miguel",
   "sanRafael": "San Rafael",
   "santander": "Santander",
-  "tucunare": "Tucunaré"
+  "tucunare": "Tucunaré",
+
+  "palustre": "El Palustre",
+  "terminal": "Terminal de Cúcuta",
+  "cread": "CREAD",
+  "fuente": "Fuente Luminosa",
+  "republica": "BodyTech | Banco de la Republica",
+  "sanMateo": "Redoma San Mateo",
+  "toyota": "Toyota",
+  "lomitas": "Puente Lomitas",
+  "villa": "Campus Villa del Rosario",
+  "iglesia": "Iglesia Espiritu Santo",
+  "salud": "Facultad de Salud",
+
+  "palustreInfo": "Este punto de conexión une el tradicional mercado El Palustre con el moderno Nuevo Puente Intercambiador Atalaya, facilitando el desplazamiento de estudiantes entre el corazón histórico y el desarrollo urbano de la ciudad.",
+  "terminalInfo": "Principal punto de conexión con el sistema de transporte de la ciudad, facilitando el acceso a diversas áreas educativas y comerciales desde la terminal de buses más importante de Cúcuta.",
+  "creadInfo": "Ubicada en la Plaza de Banderas, es un punto vital de acceso al CREAD y otras facultades, promoviendo la interacción entre estudiantes y facilitando la movilidad educativa.",
+  "fuenteInfo": "Ubicada en la Diagonal Santander, ofrece un acceso eficiente al Centro de Cúcuta.",
+  "republicaInfo": "Situada en el corazón de un bullicioso centro comercial, es punto estratégico para los estudiantes que necesitan acceder a servicios de transporte público en medio de una vibrante actividad comercial y social.",
+  "sanMateoInfo": "Estratégicamente ubicada cerca del supermercado Éxito, esta estación es un centro neurálgico para los estudiantes, conectándolos con el bullicioso distrito comercial de San Luis y sus alrededores.",
+  "toyotaInfo": "Este punto de acceso esencial conecta a los estudiantes con el Distribuidor Toyota y sus alrededores, rodeado por diversos barrios como Loma Linda, Villa Hermosa y San José.",
+  "lomitasInfo": "Brinda acceso a conexiones vitales de transporte público y abarca diversos barrios, como Villa del Rosario, San Antonio, La Primavera, entre otros.",
+  "villaInfo": "Sede Villa del Rosario de la Universidad de Pamplona, y hogar para las facultades de Ingenierias y Arquitecturas, Economica, Educación Fisica y Geologia.",
+  "iglesiaInfo": "Iglesia Espiritu Santo",
+  "saludInfo": "Facultad de Salud"
 }
