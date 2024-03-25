@@ -21,7 +21,7 @@ class SliderDots extends StatelessWidget {
           margin: const EdgeInsets.symmetric(horizontal: 4.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(24.0),
-            color: index == currentDot ? Colors.black : Colors.grey,
+            color: index == currentDot ? Theme.of(context).colorScheme.onBackground : Theme.of(context).colorScheme.onSurface,
           ),
         ),
       ),

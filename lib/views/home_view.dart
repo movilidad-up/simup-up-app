@@ -51,23 +51,13 @@ class _HomeViewState extends State<HomeView> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 4.0),
-                            child: Text(
-                                '${AppLocalizations.of(context)!.hello}, ${userName ?? AppLocalizations.of(context)!.guestTitle}!',
-                                style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: 32,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.black),
-                                textAlign: TextAlign.start),
-                          ),
+                          Text(
+                              '${AppLocalizations.of(context)!.hello}, ${userName ?? AppLocalizations.of(context)!.guestTitle}!',
+                              style: Theme.of(context).textTheme.displayLarge,
+                              textAlign: TextAlign.start),
+                          VerticalSpacing(8.0),
                           Text(AppLocalizations.of(context)!.awesomeDay,
-                              style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.black54),
+                              style: Theme.of(context).textTheme.bodyMedium,
                               textAlign: TextAlign.start),
                         ],
                       ),
@@ -82,7 +72,7 @@ class _HomeViewState extends State<HomeView> {
                         padding: const EdgeInsets.all(4.0),
                         child: Icon(
                           Icons.settings,
-                          color: Colors.black,
+                          color: Theme.of(context).colorScheme.onBackground,
                           size: 24.0,
                         ),
                       ),

@@ -59,9 +59,9 @@ class _RouteTabsState extends State<RouteTabs> {
           routeList: routeOneStations,
       );
     } else {
-      return const Padding(
-        padding: EdgeInsets.only(top: 16.0),
-        child: Text("Rutas no encontradas."),
+      return Padding(
+        padding: const EdgeInsets.only(top: 16.0),
+        child: Text("Rutas no encontradas.", style: TextStyle(color: Theme.of(context).colorScheme.tertiary)),
       );
     }
   }
@@ -72,9 +72,9 @@ class _RouteTabsState extends State<RouteTabs> {
           routeList: routeTwoStations,
       );
     } else {
-      return const Padding(
-        padding: EdgeInsets.only(top: 16.0),
-        child: Text("Rutas no encontradas."),
+      return Padding(
+        padding: const EdgeInsets.only(top: 16.0),
+        child: Text("Rutas no encontradas.", style: TextStyle(color: Theme.of(context).colorScheme.tertiary),),
       );
     }
   }

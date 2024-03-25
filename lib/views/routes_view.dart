@@ -39,49 +39,39 @@ class _RoutesViewState extends State<RoutesView> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 4.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                  AppLocalizations.of(context)!.busTracking,
-                                  style: const TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w600,
-                                      color: Color(0xFF0B1215)),
-                                  textAlign: TextAlign.start),
-                              HorizontalSpacing(8.0),
-                              Tooltip(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  color: const Color(0xFF0B1215),
-                                ),
-                                triggerMode: TooltipTriggerMode.tap,
-                                textStyle: const TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 14.0,
-                                  color: Color(0xFFFAF9F6)
-                                ),
-                                margin: const EdgeInsets.symmetric(horizontal: 24.0),
-                                padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                                message: AppLocalizations.of(context)!.predictionModelDisclaimer,
-                                child: const Icon(
-                                  Icons.help_rounded,
-                                  color: Colors.black,
-                                  size: 24.0,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Text(AppLocalizations.of(context)!.busTrackingDescription,
-                            style: TextStyle(
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                                AppLocalizations.of(context)!.busTracking,
+                                style: Theme.of(context).textTheme.displayMedium,
+                                textAlign: TextAlign.start),
+                            HorizontalSpacing(8.0),
+                            Tooltip(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                color: Theme.of(context).colorScheme.onBackground,
+                              ),
+                              triggerMode: TooltipTriggerMode.tap,
+                              textStyle: TextStyle(
                                 fontFamily: 'Inter',
-                                fontSize: 14,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.black54),
+                                fontSize: 14.0,
+                                color: Theme.of(context).colorScheme.background
+                              ),
+                              margin: const EdgeInsets.symmetric(horizontal: 24.0),
+                              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                              message: AppLocalizations.of(context)!.predictionModelDisclaimer,
+                              child: Icon(
+                                Icons.help_rounded,
+                                color: Theme.of(context).colorScheme.onBackground,
+                                size: 24.0,
+                              ),
+                            )
+                          ],
+                        ),
+                        VerticalSpacing(8.0),
+                        Text(AppLocalizations.of(context)!.busTrackingDescription,
+                            style: Theme.of(context).textTheme.bodySmall,
                             textAlign: TextAlign.start),
                       ],
                     ),

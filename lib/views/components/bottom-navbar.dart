@@ -11,7 +11,7 @@ class BottomNavbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: const Color(0xFF0B1215),
+        color: Theme.of(context).colorScheme.onBackground,
         borderRadius: BorderRadius.circular(64.0),
       ),
       child: Padding(

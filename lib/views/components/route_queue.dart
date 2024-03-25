@@ -67,7 +67,7 @@ class _RouteQueueState extends State<RouteQueue> {
             left: 0.0,
             right: 0.0,
             child: DecoratedBox(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -76,8 +76,8 @@ class _RouteQueueState extends State<RouteQueue> {
                     1.0
                   ],
                   colors: [
-                    Color(0xFFFAF9F6),
-                    Color(0x00FAF9F6)
+                    Theme.of(context).colorScheme.background,
+                    Theme.of(context).colorScheme.inverseSurface
                   ],
                 )
               ),
@@ -92,7 +92,7 @@ class _RouteQueueState extends State<RouteQueue> {
             left: 0.0,
             right: 0.0,
             child: DecoratedBox(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
@@ -101,8 +101,8 @@ class _RouteQueueState extends State<RouteQueue> {
                       1.0
                     ],
                     colors: [
-                      Color(0xFFFAF9F6),
-                      Color(0x00FAF9F6)
+                      Theme.of(context).colorScheme.background,
+                      Theme.of(context).colorScheme.inverseSurface
                     ],
                   )
               ),

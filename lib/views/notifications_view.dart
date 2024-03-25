@@ -11,7 +11,12 @@ class _NotificationsViewState extends State<NotificationsView> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text("This is the notifications view."),
+      child: Text(
+          "This is the notifications view.",
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.tertiary,
+          )
+      ),
     );
   }
 }

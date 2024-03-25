@@ -18,14 +18,14 @@ class InfoTip extends StatelessWidget {
       children: [
         DecoratedBox(
           decoration: BoxDecoration(
-              color: Color(0xFFEDECEA),
+          color: Theme.of(context).colorScheme.surface,
             borderRadius: BorderRadius.circular(16.0)
           ),
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Icon(
               tipIcon,
-              color: Colors.black,
+              color: Theme.of(context).colorScheme.onBackground,
               size: 24.0,
             ),
           ),
@@ -42,7 +42,7 @@ class InfoTip extends StatelessWidget {
                   fontFamily: 'Inter',
                   fontSize: 16.0,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFF0B1215)
+                  color: Theme.of(context).colorScheme.onBackground
                 ),
               ),
               Text(
@@ -52,7 +52,7 @@ class InfoTip extends StatelessWidget {
                     fontFamily: 'Inter',
                     fontSize: 16.0,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF646462)
+                    color: Theme.of(context).colorScheme.tertiary
                 ),
               )
             ],

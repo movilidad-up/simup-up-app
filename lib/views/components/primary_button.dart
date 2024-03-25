@@ -22,8 +22,8 @@ class PrimaryButton extends StatelessWidget {
       padding: hasPadding ? const EdgeInsets.all(8.0) : EdgeInsets.zero,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF102F9F),
-          disabledBackgroundColor: const Color(0xFFEBECEC),
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          disabledBackgroundColor: Theme.of(context).colorScheme.surface,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24.0),
           ),
@@ -33,8 +33,8 @@ class PrimaryButton extends StatelessWidget {
         onPressed: isButtonEnabled ? onButtonPressed : null,
         child: Text(
           buttonText,
-          style: const TextStyle(
-            color: Color(0xFFFAF9F6),
+          style: TextStyle(
+            color: isButtonEnabled ? Theme.of(context).colorScheme.background : Theme.of(context).colorScheme.onTertiaryContainer,
           ),
         ),
       ),

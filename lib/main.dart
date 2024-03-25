@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simup_up/views/dashboard_view.dart';
 import 'package:simup_up/views/onboarding_view.dart';
+import 'package:simup_up/views/styles/themes.dart';
 import 'l10n/l10n.dart';
 
 Future<void> main() async {
@@ -48,6 +49,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return MaterialApp(
       title: 'Movilidad UP',
       debugShowCheckedModeBanner: false,
+      theme: AppThemes.defaultLight,
+      darkTheme: AppThemes.defaultDark,
       supportedLocales: L10n.all,
       localizationsDelegates: const [
         AppLocalizations.delegate,
