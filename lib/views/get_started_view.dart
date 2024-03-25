@@ -46,6 +46,7 @@ class OnboardingIntro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String routeAsset = Theme.of(context).colorScheme.brightness == Brightness.light ? 'assets/images/illustrations/route-lines.svg' : 'assets/images/illustrations/route-lines-dark.svg';
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -62,7 +63,7 @@ class OnboardingIntro extends StatelessWidget {
                   right: 0.0,
                   top: 0.0,
                   child: SvgPicture.asset(
-                    'assets/images/illustrations/route-lines.svg',
+                    routeAsset,
                     fit: BoxFit.fitWidth,
                     width: screenWidth,
                   ),
@@ -81,11 +82,11 @@ class OnboardingIntro extends StatelessWidget {
                           Text(
                             AppLocalizations.of(context)!.setupExperience,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
+                            style: TextStyle(
                                 fontFamily: 'Inter',
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
-                                color: Color(0xFF0B1215)
+                                color: Theme.of(context).colorScheme.onBackground
                             ),
                           ),
                         ],

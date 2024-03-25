@@ -12,11 +12,11 @@ class CurrentStationCard extends StatefulWidget {
 class _CurrentStationCardState extends State<CurrentStationCard> {
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    String stationIconAsset = Theme.of(context).colorScheme.brightness == Brightness.light ? 'assets/images/illustrations/station-icon.svg' : 'assets/images/illustrations/station-icon-dark.svg';
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: const Color(0xFFEBEAE7),
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(24.0)
       ),
       child: Padding(
@@ -24,7 +24,7 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
         child: Row(
           children: [
             SvgPicture.asset(
-              'assets/images/illustrations/station-icon.svg',
+              stationIconAsset,
               height: 72.0,
             ),
             HorizontalSpacing(24.0),
@@ -34,25 +34,19 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
               children: [
                 Text(
                     'Estación aproximada',
-                  style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black54),
+                  style: Theme.of(context).textTheme.labelLarge
                 ),
+                VerticalSpacing(4.0),
                 Text(
                     'Fuente Luminosa',
-                  style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: 24,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black),
+                  style: Theme.of(context).textTheme.displayMedium,
                 ),
-                VerticalSpacing(8.0),
+                VerticalSpacing(12.0),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF0B1215),
-                    disabledBackgroundColor: const Color(0xFFEBECEC),
+                    backgroundColor: Theme.of(context).colorScheme.onBackground,
+                    disabledBackgroundColor: Theme.of(context).colorScheme.surface,
+                    disabledForegroundColor: Theme.of(context).colorScheme.onTertiaryContainer,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(24.0),
                     ),
@@ -65,11 +59,7 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
                         applyHeightToLastDescent: true,
                         applyHeightToFirstAscent: false,
                         leadingDistribution: TextLeadingDistribution.even),
-                    style: const TextStyle(
-                      height: 1,
-                      fontSize: 14.0,
-                      color: Color(0xFFFAF9F6),
-                    ),
+                    style: Theme.of(context).textTheme.labelMedium,
                   ),
                 ),
               ],

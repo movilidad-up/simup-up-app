@@ -22,17 +22,17 @@ class GetStartedName extends StatelessWidget {
                 fontSize: 16,
                 height: 1.6,
                 fontWeight: FontWeight.normal,
-                color: const Color(0xFF666666)),
+                color: Theme.of(context).colorScheme.tertiary),
             textAlign: TextAlign.center,
           ),
           TextFormField(
             textAlign:  TextAlign.center,
             onChanged: onNameChanged,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'Inter',
               fontSize: 20,
               fontWeight: FontWeight.w600,
-                color: Colors.black
+                color: Theme.of(context).colorScheme.onBackground
             ),
             decoration: InputDecoration(
               hintText: AppLocalizations.of(context)!.yourNameHint,

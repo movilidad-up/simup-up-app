@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:simup_up/views/components/primary_button.dart';
+import 'package:simup_up/views/dashboard_view.dart';
 import 'package:simup_up/views/home_view.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -28,6 +29,7 @@ class _OnboardingOutroState extends State<OnboardingOutro> {
 
   @override
   Widget build(BuildContext context) {
+    String routeAsset = Theme.of(context).colorScheme.brightness == Brightness.light ? 'assets/images/illustrations/route-lines.svg' : 'assets/images/illustrations/route-lines-dark.svg';
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -44,7 +46,7 @@ class _OnboardingOutroState extends State<OnboardingOutro> {
                   right: 0.0,
                   top: 0.0,
                   child: SvgPicture.asset(
-                    'assets/images/illustrations/route-lines.svg',
+                    routeAsset,
                     fit: BoxFit.fitWidth,
                     width: screenWidth,
                   ),
@@ -63,11 +65,11 @@ class _OnboardingOutroState extends State<OnboardingOutro> {
                         Text(
                           AppLocalizations.of(context)!.allDone,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontFamily: 'Inter',
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
-                              color: Color(0xFF0B1215)
+                              color: Theme.of(context).colorScheme.onBackground
                           ),
                         ),
                         VerticalSpacing(8.0),
@@ -89,9 +91,9 @@ class _OnboardingOutroState extends State<OnboardingOutro> {
                     bottom: 0.0,
                     left: 0.0,
                     right: 0.0,
-                    child: PrimaryButton(buttonText: 'Continuar',
+                    child: PrimaryButton(buttonText: AppLocalizations.of(context)!.continueNext,
                       onButtonPressed: () {
-                        Navigator.of(context).push(CustomPageRoute(const HomeView()));
+                        Navigator.of(context).push(CustomPageRoute(const DashboardView()));
                       },
                       isButtonEnabled: true,
                     )

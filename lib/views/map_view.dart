@@ -14,6 +14,7 @@ class MapView extends StatefulWidget {
 class _MapViewState extends State<MapView> {
   @override
   Widget build(BuildContext context) {
+    String mapAsset = Theme.of(context).colorScheme.brightness == Brightness.light ? 'assets/images/illustrations/simup-map-system.svg' : 'assets/images/illustrations/simup-map-system-dark.svg';
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -33,28 +34,13 @@ class _MapViewState extends State<MapView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 4.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(AppLocalizations.of(context)!.mapGeneralView,
-                              style: const TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color(0xFF0B1215)),
-                              textAlign: TextAlign.start),
-                        ],
-                      ),
-                    ),
+                    Text(AppLocalizations.of(context)!.mapGeneralView,
+                        style: Theme.of(context).textTheme.displayMedium,
+                        textAlign: TextAlign.start),
+                    VerticalSpacing(8.0),
                     Text(
                         AppLocalizations.of(context)!.mapGeneralViewDescription,
-                        style: TextStyle(
-                            fontFamily: 'Inter',
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black54),
+                        style: Theme.of(context).textTheme.bodySmall,
                         textAlign: TextAlign.start),
                   ],
                 ),
@@ -64,16 +50,13 @@ class _MapViewState extends State<MapView> {
           VerticalSpacing(24.0),
           Expanded(
             child: Zoom(
-              backgroundColor: const Color(0xFFECEEF6),
-              canvasColor: const Color(0xFFECEEF6),
+              backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
+              canvasColor: Theme.of(context).colorScheme.onPrimaryContainer,
               enableScroll: true,
               initTotalZoomOut: true,
               doubleTapZoom: true,
               child: Center(
-                  child: SvgPicture.asset(
-                'assets/images/illustrations/simup-map-system.svg',
-                fit: BoxFit.fitHeight,
-              )),
+                  child: SvgPicture.asset(mapAsset, fit: BoxFit.fitHeight)),
             ),
           ),
           VerticalSpacing(24.0)

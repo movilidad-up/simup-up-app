@@ -15,8 +15,8 @@ class OnboardingCard extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return DecoratedBox(
-      decoration: const BoxDecoration(
-        color: Color(0xFFFAF9F6),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.background,
       ),
       child: Padding(
         padding: const EdgeInsets.only(
@@ -38,25 +38,25 @@ class OnboardingCard extends StatelessWidget {
                   children: [
                     Text(
                       '${items[currentIndex]['title']}',
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontFamily: 'Inter',
                           fontSize: 32,
                           letterSpacing: -0.6,
                           height: 0,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xFF0B1215)
+                          color: Theme.of(context).colorScheme.onBackground
                       ),
                       textAlign: TextAlign.start,
                     ),
                     VerticalSpacing(8.0),
                     Text(
                       '${items[currentIndex]['subtitle']}',
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontFamily: 'Inter',
                           fontSize: 16,
                           height: 1.6,
                           fontWeight: FontWeight.normal,
-                          color: Color(0xFF666666)),
+                          color: Theme.of(context).colorScheme.tertiary),
                       textAlign: TextAlign.start,
                     )
                   ],
@@ -73,14 +73,14 @@ class OnboardingCard extends StatelessWidget {
                     onTap: onNextPressed,
                     child: DecoratedBox(
                       decoration: BoxDecoration(
-                        color: Color(0xFFD9D9D9),
+                        color: Theme.of(context).colorScheme.surface,
                         borderRadius: BorderRadius.circular(100.0),
                       ),
-                      child: const Padding(
+                      child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Icon(
                           Icons.arrow_forward,
-                          color: Colors.black,
+                          color: Theme.of(context).colorScheme.onBackground,
                         ),
                       ),
                     ),

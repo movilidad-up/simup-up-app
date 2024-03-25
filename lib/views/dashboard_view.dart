@@ -27,7 +27,7 @@ class _DashboardViewState extends State<DashboardView> {
     ];
 
     return Scaffold(
-        backgroundColor: Color(0xFFFAF9F6),
+        backgroundColor: Theme.of(context).colorScheme.background,
         bottomNavigationBar: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(8.0),

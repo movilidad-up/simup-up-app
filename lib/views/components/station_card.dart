@@ -12,6 +12,8 @@ class StationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String enabledStationLineAsset = Theme.of(context).colorScheme.brightness == Brightness.light ? 'assets/images/illustrations/station-line-enabled.svg' : 'assets/images/illustrations/station-line-enabled-dark.svg';
+    String disabledStationLineAsset = Theme.of(context).colorScheme.brightness == Brightness.light ? 'assets/images/illustrations/station-line-disabled.svg' : 'assets/images/illustrations/station-line-disabled-dark.svg';
     double screenWidth = MediaQuery.of(context).size.width;
 
     return InkWell(
@@ -20,7 +22,7 @@ class StationCard extends StatelessWidget {
         width: screenWidth,
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: isCurrentStation ? Color(0xFFECEEF6) : Color(0xFFFAF9F6),
+            color: isCurrentStation ? Theme.of(context).colorScheme.onPrimaryContainer : Theme.of(context).colorScheme.background,
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -29,7 +31,7 @@ class StationCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SvgPicture.asset(
-                    isCurrentStation ? 'assets/images/illustrations/station-line-enabled.svg' : 'assets/images/illustrations/station-line-disabled.svg',
+                    isCurrentStation ? enabledStationLineAsset : disabledStationLineAsset,
                     fit: BoxFit.fill,
                 ),
                 HorizontalSpacing(0.0),
@@ -39,12 +41,7 @@ class StationCard extends StatelessWidget {
                   children: [
                     Text(
                       name,
-                      style: TextStyle(
-                        fontFamily: 'Inter',
-                        color: Colors.black,
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w600
-                      ),
+                      style: Theme.of(context).textTheme.headlineMedium
                     ),
                     VerticalSpacing(4.0),
                     Text(
@@ -53,13 +50,13 @@ class StationCard extends StatelessWidget {
                           : AppLocalizations.of(context)!.arrivalTime + arrivalInfo,
                       style: TextStyle(
                           fontFamily: 'Inter',
-                          color: Colors.black54,
+                          color: Theme.of(context).colorScheme.tertiary,
                           fontSize: 12.0,
                           fontWeight: FontWeight.normal
                       ),
                     ),
                     VerticalSpacing(4.0),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -67,14 +64,14 @@ class StationCard extends StatelessWidget {
                           "Más información",
                           style: TextStyle(
                               fontFamily: 'Inter',
-                              color: Color(0xFF4B71F8),
+                              color: Theme.of(context).colorScheme.primary,
                               fontSize: 12.0,
                               fontWeight: FontWeight.w500
                           ),
                         ),
                         Icon(
                           Icons.keyboard_arrow_right,
-                          color: Color(0xFF4B71F8),
+                          color: Theme.of(context).colorScheme.primary,
                           size: 20.0,
                         )
                       ],

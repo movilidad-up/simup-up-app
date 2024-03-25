@@ -47,7 +47,7 @@ class _GetStartedZoneState extends State<GetStartedZone> {
               fontSize: 16,
               height: 1.6,
               fontWeight: FontWeight.normal,
-              color: const Color(0xFF666666),
+              color: Theme.of(context).colorScheme.tertiary,
             ),
             textAlign: TextAlign.center,
           ),
@@ -55,24 +55,31 @@ class _GetStartedZoneState extends State<GetStartedZone> {
           DropdownButtonFormField<int>(
             isDense: true,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: Theme.of(context).colorScheme.onSurfaceVariant,
               contentPadding:
               EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16.0),
                 borderSide:
-                const BorderSide(color: Colors.grey, width: 0.0),
+                BorderSide(color: Theme.of(context).colorScheme.outline, width: 0.0),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16.0),
                 borderSide:
-                const BorderSide(color: Colors.grey, width: 0.0),
+                BorderSide(color: Theme.of(context).colorScheme.outline, width: 0.0),
               ),
               border: const OutlineInputBorder(),
-              labelStyle: TextStyle(color: Colors.green),
             ),
-            iconEnabledColor: Color(0xFF969594),
+            iconEnabledColor: Theme.of(context).colorScheme.onBackground,
             icon: const Icon(Icons.keyboard_arrow_down),
-            hint: Text(AppLocalizations.of(context)!.yourZoneNameHint),
+            hint: Text(
+                AppLocalizations.of(context)!.yourZoneNameHint,
+              style: TextStyle(
+                fontFamily: 'Inter',
+                color: Theme.of(context).colorScheme.tertiary
+              ),
+            ),
             value: selectedZoneIndex,
             onChanged: (int? newValue) {
               if (newValue != null) {
@@ -87,7 +94,14 @@ class _GetStartedZoneState extends State<GetStartedZone> {
               final value = entry.value;
               return DropdownMenuItem<int>(
                 value: index,
-                child: Text(value),
+                child: Text(
+                  value,
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).colorScheme.onBackground
+                  ),
+                ),
               );
             }).toList(),
           ),

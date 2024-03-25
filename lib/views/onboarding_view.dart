@@ -20,9 +20,9 @@ class _OnboardingViewState extends State<OnboardingView> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     List<String> images = [
-      'assets/images/illustrations/get-started-routes.svg',
-      'assets/images/illustrations/get-started-displacement.svg',
-      'assets/images/illustrations/get-started-notifications.svg',
+      Theme.of(context).colorScheme.brightness == Brightness.light ? 'assets/images/illustrations/get-started-routes.svg' : 'assets/images/illustrations/get-started-routes-dark.svg',
+      Theme.of(context).colorScheme.brightness == Brightness.light ? 'assets/images/illustrations/get-started-displacement.svg' : 'assets/images/illustrations/get-started-displacement-dark.svg',
+      Theme.of(context).colorScheme.brightness == Brightness.light ? 'assets/images/illustrations/get-started-notifications.svg' : 'assets/images/illustrations/get-started-notifications-dark.svg',
     ];
 
     void _updateNextView() {
@@ -78,7 +78,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                           } : null,
                           icon: Icon(
                             Icons.arrow_back,
-                            color: Theme.of(context).colorScheme.inversePrimary,
+                            color: Theme.of(context).colorScheme.onBackground,
                             size: 24.0,
                           )),
                     ),

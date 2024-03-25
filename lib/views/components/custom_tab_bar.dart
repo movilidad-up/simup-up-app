@@ -24,7 +24,7 @@ class CustomTabBar extends StatelessWidget {
             child: DecoratedBox(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.0),
-                color: selectedIndex == index ? Colors.black : Colors.transparent,
+                color: selectedIndex == index ? Theme.of(context).colorScheme.onBackground : Colors.transparent,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -35,7 +35,7 @@ class CustomTabBar extends StatelessWidget {
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w500,
                       fontSize: 14.0,
-                      color: selectedIndex == index ? Color(0xFFFAF9F6) : Colors.black,
+                      color: selectedIndex == index ? Theme.of(context).colorScheme.background : Theme.of(context).colorScheme.onBackground,
                     ),
                   ),
                 ),

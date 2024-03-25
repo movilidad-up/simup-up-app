@@ -33,22 +33,24 @@ class RouteDetailsView extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFAF9F6),
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
               pinned: true,
               centerTitle: true,
-              backgroundColor: Colors.white,
+              backgroundColor: Theme.of(context).colorScheme.background,
               title: Text(UserStations.stationNames(context)
-                  .elementAt(stationIndex), style: TextStyle(fontFamily: 'Inter', fontWeight: FontWeight.w500, fontSize: 16.0, color: Colors.black54),),
+                  .elementAt(stationIndex),
+                style: Theme.of(context).textTheme.labelSmall
+              ),
               scrolledUnderElevation: 0.2,
               leading: IconButton(
                 enableFeedback: false,
-                icon: const Icon(
+                icon: Icon(
                   Icons.arrow_back_rounded,
-                  color: Colors.black,
+                  color: Theme.of(context).colorScheme.onBackground,
                 ),
                 onPressed: () {
                   Navigator.of(context).pop();
@@ -82,22 +84,13 @@ class RouteDetailsView extends StatelessWidget {
                           Text(
                             UserStations.stationNames(context)
                                 .elementAt(stationIndex),
-                            style: TextStyle(
-                                fontFamily: 'Inter',
-                                fontSize: 32.0,
-                                fontWeight: FontWeight.w600
-                            ),
+                            style:  Theme.of(context).textTheme.displayLarge,
                           ),
                           VerticalSpacing(8.0),
                           Text(
                             UserStations.stationInfo(context)
                                 .elementAt(stationIndex),
-                            style: TextStyle(
-                                fontFamily: 'Inter',
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.normal,
-                                color: Color(0xFF666666)
-                            ),
+                            style: Theme.of(context).textTheme.displaySmall
                           ),
                           VerticalSpacing(16.0),
                           Text(
@@ -106,14 +99,14 @@ class RouteDetailsView extends StatelessWidget {
                                 fontFamily: 'Inter',
                                 fontSize: 16.0,
                                 fontWeight: FontWeight.w600,
-                                color: Color(0xFF102F9F)
+                                color: Theme.of(context).colorScheme.primary
                             ),
                           ),
                           VerticalSpacing(16.0),
                           InfoTip(
                             tipTitle: AppLocalizations.of(context)!.routeAccess,
                             tipDescription: _getStationString(_getStationRoutes(UserStations.stationRoutes.elementAt(stationIndex))),
-                            tipIcon: Icons.bus_alert_rounded,
+                            tipIcon: Icons.directions_bus_rounded,
                           ),
                           VerticalSpacing(16.0),
                           InfoTip(

@@ -70,13 +70,21 @@ flutter:
   assets:
     - assets/
     - assets/images/illustrations/get-started-routes.svg
+    - assets/images/illustrations/get-started-routes-dark.svg
     - assets/images/illustrations/get-started-displacement.svg
+    - assets/images/illustrations/get-started-displacement-dark.svg
     - assets/images/illustrations/get-started-notifications.svg
+    - assets/images/illustrations/get-started-notifications-dark.svg
     - assets/images/illustrations/route-lines.svg
+    - assets/images/illustrations/route-lines-dark.svg
     - assets/images/illustrations/station-icon.svg
+    - assets/images/illustrations/station-icon-dark.svg
     - assets/images/illustrations/station-line-enabled.svg
+    - assets/images/illustrations/station-line-enabled-dark.svg
     - assets/images/illustrations/station-line-disabled.svg
+    - assets/images/illustrations/station-line-disabled-dark.svg
     - assets/images/illustrations/simup-map-system.svg
+    - assets/images/illustrations/simup-map-system-dark.svg
     - assets/images/stations/palustre-cover.jpg
     - assets/images/stations/terminal-cover.jpg
     - assets/images/stations/cread-cover.jpg
