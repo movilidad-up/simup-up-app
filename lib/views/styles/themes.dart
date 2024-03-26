@@ -109,7 +109,7 @@ class AppThemes {
     primary: AppColors.primaryLight,
     onPrimary: AppColors.disabledPrimaryLight,
     onPrimaryContainer: AppColors.activePrimaryLight,
-    secondary: AppColors.secondaryDark,
+    secondary: AppColors.secondaryLight,
     surface: AppColors.primarySurfaceLight,
     onSurface: AppColors.secondarySurfaceLight,
     onSurfaceVariant: AppColors.tertiarySurfaceLight,

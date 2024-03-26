@@ -53,10 +53,13 @@ class _MapViewState extends State<MapView> {
               backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
               canvasColor: Theme.of(context).colorScheme.onPrimaryContainer,
               enableScroll: true,
+              centerOnScale: true,
               initTotalZoomOut: true,
               doubleTapZoom: true,
-              child: Center(
-                  child: SvgPicture.asset(mapAsset, fit: BoxFit.fitHeight)),
+              child: SvgPicture.asset(
+                  mapAsset,
+                  width: screenWidth,
+                  fit: BoxFit.cover),
             ),
           ),
           VerticalSpacing(24.0)

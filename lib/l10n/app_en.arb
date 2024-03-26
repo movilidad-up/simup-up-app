@@ -115,6 +115,35 @@
   "@mapGeneralViewDescription": {
     "description": "Subtitle shown on map view."
   },
+  "notifications": "Notificaciones",
+  "@notifications": {
+    "description": "Title shown on notifications view."
+  },
+  "notificationsDescription": "Activa notificaciones personalizadas sobre la llegada y salida del bus en tu sede de estudios :)",
+  "@notificationsDescription": {
+    "description": "Subtitle shown on notifications view."
+  },
+  "villaCampus": "Sede Villa del Rosario",
+  "@villaCampus": {
+    "description": "Name of Villa del Rosario campus of the university."
+  },
+  "creadCampus": "Sede CREAD",
+  "@creadCampus": {
+    "description": "Name of CREAD campus of the university."
+  },
+  "healthCampus": "Sede Facultad de Salud",
+  "@healthCampus": {
+    "description": "Name of health campus of the university."
+  },
+  "yourCampusHint": "Selecciona tu sede",
+  "@yourCampusHint": {
+    "description": "Hint for campus selection dropdown."
+  },
+  "createReminder": "Crear recordatorio",
+  "@createReminder": {
+    "description": "Text for create reminder button."
+  },
+
 
   "trigal": "Trigal",
   "aeropuerto": "Aeropuerto",

@@ -28,6 +28,13 @@
   "predictionModelDisclaimer": "Ten en cuenta que el seguimiento puede no ser totalmente preciso, ya que se basa en un modelo predictivo.*",
   "mapGeneralView": "Mapa general del sistema",
   "mapGeneralViewDescription": "Visualiza el mapa completo del sistema junto a cada una de sus rutas.",
+  "notifications": "Notificaciones",
+  "notificationsDescription": "Activa notificaciones personalizadas sobre la llegada y salida del bus en tu sede de estudios :)",
+  "villaCampus": "Sede Villa del Rosario",
+  "creadCampus": "Sede CREAD",
+  "healthCampus": "Sede Facultad de Salud",
+  "yourCampusHint": "Selecciona tu sede",
+  "createReminder": "Crear recordatorio",
 
   "trigal": "Trigal",
   "aeropuerto": "Aeropuerto",
