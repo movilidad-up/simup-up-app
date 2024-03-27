@@ -143,7 +143,49 @@
   "@createReminder": {
     "description": "Text for create reminder button."
   },
+  "editReminder": "Editar recordatorio",
+  "@editReminder": {
+    "description": "Text for edit reminder view."
+  },
+  "addReminder": "Añadir recordatorio",
+  "@addReminder": {
+    "description": "Text for add reminder view."
+  },
+  "updateReminder": "Actualizar recordatorio",
+  "@updateReminder": {
+    "description": "Text for updating a reminder when editing.."
+  },
+  "activeReminders": "Recordatorios activos",
+  "@activeReminders": {
+    "description": "Text for active reminders label."
+  },
+  "emptyReminders": "Aún no hay recordatorios",
+  "@emptyReminders": {
+    "description": "Text for active reminders label."
+  },
+  "emptyRemindersDescription": "Toca “Agregar un recordatorio” para notificarte sobre la llegada del bus a tu sede de estudios",
+  "@emptyRemindersDescription": {
+    "description": "Text for active reminders label."
+  },
+  "selectCampusReminder": "Selecciona la sede, días y horas de llegada",
+  "@selectCampusReminder": {
+    "description": "Label for selecting campus, day and time for reminder."
+  },
+  "notifyThisDay": "Notificarme los días",
+  "@notifyThisDay": {
+    "description": "Label for selecting day."
+  },
+  "notifyThisHour": "En las horas",
+  "@notifyThisHour": {
+    "description": "Label for selecting time."
+  },
 
+  "monday": "Lunes",
+  "tuesday": "Martes",
+  "wednesday": "Miercoles",
+  "thursday": "Jueves",
+  "friday": "Viernes",
+  "saturday": "Sabado",
 
   "trigal": "Trigal",
   "aeropuerto": "Aeropuerto",

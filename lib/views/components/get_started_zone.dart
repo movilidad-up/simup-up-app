@@ -22,7 +22,7 @@ class _GetStartedZoneState extends State<GetStartedZone> {
   @override
   void initState() {
     super.initState();
-    selectedZoneIndex = null; // Initially no zone is selected
+    selectedZoneIndex = null;
   }
 
   void handleZoneSelection(BuildContext context, int index) {

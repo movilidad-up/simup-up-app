@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:simup_up/views/components/user_campuses.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:simup_up/views/utils/add_notification_view.dart';
 import 'package:simup_up/views/utils/custom-page-router.dart';
 
 class ReminderCard extends StatelessWidget {
-  const ReminderCard({super.key});
+  final int campusIndex;
+  final int operationTimeIndex;
+  final int dayOfWeekIndex;
+  final int reminderIndex;
+  final Map<String, dynamic> reminderItem;
+  final Function() onReminderUpdated;
+
+  const ReminderCard({super.key, required this.onReminderUpdated, required this.operationTimeIndex, required this.dayOfWeekIndex, required this.campusIndex, required this.reminderIndex, required this.reminderItem});
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return DecoratedBox(
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
@@ -19,6 +29,7 @@ class ReminderCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 DecoratedBox(
                   decoration: BoxDecoration(
@@ -51,7 +62,7 @@ class ReminderCard extends StatelessWidget {
                     ),
                     VerticalSpacing(2.0),
                     Text(
-                        'Sede Villa del Rosario',
+                        UserCampus.campusNames(context).elementAt(campusIndex),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -62,15 +73,18 @@ class ReminderCard extends StatelessWidget {
                       ),
                     ),
                     VerticalSpacing(2.0),
-                    Text(
-                        'los días jueves a las 8:00 A.M.',
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12.0,
-                          color: Theme.of(context).colorScheme.tertiary
+                    SizedBox(
+                      width: screenWidth * 0.4,
+                      child: Text(
+                          'los días ${UserCampus.daysOfWeek(context)[dayOfWeekIndex]} a las ${UserCampus.operationTimes[operationTimeIndex]}.',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12.0,
+                            color: Theme.of(context).colorScheme.tertiary
+                        ),
                       ),
                     )
                   ],
@@ -81,7 +95,13 @@ class ReminderCard extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
                   onPressed: (){
-                    Navigator.of(context).push(CustomPageRoute(AddNotificationView()));
+                    Navigator.of(context).push(CustomPageRoute(AddNotificationView(
+                      onReminderAdded: () {
+                        onReminderUpdated();
+                      },
+                      editingIndex: reminderIndex,
+                      editingItem: reminderItem,
+                    )));
                   },
                   icon: Icon(
                     Icons.edit_rounded,

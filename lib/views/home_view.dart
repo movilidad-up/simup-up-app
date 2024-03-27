@@ -80,17 +80,13 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
                 VerticalSpacing(24.0),
-                Expanded(
+                const Expanded(
                   child: Column(
                     children: [
                       CurrentStationCard(),
                     ],
                   ),
                 ),
-                // Align(
-                //     alignment: Alignment.bottomCenter,
-                //     child: BottomNavbar()
-                // )
               ],
             ),
           ),
