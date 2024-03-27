@@ -23,7 +23,7 @@ Bienvenido/a a la aplicación de transporte universitario. Esta aplicación tien
 
 ## Soporte
 
-Si tienes alguna pregunta o necesitas ayuda con la aplicación, por favor, contacta con nuestro equipo de soporte en support@example.com.
+Si tienes alguna pregunta o necesitas ayuda con la aplicación, por favor, contáctame a través del correo thisisjoeltorres@gmail.com.
 
 ## Licencia
 
