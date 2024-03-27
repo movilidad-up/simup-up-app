@@ -45,6 +45,7 @@ dependencies:
   scrollable_positioned_list: ^0.3.8
   flutter_local_notifications: ^16.2.0
   sqflite: ^2.3.0
+  skeletonizer: ^1.1.1
 
 dev_dependencies:
   flutter_test:

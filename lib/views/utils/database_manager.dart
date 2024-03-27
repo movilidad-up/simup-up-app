@@ -21,7 +21,8 @@ class DatabaseHelper {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         campus INTEGER,
         day INTEGER,
-        time INTEGER
+        time INTEGER,
+        reminderId INTEGER
       )
     ''');
   }
@@ -62,7 +63,8 @@ class DatabaseHelper {
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           campus INTEGER,
           day INTEGER,
-          time INTEGER
+          time INTEGER,
+          reminderId INTEGER
         )
       ''');
       });

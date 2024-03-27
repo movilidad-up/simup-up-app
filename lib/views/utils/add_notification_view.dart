@@ -7,6 +7,10 @@ import 'package:simup_up/views/components/user_campuses.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:simup_up/views/utils/database_manager.dart';
+import 'package:simup_up/views/utils/local_notification_service.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
+import 'package:flutter_timezone/flutter_timezone.dart';
 
 class AddNotificationView extends StatefulWidget {
   final int editingIndex;
@@ -27,6 +31,7 @@ class _AddNotificationViewState extends State<AddNotificationView> {
   int? selectedCampusIndex;
   late int _dayOfWeekIndex;
   late int _timeOfDayIndex;
+  late int _notificationId;
   bool savingReminder = false;
 
   void initialize() {
@@ -35,6 +40,7 @@ class _AddNotificationViewState extends State<AddNotificationView> {
     selectedCampusIndex = isEditing ? widget.editingItem["campus"] : null;
     _dayOfWeekIndex = isEditing ? widget.editingItem["day"] : -1;
     _timeOfDayIndex = isEditing ? widget.editingItem["time"] : -1;
+    _notificationId = isEditing ? widget.editingItem["reminderId"] : 0;
   }
 
   @override
@@ -65,6 +71,7 @@ class _AddNotificationViewState extends State<AddNotificationView> {
 
     try {
       await dbHelper.deleteReminder(widget.editingIndex);
+      await _cancelReminder();
 
       widget.onReminderAdded();
 
@@ -82,7 +89,10 @@ class _AddNotificationViewState extends State<AddNotificationView> {
         'campus': selectedCampusIndex,
         'day': _dayOfWeekIndex,
         'time': _timeOfDayIndex,
+        'reminderId': _notificationId,
       });
+
+      await _scheduleReminder();
 
       widget.onReminderAdded();
 
@@ -90,6 +100,69 @@ class _AddNotificationViewState extends State<AddNotificationView> {
     } catch (err) {
       log("Error while saving new reminder: ${err}");
     }
+  }
+
+  dynamic _getDayTime() {
+    switch (_dayOfWeekIndex) {
+      case 0:
+        return DateTime.monday;
+      case 1:
+        return DateTime.tuesday;
+      case 2:
+        return DateTime.wednesday;
+      case 3:
+        return DateTime.thursday;
+      case 4:
+        return DateTime.friday;
+      case 5:
+        return DateTime.saturday;
+    }
+  }
+
+  int _getHourTime() {
+    switch (_timeOfDayIndex) {
+      case 0:
+        return 6;
+      case 1:
+        return 8;
+      case 2:
+        return 10;
+      case 3:
+        return 12;
+      case 4:
+        return 14;
+      case 5:
+        return 16;
+      case 6:
+        return 18;
+      default:
+        return 0;
+    }
+  }
+
+  String _buildReminderMessage() {
+    String campusName = UserCampus.campusNames(context).elementAt(selectedCampusIndex!);
+    String reminderTime = UserCampus.operationTimes.elementAt(_timeOfDayIndex);
+    return "${AppLocalizations.of(context)!.busMessage1} $campusName, ${AppLocalizations.of(context)!.busMessage2} $reminderTime";
+  }
+
+  Future<void> _cancelReminder() async {
+    await LocalNotificationService().cancelNotification(_notificationId);
+  }
+
+  Future<void> _scheduleReminder() async {
+    tz.initializeTimeZones();
+    final String timeZone = await FlutterTimezone.getLocalTimezone();
+    tz.setLocalLocation(tz.getLocation(timeZone));
+    await LocalNotificationService().init();
+
+    _notificationId = await LocalNotificationService().scheduleNotification(
+        title: AppLocalizations.of(context)!.busArrival,
+        description: _buildReminderMessage(),
+        scheduledHours: _getHourTime(),
+        scheduledMinutes: 0,
+        repeatDays: [_getDayTime()],
+    );
   }
 
   void _updateReminder() async {
@@ -100,6 +173,7 @@ class _AddNotificationViewState extends State<AddNotificationView> {
         'campus': selectedCampusIndex,
         'day': _dayOfWeekIndex,
         'time': _timeOfDayIndex,
+        'reminderId': _notificationId,
       });
 
       widget.onReminderAdded();

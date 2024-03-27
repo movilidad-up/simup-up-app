@@ -179,6 +179,18 @@
   "@notifyThisHour": {
     "description": "Label for selecting time."
   },
+  "busArrival": "¡El bús esta por llegar!",
+  "@busArrival": {
+    "description": "Reminder bus title."
+  },
+  "busMessage1": "El bus esta llegando a la sede",
+  "@busMessage1": {
+    "description": "First segment for reminder message."
+  },
+  "busMessage2": "y saldrá aproximadamente a las",
+  "@busMessage2": {
+    "description": "Second segment for reminder message."
+  },
 
   "monday": "Lunes",
   "tuesday": "Martes",
