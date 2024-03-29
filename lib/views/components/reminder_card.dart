@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simup_up/views/components/user_campuses.dart';
 import 'package:simup_up/views/styles/spaces.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:simup_up/views/utils/add_notification_view.dart';
 import 'package:simup_up/views/utils/custom-page-router.dart';
 
@@ -50,7 +51,7 @@ class ReminderCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Notifícame cuando llegue a:',
+                      AppLocalizations.of(context)!.notifyWhenCampus,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -76,7 +77,7 @@ class ReminderCard extends StatelessWidget {
                     SizedBox(
                       width: screenWidth * 0.4,
                       child: Text(
-                          'los días ${UserCampus.daysOfWeek(context)[dayOfWeekIndex]} a las ${UserCampus.operationTimes[operationTimeIndex]}.',
+                          '${AppLocalizations.of(context)!.theseDays} ${UserCampus.daysOfWeek(context)[dayOfWeekIndex]} ${AppLocalizations.of(context)!.at} ${UserCampus.operationTimes[operationTimeIndex]}.',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(

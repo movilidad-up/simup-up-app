@@ -1,8 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:simup_up/enums/enums.dart';
 import 'package:simup_up/views/components/chips_container.dart';
 import 'package:simup_up/views/components/primary_button.dart';
+import 'package:simup_up/views/components/reminder_app_bar.dart';
 import 'package:simup_up/views/components/user_campuses.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -140,10 +142,27 @@ class _AddNotificationViewState extends State<AddNotificationView> {
     }
   }
 
+  int _getOffsetMinutes(Campus campus) {
+    switch (campus) {
+      case Campus.villaCampus:
+        return 0;
+      case Campus.creadCampus:
+        return 25;
+      case Campus.healthCampus:
+        return 20;
+    }
+  }
+
   String _buildReminderMessage() {
     String campusName = UserCampus.campusNames(context).elementAt(selectedCampusIndex!);
-    String reminderTime = UserCampus.operationTimes.elementAt(_timeOfDayIndex);
-    return "${AppLocalizations.of(context)!.busMessage1} $campusName, ${AppLocalizations.of(context)!.busMessage2} $reminderTime";
+    String reminderSuffix = _timeOfDayIndex < 3 ? "A.M." : "P.M.";
+    String reminderTime = "${_getHourTime()}:10 $reminderSuffix";
+
+    if (selectedCampusIndex == 0) {
+      return "${AppLocalizations.of(context)!.busMessage1} $campusName, ${AppLocalizations.of(context)!.busMessage2} $reminderTime";
+    } else {
+      return "${AppLocalizations.of(context)!.busMessage1} $campusName. ${AppLocalizations.of(context)!.busMessage3}";
+    }
   }
 
   Future<void> _cancelReminder() async {
@@ -160,7 +179,7 @@ class _AddNotificationViewState extends State<AddNotificationView> {
         title: AppLocalizations.of(context)!.busArrival,
         description: _buildReminderMessage(),
         scheduledHours: _getHourTime(),
-        scheduledMinutes: 0,
+        scheduledMinutes: _getOffsetMinutes(UserCampus.campusList.elementAt(selectedCampusIndex!)),
         repeatDays: [_getDayTime()],
     );
   }
@@ -169,6 +188,8 @@ class _AddNotificationViewState extends State<AddNotificationView> {
     DatabaseHelper dbHelper = DatabaseHelper();
 
     try {
+      await _cancelReminder();
+      await _scheduleReminder();
       await dbHelper.updateReminder(widget.editingIndex, {
         'campus': selectedCampusIndex,
         'day': _dayOfWeekIndex,
@@ -217,43 +238,10 @@ class _AddNotificationViewState extends State<AddNotificationView> {
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            SliverAppBar(
-              pinned: true,
-              centerTitle: true,
-              backgroundColor: Theme.of(context).colorScheme.background,
-              title: Text(
-                  isEditing
-                      ? AppLocalizations.of(context)!.editReminder
-                      : AppLocalizations.of(context)!.addReminder,
-                  style: Theme.of(context).textTheme.labelSmall),
-              scrolledUnderElevation: 0.2,
-              actions: [
-                isEditing
-                    ? Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: IconButton(
-                          enableFeedback: false,
-                          icon: Icon(
-                            Icons.delete_forever_rounded,
-                            color: Theme.of(context).colorScheme.onBackground,
-                          ),
-                          onPressed: () {
-                            _deleteReminder();
-                          },
-                        ),
-                      )
-                    : SizedBox(),
-              ],
-              leading: IconButton(
-                enableFeedback: false,
-                icon: Icon(
-                  Icons.arrow_back_rounded,
-                  color: Theme.of(context).colorScheme.onBackground,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
+            ReminderAppBar(
+              isEditing: isEditing,
+              onDelete: _deleteReminder,
+              onBack: () => Navigator.of(context).pop(),
             ),
             SliverList(
               delegate: SliverChildListDelegate([

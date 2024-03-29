@@ -3,7 +3,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 
 class CurrentStationCard extends StatefulWidget {
-  const CurrentStationCard({super.key});
+  final VoidCallback onCurrentStationTap;
+
+  const CurrentStationCard({super.key, required this.onCurrentStationTap});
 
   @override
   State<CurrentStationCard> createState() => _CurrentStationCardState();
@@ -52,7 +54,7 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
                     ),
                     padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 16.0),
                   ),
-                  onPressed: (){},
+                  onPressed: widget.onCurrentStationTap,
                   child: Text(
                     'Ver más',
                     textHeightBehavior: const TextHeightBehavior(

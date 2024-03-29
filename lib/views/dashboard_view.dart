@@ -17,10 +17,20 @@ class _DashboardViewState extends State<DashboardView> {
   late String? userName;
   int _currentIndex = 0;
 
+  void _handleRoutesTap() {
+    setState(() {
+      _currentIndex = 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> _screens = [
-      const HomeView(),
+      HomeView(
+        onCurrentStationTap: () {
+          _handleRoutesTap();
+        },
+      ),
       const RoutesView(),
       const NotificationsView(),
       const MapView()

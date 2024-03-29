@@ -44,9 +44,13 @@
   "selectCampusReminder": "Selecciona la sede, días y horas de llegada",
   "notifyThisDay": "Notificarme los días",
   "notifyThisHour": "En las horas",
+  "notifyWhenCampus": "Notifícame cuando llegue a:",
   "busArrival": "¡El bús esta por llegar!",
   "busMessage1": "El bus esta llegando a la sede",
   "busMessage2": "y saldrá aproximadamente a las",
+  "busMessage3": "Recuerda salir temprano para no perderlo. Feliz recorrido :)",
+  "theseDays": "los días",
+  "at": "a las",
 
   "monday": "Lunes",
   "tuesday": "Martes",

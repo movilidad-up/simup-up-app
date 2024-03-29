@@ -5,7 +5,9 @@ import 'package:simup_up/views/styles/spaces.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+  final VoidCallback onCurrentStationTap;
+
+  const HomeView({super.key, required this.onCurrentStationTap});
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -80,10 +82,12 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
                 VerticalSpacing(24.0),
-                const Expanded(
+                Expanded(
                   child: Column(
                     children: [
-                      CurrentStationCard(),
+                      CurrentStationCard(
+                        onCurrentStationTap: widget.onCurrentStationTap,
+                      ),
                     ],
                   ),
                 ),

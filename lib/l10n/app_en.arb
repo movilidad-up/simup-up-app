@@ -179,17 +179,33 @@
   "@notifyThisHour": {
     "description": "Label for selecting time."
   },
+  "notifyWhenCampus": "Notifícame cuando llegue a:",
+  "@notifyWhenCampus": {
+    "description": "Reminder bus title."
+  },
   "busArrival": "¡El bús esta por llegar!",
   "@busArrival": {
     "description": "Reminder bus title."
   },
-  "busMessage1": "El bus esta llegando a la sede",
+  "busMessage1": "El bus esta llegando a la",
   "@busMessage1": {
     "description": "First segment for reminder message."
   },
   "busMessage2": "y saldrá aproximadamente a las",
   "@busMessage2": {
     "description": "Second segment for reminder message."
+  },
+  "busMessage3": "Recuerda salir temprano para no perderlo. Feliz recorrido :)",
+  "@busMessage2": {
+    "description": "Alternative segment for reminder message."
+  },
+  "theseDays": "los días",
+  "@theseDays": {
+    "description": "During the days."
+  },
+  "at": "a las",
+  "@at": {
+    "description": "At this time."
   },
 
   "monday": "Lunes",
