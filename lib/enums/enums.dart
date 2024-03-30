@@ -12,6 +12,12 @@ enum Station {
   salud
 }
 
+enum Campus {
+  villaCampus,
+  creadCampus,
+  healthCampus
+}
+
 enum Zone {
   unknown,
   trigal,

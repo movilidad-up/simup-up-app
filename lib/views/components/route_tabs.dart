@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:simup_up/views/components/custom_tab_bar.dart';
+import 'package:simup_up/views/components/empty_routes.dart';
 import 'package:simup_up/views/components/route_queue.dart';
 import 'package:simup_up/views/utils/station-model.dart';
 
@@ -30,9 +31,10 @@ class _RouteTabsState extends State<RouteTabs> {
 
   @override
   Widget build(BuildContext context) {
-    StationModel.calculateStationIntervals(context);
+    StationModel.getStationIntervals(context);
 
-    routeOneStations = StationModel.routeOneStations;
+    routeOneStations = StationModel.getStationsForDirection(true);
+    routeTwoStations = StationModel.getStationsForDirection(false);
 
     return Column(
       children: [
@@ -57,11 +59,12 @@ class _RouteTabsState extends State<RouteTabs> {
     if (_routeInformationLoaded && routeOneStations.isNotEmpty) {
       return RouteQueue(
           routeList: routeOneStations,
+          isRouteOne: true
       );
     } else {
-      return Padding(
-        padding: const EdgeInsets.only(top: 16.0),
-        child: Text("Rutas no encontradas.", style: TextStyle(color: Theme.of(context).colorScheme.tertiary)),
+      return const Padding(
+        padding: EdgeInsets.only(top: 16.0),
+        child: EmptyRoutes(isItRouteOne: true),
       );
     }
   }
@@ -70,11 +73,12 @@ class _RouteTabsState extends State<RouteTabs> {
     if (_routeInformationLoaded && routeTwoStations.isNotEmpty) {
       return RouteQueue(
           routeList: routeTwoStations,
+          isRouteOne: false
       );
     } else {
-      return Padding(
-        padding: const EdgeInsets.only(top: 16.0),
-        child: Text("Rutas no encontradas.", style: TextStyle(color: Theme.of(context).colorScheme.tertiary),),
+      return const Padding(
+        padding: EdgeInsets.only(top: 16.0),
+        child: EmptyRoutes(isItRouteOne: false),
       );
     }
   }

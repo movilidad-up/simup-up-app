@@ -115,6 +115,133 @@
   "@mapGeneralViewDescription": {
     "description": "Subtitle shown on map view."
   },
+  "notifications": "Notificaciones",
+  "@notifications": {
+    "description": "Title shown on notifications view."
+  },
+  "notificationsDescription": "Activa notificaciones personalizadas sobre la llegada y salida del bus en tu sede de estudios :)",
+  "@notificationsDescription": {
+    "description": "Subtitle shown on notifications view."
+  },
+  "villaCampus": "Sede Villa del Rosario",
+  "@villaCampus": {
+    "description": "Name of Villa del Rosario campus of the university."
+  },
+  "creadCampus": "Sede CREAD",
+  "@creadCampus": {
+    "description": "Name of CREAD campus of the university."
+  },
+  "healthCampus": "Sede Facultad de Salud",
+  "@healthCampus": {
+    "description": "Name of health campus of the university."
+  },
+  "yourCampusHint": "Selecciona tu sede",
+  "@yourCampusHint": {
+    "description": "Hint for campus selection dropdown."
+  },
+  "createReminder": "Crear recordatorio",
+  "@createReminder": {
+    "description": "Text for create reminder button."
+  },
+  "editReminder": "Editar recordatorio",
+  "@editReminder": {
+    "description": "Text for edit reminder view."
+  },
+  "addReminder": "Añadir recordatorio",
+  "@addReminder": {
+    "description": "Text for add reminder view."
+  },
+  "updateReminder": "Actualizar recordatorio",
+  "@updateReminder": {
+    "description": "Text for updating a reminder when editing.."
+  },
+  "activeReminders": "Recordatorios activos",
+  "@activeReminders": {
+    "description": "Text for active reminders label."
+  },
+  "emptyReminders": "Aún no hay recordatorios",
+  "@emptyReminders": {
+    "description": "Text for active reminders label."
+  },
+  "emptyRemindersDescription": "Toca “Agregar un recordatorio” para notificarte sobre la llegada del bus a tu sede de estudios",
+  "@emptyRemindersDescription": {
+    "description": "Text for active reminders label."
+  },
+  "emptyRoutes": "El bus esta descansando",
+  "@emptyRoutes": {
+    "description": "Label for bus out of operations time."
+  },
+  "routeOneOperationsTime": "Recuerda que el bus esta funcional desde las 5:30 A.M. hasta las 7:00 P.M. en esta ruta.",
+  "@routeOneOperationsTime": {
+    "description": "Text for route 1 operations time."
+  },
+  "routeTwoOperationsTime": "Recuerda que el bus esta funcional desde las 8:10 A.M. hasta las 7:00 P.M. en esta ruta.",
+  "@routeTwoOperationsTime": {
+    "description": "Text for route 2 operations time."
+  },
+  "routeOneNotOperational": "La ruta 1 actualmente no esta en horario de operaciones.",
+  "@routeOneNotOperational": {
+    "description": "Current station card operation message for route 1."
+  },
+  "routeTwoNotOperational": "La ruta 2 actualmente no esta en horario de operaciones.",
+  "@routeTwoNotOperational": {
+    "description": "Current station card operation message for route 2."
+  },
+  "selectCampusReminder": "Selecciona la sede, días y horas de llegada",
+  "@selectCampusReminder": {
+    "description": "Label for selecting campus, day and time for reminder."
+  },
+  "notifyThisDay": "Notificarme los días",
+  "@notifyThisDay": {
+    "description": "Label for selecting day."
+  },
+  "notifyThisHour": "En las horas",
+  "@notifyThisHour": {
+    "description": "Label for selecting time."
+  },
+  "notifyWhenCampus": "Notifícame cuando llegue a:",
+  "@notifyWhenCampus": {
+    "description": "Reminder bus title."
+  },
+  "busArrival": "¡El bús esta por llegar!",
+  "@busArrival": {
+    "description": "Reminder bus title."
+  },
+  "busMessage1": "El bus esta llegando a la",
+  "@busMessage1": {
+    "description": "First segment for reminder message."
+  },
+  "busMessage2": "y saldrá aproximadamente a las",
+  "@busMessage2": {
+    "description": "Second segment for reminder message."
+  },
+  "busMessage3": "Recuerda salir temprano para no perderlo. Feliz recorrido :)",
+  "@busMessage2": {
+    "description": "Alternative segment for reminder message."
+  },
+  "theseDays": "los días",
+  "@theseDays": {
+    "description": "During the days."
+  },
+  "at": "a las",
+  "@at": {
+    "description": "At this time."
+  },
+  "approximatedStation": "Estación aproximada",
+  "@approximatedStation": {
+    "description": "Label for current station card."
+  },
+  "seeMore": "Ver más",
+  "@seeMore": {
+    "description": "Label for current station card button."
+  },
+
+  "monday": "Lunes",
+  "tuesday": "Martes",
+  "wednesday": "Miercoles",
+  "thursday": "Jueves",
+  "friday": "Viernes",
+  "saturday": "Sabado",
 
   "trigal": "Trigal",
   "aeropuerto": "Aeropuerto",
@@ -164,15 +291,15 @@
 
   "palustre": "El Palustre",
   "terminal": "Terminal de Cúcuta",
-  "cread": "CREAD",
+  "cread": "Sede CREAD",
   "fuente": "Fuente Luminosa",
-  "republica": "BodyTech | Banco de la Republica",
+  "republica": "Banco de la Republica",
   "sanMateo": "Redoma San Mateo",
   "toyota": "Toyota",
   "lomitas": "Puente Lomitas",
   "villa": "Campus Villa del Rosario",
   "iglesia": "Iglesia Espiritu Santo",
-  "salud": "Facultad de Salud",
+  "salud": "Sede Facultad de Salud",
 
   "palustreInfo": "Este punto de conexión une el tradicional mercado El Palustre con el moderno Nuevo Puente Intercambiador Atalaya, facilitando el desplazamiento de estudiantes entre el corazón histórico y el desarrollo urbano de la ciudad.",
   "terminalInfo": "Principal punto de conexión con el sistema de transporte de la ciudad, facilitando el acceso a diversas áreas educativas y comerciales desde la terminal de buses más importante de Cúcuta.",

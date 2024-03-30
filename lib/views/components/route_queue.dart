@@ -4,11 +4,13 @@ import 'package:simup_up/views/components/station_card.dart';
 import 'package:simup_up/views/route_details_view.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:simup_up/views/utils/custom-page-router.dart';
+import 'package:simup_up/views/utils/station-model.dart';
 
 class RouteQueue extends StatefulWidget {
   final List<Map<String, dynamic>> routeList;
+  final bool isRouteOne;
 
-  const RouteQueue({super.key, required this.routeList});
+  const RouteQueue({super.key, required this.routeList, required this.isRouteOne});
 
   @override
   State<RouteQueue> createState() => _RouteQueueState();
@@ -17,13 +19,14 @@ class RouteQueue extends StatefulWidget {
 class _RouteQueueState extends State<RouteQueue> {
   final ItemScrollController itemScrollController = ItemScrollController();
   final ScrollOffsetController scrollOffsetController = ScrollOffsetController();
-  int _currentStationIndex = 5;
+  late int _currentStationIndex;
 
   @override
   void initState() {
     super.initState();
+    _currentStationIndex = widget.isRouteOne ? StationModel.currentRouteOne : StationModel.currentRouteTwo;
     WidgetsBinding.instance.addPostFrameCallback((_) => itemScrollController.jumpTo(
-      index: 4,
+      index: _currentStationIndex,
     ));
   }
 
@@ -53,7 +56,11 @@ class _RouteQueueState extends State<RouteQueue> {
                           arrivalInfo: routes.elementAt(index)["arrivalTime"],
                           isCurrentStation: index == _currentStationIndex,
                           onTap: () {
-                            Navigator.of(context).push(CustomPageRoute(RouteDetailsView(stationIndex: index)));
+                            Navigator.of(context).push(
+                                CustomPageRoute(
+                                    RouteDetailsView(stationIndex: routes.elementAt(index)["stationIndex"]),
+                                )
+                            );
                           },
                         ),
                       );

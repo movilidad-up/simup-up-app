@@ -3,9 +3,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simup_up/views/components/current_station_card.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:simup_up/views/utils/update-observable.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+  final VoidCallback onCurrentStationTap;
+  final UpdateObservable updateObservable;
+
+  const HomeView({super.key, required this.onCurrentStationTap, required this.updateObservable});
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -83,14 +87,20 @@ class _HomeViewState extends State<HomeView> {
                 Expanded(
                   child: Column(
                     children: [
-                      CurrentStationCard(),
+                      CurrentStationCard(
+                        isRouteOne: true,
+                        onCurrentStationTap: widget.onCurrentStationTap,
+                        updateObservable: widget.updateObservable,
+                      ),
+                      VerticalSpacing(16.0),
+                      CurrentStationCard(
+                        isRouteOne: false,
+                        onCurrentStationTap: widget.onCurrentStationTap,
+                        updateObservable: widget.updateObservable,
+                      ),
                     ],
                   ),
                 ),
-                // Align(
-                //     alignment: Alignment.bottomCenter,
-                //     child: BottomNavbar()
-                // )
               ],
             ),
           ),

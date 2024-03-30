@@ -150,7 +150,7 @@ class _OnboardingFrameState extends State<OnboardingFrame> with SingleTickerProv
             ),
             PrimaryButton(
               onButtonPressed: _nextStep,
-              buttonText: AppLocalizations.of(context)!.continueNext, // continue
+              buttonText: AppLocalizations.of(context)!.continueNext,
               isButtonEnabled: _isContinueButtonEnabled(),
             ),
           ],

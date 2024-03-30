@@ -28,7 +28,7 @@ class RouteDetailsView extends StatelessWidget {
     String _getStationString(List<String> zoneList) {
       if (zoneList.isEmpty) return "";
       String zoneNames = zoneList.join(", ");
-      zoneNames = zoneNames.replaceRange(zoneNames.lastIndexOf(", "), zoneNames.length, "."); // Replace the last ", " with "."
+      zoneNames = zoneNames.replaceRange(zoneNames.lastIndexOf(", "), zoneNames.length, ".");
       return zoneNames;
     }
 
