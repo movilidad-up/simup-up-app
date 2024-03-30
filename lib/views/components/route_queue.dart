@@ -1,4 +1,3 @@
-import 'package:cron/cron.dart';
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:simup_up/views/components/station_card.dart';
@@ -57,7 +56,11 @@ class _RouteQueueState extends State<RouteQueue> {
                           arrivalInfo: routes.elementAt(index)["arrivalTime"],
                           isCurrentStation: index == _currentStationIndex,
                           onTap: () {
-                            Navigator.of(context).push(CustomPageRoute(RouteDetailsView(stationIndex: index)));
+                            Navigator.of(context).push(
+                                CustomPageRoute(
+                                    RouteDetailsView(stationIndex: routes.elementAt(index)["stationIndex"]),
+                                )
+                            );
                           },
                         ),
                       );

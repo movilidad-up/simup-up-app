@@ -4,6 +4,7 @@ import 'package:simup_up/views/components/user_stations.dart';
 class StationModel {
   static bool isLineOneWorking = false;
   static bool isLineTwoWorking = false;
+  static bool isRoundTrip = false;
   static int currentRouteOne = 0;
   static int currentRouteTwo = 0;
   static List<Map<String, dynamic>> routeOneStations = [];
@@ -24,12 +25,23 @@ class StationModel {
 
   static void _getWorkingLines() {
     DateTime currentTime = DateTime.now();
+    int currentHour = currentTime.hour;
 
-    if (currentTime.hour >= 8 && currentTime.hour <= 19) {
+    // Route 1 operates from 5:30 A.M. to 7:00 P.M. from Monday to Friday
+    // On Saturdays, it operates until 3:00 P.M.
+    if ((currentTime.weekday >= 1 && currentTime.weekday <= 6 &&
+        currentHour >= 5 && currentHour < 19) ||
+        (currentTime.weekday == 7 && currentHour >= 5 && currentHour < 15)) {
       isLineOneWorking = true;
-      isLineTwoWorking = true;
     } else {
       isLineOneWorking = false;
+    }
+
+    // Route 2 operates from 8:10 A.M. to 7:00 P.M. from Monday to Friday
+    if (currentTime.weekday >= 1 && currentTime.weekday <= 5 &&
+        currentHour >= 8 && currentHour < 19) {
+      isLineTwoWorking = true;
+    } else {
       isLineTwoWorking = false;
     }
   }
@@ -81,7 +93,7 @@ class StationModel {
       currentMinute = 10;
     }
 
-    int currentStationIndex = 0; // Initialize current station index
+    int currentStationIndex = 0;
 
     if (isItRouteOne) {
       List<int> roundTrip = isItForward ? routeOneRoundTripForward : routeOneRoundTripBackwards;
@@ -89,7 +101,6 @@ class StationModel {
       for (int i = 0; i < roundTrip.length; i++) {
         routeOneStations.add(_generateStationInfo(context, roundTrip.elementAt(i), currentHour, currentMinute, routeOneArrivalTimes[i], true, roundTrip));
 
-        // Update current station index
         if (isItForward) {
           currentStationIndex = i;
         } else {
@@ -127,6 +138,7 @@ class StationModel {
   static void calculateStationIntervals(BuildContext context, bool isItForward) {
     routeOneStations.clear();
     routeTwoStations.clear();
+    isRoundTrip = isItForward ? false : true;
 
     // If forward. Check which lines are working and generate respectively.
 
@@ -153,6 +165,7 @@ class StationModel {
       "stationName": UserStations.stationNames(context).elementAt(index),
       "stationInfo": UserStations.stationInfo(context).elementAt(index),
       "stationAsset": UserStations.stationAsset.elementAt(index),
+      "stationIndex": index,
       "arrivalTime": _calculateArrivalTime(currentHour, currentMinute, interval, isItRouteOne, index)
     };
   }
@@ -164,7 +177,13 @@ class StationModel {
     currentMinute %= 60;
 
     if (currentMinute <= latestTime.minute) {
-      _updateCurrentStationIndex(isItRouteOne, currentIndex);
+      int currentRouteLength = isItRouteOne ? (routeOneStations.length - currentIndex) : (routeTwoStations.length - currentIndex);
+
+      if (isRoundTrip) {
+        _updateCurrentStationIndex(isItRouteOne, currentRouteLength);
+      } else {
+        _updateCurrentStationIndex(isItRouteOne, currentIndex);
+      }
     }
 
     return "${currentHour.toString().padLeft(2, '0')}:${currentMinute.toString().padLeft(2, '0')}";

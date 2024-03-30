@@ -23,11 +23,13 @@ class CurrentStationCard extends StatefulWidget {
 
 class _CurrentStationCardState extends State<CurrentStationCard> {
   bool _routeOperational = false;
+  int _currentStationIndex = 0;
   String _currentStationName = "";
 
   @override
   void initState() {
     super.initState();
+    _currentStationIndex = widget.isRouteOne ? StationModel.currentRouteOne : StationModel.currentRouteTwo;
     widget.updateObservable
         .subscribe(_handleUpdate); // Subscribe to update notifications
   }
@@ -68,11 +70,10 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
   }
 
   void _handleUpdate() {
-    int currentStationIndex = StationModel.currentRouteOne;
-
     try {
+      _currentStationIndex = widget.isRouteOne ? StationModel.currentRouteOne : StationModel.currentRouteTwo;
       _currentStationName = StationModel.getStationsForDirection(widget.isRouteOne)
-          .elementAt(currentStationIndex)["stationName"];
+          .elementAt(_currentStationIndex)["stationName"];
       _routeOperational = true;
     } catch (e) {
       _routeOperational = false;
