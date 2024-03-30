@@ -59,6 +59,7 @@ class _MapViewState extends State<MapView> {
               child: SvgPicture.asset(
                   mapAsset,
                   width: screenWidth,
+                  height: screenHeight,
                   fit: BoxFit.cover),
             ),
           ),

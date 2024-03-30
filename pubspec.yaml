@@ -46,6 +46,7 @@ dependencies:
   flutter_local_notifications: ^16.2.0
   sqflite: ^2.3.0
   skeletonizer: ^1.1.1
+  cron: ^0.6.0
 
 dev_dependencies:
   flutter_test:
@@ -80,14 +81,18 @@ flutter:
     - assets/images/illustrations/get-started-notifications-dark.svg
     - assets/images/illustrations/route-lines.svg
     - assets/images/illustrations/route-lines-dark.svg
-    - assets/images/illustrations/station-icon.svg
-    - assets/images/illustrations/station-icon-dark.svg
+    - assets/images/illustrations/route-one-icon.svg
+    - assets/images/illustrations/route-one-icon-dark.svg
+    - assets/images/illustrations/route-two-icon.svg
+    - assets/images/illustrations/route-two-icon-dark.svg
     - assets/images/illustrations/station-line-enabled.svg
     - assets/images/illustrations/station-line-enabled-dark.svg
     - assets/images/illustrations/station-line-disabled.svg
     - assets/images/illustrations/station-line-disabled-dark.svg
     - assets/images/illustrations/empty-reminders.svg
     - assets/images/illustrations/empty-reminders-dark.svg
+    - assets/images/illustrations/empty-routes.svg
+    - assets/images/illustrations/empty-routes-dark.svg
     - assets/images/illustrations/simup-map-system.svg
     - assets/images/illustrations/simup-map-system-dark.svg
     - assets/images/stations/palustre-cover.jpg

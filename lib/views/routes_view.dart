@@ -13,7 +13,6 @@ class RoutesView extends StatefulWidget {
 class _RoutesViewState extends State<RoutesView> {
   @override
   void initState() {
-    DateTime dateTime = DateTime.now();
     super.initState();
   }
 

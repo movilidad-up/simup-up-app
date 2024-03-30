@@ -1,8 +1,11 @@
+import 'package:cron/cron.dart';
 import 'package:flutter/material.dart';
 import 'package:simup_up/views/components/bottom-navbar.dart';
 import 'package:simup_up/views/home_view.dart';
 import 'package:simup_up/views/notifications_view.dart';
 import 'package:simup_up/views/routes_view.dart';
+import 'package:simup_up/views/utils/station-model.dart';
+import 'package:simup_up/views/utils/update-observable.dart';
 
 import 'map_view.dart';
 
@@ -16,10 +19,48 @@ class DashboardView extends StatefulWidget {
 class _DashboardViewState extends State<DashboardView> {
   late String? userName;
   int _currentIndex = 0;
+  bool isCronRunning = false;
+  late ScheduledTask cronTask;
+  late final cron = Cron();
+  late final UpdateObservable updateObservable;
+
+  @override
+  void initState() {
+    updateObservable = UpdateObservable();
+    _handleTimeUpdate();
+    super.initState();
+  }
 
   void _handleRoutesTap() {
     setState(() {
       _currentIndex = 1;
+    });
+  }
+
+  void _handleTimeUpdate() {
+    final shouldStartCron = _currentIndex <= 1 && !isCronRunning;
+
+    if (shouldStartCron) {
+      isCronRunning = true;
+      cronTask = cron.schedule(Schedule.parse('*/1 * * * *'), () async {
+        _updateCurrentStation(_currentIndex);
+      });
+    } else if (isCronRunning) {
+      cronTask.cancel();
+      isCronRunning = false;
+    }
+  }
+
+  void _updateCurrentStation(int selectedTabIndex) {
+    setState(() {
+      // Call the appropriate method from StationModel to update the current station
+      // For example, if selectedTabIndex is 0 (representing Route One),
+      // update the current station for Route One
+      if (selectedTabIndex == 0 || selectedTabIndex == 1) {
+        StationModel.calculateStationIntervals(context, true);
+      } else {
+        StationModel.calculateStationIntervals(context, false);
+      }
     });
   }
 
@@ -30,6 +71,7 @@ class _DashboardViewState extends State<DashboardView> {
         onCurrentStationTap: () {
           _handleRoutesTap();
         },
+        updateObservable: updateObservable,
       ),
       const RoutesView(),
       const NotificationsView(),
@@ -47,6 +89,7 @@ class _DashboardViewState extends State<DashboardView> {
                 setState(() {
                   _currentIndex = index;
                 });
+                _handleTimeUpdate();
               },
             ),
           ),

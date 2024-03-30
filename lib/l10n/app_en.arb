@@ -167,6 +167,26 @@
   "@emptyRemindersDescription": {
     "description": "Text for active reminders label."
   },
+  "emptyRoutes": "El bus esta descansando",
+  "@emptyRoutes": {
+    "description": "Label for bus out of operations time."
+  },
+  "routeOneOperationsTime": "Recuerda que el bus esta funcional desde las 5:30 A.M. hasta las 7:00 P.M. en esta ruta.",
+  "@routeOneOperationsTime": {
+    "description": "Text for route 1 operations time."
+  },
+  "routeTwoOperationsTime": "Recuerda que el bus esta funcional desde las 8:10 A.M. hasta las 7:00 P.M. en esta ruta.",
+  "@routeTwoOperationsTime": {
+    "description": "Text for route 2 operations time."
+  },
+  "routeOneNotOperational": "La ruta 1 actualmente no esta en horario de operaciones.",
+  "@routeOneNotOperational": {
+    "description": "Current station card operation message for route 1."
+  },
+  "routeTwoNotOperational": "La ruta 2 actualmente no esta en horario de operaciones.",
+  "@routeTwoNotOperational": {
+    "description": "Current station card operation message for route 2."
+  },
   "selectCampusReminder": "Selecciona la sede, días y horas de llegada",
   "@selectCampusReminder": {
     "description": "Label for selecting campus, day and time for reminder."
@@ -206,6 +226,14 @@
   "at": "a las",
   "@at": {
     "description": "At this time."
+  },
+  "approximatedStation": "Estación aproximada",
+  "@approximatedStation": {
+    "description": "Label for current station card."
+  },
+  "seeMore": "Ver más",
+  "@seeMore": {
+    "description": "Label for current station card button."
   },
 
   "monday": "Lunes",
@@ -263,15 +291,15 @@
 
   "palustre": "El Palustre",
   "terminal": "Terminal de Cúcuta",
-  "cread": "CREAD",
+  "cread": "Sede CREAD",
   "fuente": "Fuente Luminosa",
-  "republica": "BodyTech | Banco de la Republica",
+  "republica": "Banco de la Republica",
   "sanMateo": "Redoma San Mateo",
   "toyota": "Toyota",
   "lomitas": "Puente Lomitas",
   "villa": "Campus Villa del Rosario",
   "iglesia": "Iglesia Espiritu Santo",
-  "salud": "Facultad de Salud",
+  "salud": "Sede Facultad de Salud",
 
   "palustreInfo": "Este punto de conexión une el tradicional mercado El Palustre con el moderno Nuevo Puente Intercambiador Atalaya, facilitando el desplazamiento de estudiantes entre el corazón histórico y el desarrollo urbano de la ciudad.",
   "terminalInfo": "Principal punto de conexión con el sistema de transporte de la ciudad, facilitando el acceso a diversas áreas educativas y comerciales desde la terminal de buses más importante de Cúcuta.",
