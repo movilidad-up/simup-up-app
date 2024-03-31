@@ -100,13 +100,6 @@ class StationModel {
 
       for (int i = 0; i < roundTrip.length; i++) {
         routeOneStations.add(_generateStationInfo(context, roundTrip.elementAt(i), currentHour, currentMinute, routeOneArrivalTimes[i], true, roundTrip));
-
-        if (isItForward) {
-          currentStationIndex = i;
-        } else {
-          currentStationIndex = roundTrip.length - 1 - i;
-        }
-
         currentMinute += routeOneArrivalTimes[i];
       }
     } else {
@@ -114,14 +107,6 @@ class StationModel {
 
       for (int i = 0; i < roundTrip.length; i++) {
         routeTwoStations.add(_generateStationInfo(context, roundTrip.elementAt(i), currentHour, currentMinute, routeTwoArrivalTimes[i], false, roundTrip));
-
-        // Update current station index
-        if (isItForward) {
-          currentStationIndex = i;
-        } else {
-          currentStationIndex = roundTrip.length - 1 - i;
-        }
-
         currentMinute += routeTwoArrivalTimes[i];
       }
     }
@@ -177,13 +162,7 @@ class StationModel {
     currentMinute %= 60;
 
     if (currentMinute <= latestTime.minute) {
-      int currentRouteLength = isItRouteOne ? (routeOneStations.length - currentIndex) : (routeTwoStations.length - currentIndex);
-
-      if (isRoundTrip) {
-        _updateCurrentStationIndex(isItRouteOne, currentRouteLength);
-      } else {
-        _updateCurrentStationIndex(isItRouteOne, currentIndex);
-      }
+      _updateCurrentStationIndex(isItRouteOne, currentIndex);
     }
 
     return "${currentHour.toString().padLeft(2, '0')}:${currentMinute.toString().padLeft(2, '0')}";

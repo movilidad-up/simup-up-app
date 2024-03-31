@@ -229,6 +229,27 @@ class _AddNotificationViewState extends State<AddNotificationView> {
     });
   }
 
+  bool _isSaturday() {
+    return _dayOfWeekIndex == 5;
+  }
+
+  int _getAvailableSchedule() {
+    List<String> availableSchedule = UserCampus.operationTimes;
+
+    if (selectedCampusIndex == 0 && _isSaturday()) {
+      availableSchedule = UserCampus.operationTimes.sublist(0, 5);
+
+      if (_timeOfDayIndex >= 5) {
+        _timeOfDayIndex = -1;
+      }
+    } else if ((selectedCampusIndex == 1 || selectedCampusIndex == 2) && _isSaturday()) {
+      availableSchedule = [];
+      _timeOfDayIndex = -1;
+    }
+
+    return availableSchedule.length;
+  }
+
   @override
   Widget build(BuildContext context) {
     bool isEditing = widget.editingIndex >= 0;
@@ -283,7 +304,7 @@ class _AddNotificationViewState extends State<AddNotificationView> {
                                     fillColor: Theme.of(context)
                                         .colorScheme
                                         .onSurfaceVariant,
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                         vertical: 16.0, horizontal: 16.0),
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(16.0),
@@ -376,6 +397,8 @@ class _AddNotificationViewState extends State<AddNotificationView> {
                                 VerticalSpacing(12.0),
                                 ChipsContainer(
                                   selectedChip: _timeOfDayIndex,
+                                  hasRestrictions: true,
+                                  chipsEnabled: _getAvailableSchedule(),
                                   chipList: UserCampus.operationTimes,
                                   onCardSelected: (index) {
                                     handleTimeSelection(index);

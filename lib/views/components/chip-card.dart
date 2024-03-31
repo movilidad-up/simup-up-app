@@ -3,14 +3,23 @@ import 'package:flutter/material.dart';
 class ChipCard extends StatelessWidget {
   final String label;
   final bool isSelected;
+  final bool isEnabled;
   final VoidCallback onCardTap;
 
-  const ChipCard({super.key, required this.label, required this.isSelected, required this.onCardTap});
+  const ChipCard({super.key, required this.label, required this.isSelected, required this.onCardTap, required this.isEnabled});
 
   @override
   Widget build(BuildContext context) {
+    Color _getTextColor() {
+      if (isEnabled) {
+        return isSelected ? Theme.of(context).colorScheme.background : Theme.of(context).colorScheme.onBackground;
+      } else {
+        return Theme.of(context).colorScheme.onTertiaryContainer;
+      }
+    }
+
     return GestureDetector(
-      onTap: onCardTap,
+      onTap: isEnabled ? onCardTap : null,
       child: DecoratedBox(
           decoration: BoxDecoration(
             color: isSelected ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.surface,
@@ -24,7 +33,7 @@ class ChipCard extends StatelessWidget {
               fontFamily: 'Inter',
               fontWeight: FontWeight.w500,
               fontSize: 14.0,
-              color: isSelected ? Theme.of(context).colorScheme.background : Theme.of(context).colorScheme.onBackground
+              color: _getTextColor(),
             ),
           ),
         ),
