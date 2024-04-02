@@ -69,11 +69,21 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
     return routeMessage;
   }
 
+  String _getStationName(int stationIndex) {
+    List<Map<String, dynamic>> stations = StationModel.getStationsForDirection(widget.isRouteOne);
+    List<Map<String, dynamic>> matchingStations = stations.where((station) => station['stationIndex'] == _currentStationIndex).toList();
+
+    if (matchingStations.isNotEmpty) {
+      return matchingStations.first["stationName"];
+    } else {
+      throw Exception("No stations were found for the current route.");
+    }
+  }
+
   void _handleUpdate() {
     try {
       _currentStationIndex = widget.isRouteOne ? StationModel.currentRouteOne : StationModel.currentRouteTwo;
-      _currentStationName = StationModel.getStationsForDirection(widget.isRouteOne)
-          .elementAt(_currentStationIndex)["stationName"];
+      _currentStationName = _getStationName(_currentStationIndex);
       _routeOperational = true;
     } catch (e) {
       _routeOperational = false;
