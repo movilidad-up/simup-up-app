@@ -45,6 +45,18 @@ class AppThemes {
             fontSize: 16.0,
             fontWeight: FontWeight.w600
         ),
+        headlineSmall: TextStyle(
+            fontFamily: 'Inter',
+            fontSize: 14.0,
+            fontWeight: FontWeight.w500,
+            color: tertiary
+        ),
+        titleSmall: TextStyle(
+            fontFamily: 'Inter',
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: onBackground,
+        ),
         bodyMedium: TextStyle(
             fontFamily: 'Inter',
             fontSize: 16,
