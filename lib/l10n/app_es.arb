@@ -21,6 +21,7 @@
   "busTrackingDescription": "Presiona una estación para conocer sus rutas, niveles de densidad e información útil.",
   "routeOne": "Ruta 1",
   "routeTwo": "Ruta 2",
+  "onStop": "En parada",
   "helpfulInfo": "Información útil",
   "routeAccess": "Acceso a rutas de transporte",
   "arrivalTime": "Hora de llegada: ",

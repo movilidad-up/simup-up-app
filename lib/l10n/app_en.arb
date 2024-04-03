@@ -87,6 +87,7 @@
   "@routeTwo": {
     "description": "Text for route number 2."
   },
+  "onStop": "En parada",
   "helpfulInfo": "Información útil",
   "@helpfulInfo": {
     "description": "Text for helpful info tooltip."

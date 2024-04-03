@@ -5,6 +5,7 @@ class StationModel {
   static bool isLineOneWorking = false;
   static bool isLineTwoWorking = false;
   static bool isRoundTrip = false;
+  static bool _isBusOnStation = false;
   static int currentRouteOne = 0;
   static int currentRouteTwo = 0;
   static List<Map<String, dynamic>> routeOneStations = [];
@@ -29,9 +30,9 @@ class StationModel {
 
     // Route 1 operates from 5:30 A.M. to 7:00 P.M. from Monday to Friday
     // On Saturdays, it operates until 3:00 P.M.
-    if ((currentTime.weekday >= 1 && currentTime.weekday <= 6 &&
+    if ((currentTime.weekday >= 1 && currentTime.weekday <= 5 &&
         currentHour >= 5 && currentHour < 19) ||
-        (currentTime.weekday == 7 && currentHour >= 5 && currentHour < 15)) {
+        (currentTime.weekday == 6 && currentHour >= 5 && currentHour < 15)) {
       isLineOneWorking = true;
     } else {
       isLineOneWorking = false;
@@ -46,10 +47,26 @@ class StationModel {
     }
   }
 
+  static bool isBusOnStation() {
+    return _isBusOnStation;
+  }
+
   static void _isItRoundTrip(BuildContext context) {
     DateTime currentTime = DateTime.now();
     int currentHour = currentTime.hour;
     int currentMinutes = currentTime.minute;
+
+    // Station Standby
+
+    if (currentHour == 6 || currentHour == 8 || currentHour == 10 || currentHour == 12 || currentHour == 14 || currentHour == 16 || currentHour == 18) {
+      if (currentMinutes >= 0 && currentMinutes < 10) {
+        _isBusOnStation = true;
+      }
+    } else {
+      _isBusOnStation = false;
+    }
+
+    // Trips
 
     if (currentHour == 5 && currentMinutes >= 30) {
       calculateStationIntervals(context, true);

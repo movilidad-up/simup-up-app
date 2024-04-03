@@ -80,6 +80,10 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
     return routeMessage;
   }
 
+  bool _isItOnStop() {
+    return StationModel.isBusOnStation();
+  }
+
   String _getStationName(int stationIndex) {
     List<Map<String, dynamic>> stations = StationModel.getStationsForDirection(widget.isRouteOne);
     List<Map<String, dynamic>> matchingStations = stations.where((station) => station['stationIndex'] == _currentStationIndex).toList();
@@ -140,7 +144,10 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _shouldUseMarquee("${AppLocalizations.of(context)!.approximatedStation} | ${widget.isRouteOne ? AppLocalizations.of(context)!.routeOne : AppLocalizations.of(context)!.routeTwo}", screenWidth * 0.5) ? SizedBox(
+                      _isItOnStop() ? Text(
+                        "${AppLocalizations.of(context)!.onStop} | ${widget.isRouteOne ? AppLocalizations.of(context)!.routeOne : AppLocalizations.of(context)!.routeTwo}",
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ) : _shouldUseMarquee("${AppLocalizations.of(context)!.approximatedStation} | ${widget.isRouteOne ? AppLocalizations.of(context)!.routeOne : AppLocalizations.of(context)!.routeTwo}", screenWidth * 0.5) ? SizedBox(
                         height: 20.0,
                         width: screenWidth * 0.5,
                         child: Marquee(
