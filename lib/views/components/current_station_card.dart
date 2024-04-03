@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:marquee/marquee.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:simup_up/views/utils/station-model.dart';
 import 'package:simup_up/views/utils/update-observable.dart';
@@ -55,6 +56,16 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
     }
 
     return iconAsset;
+  }
+
+  bool _shouldUseMarquee(String text, double maxWidth) {
+    final textPainter = TextPainter(
+      text: TextSpan(text: text, style: Theme.of(context).textTheme.bodyMedium),
+      maxLines: 1,
+      textDirection: TextDirection.ltr,
+    )..layout(maxWidth: maxWidth);
+
+    return textPainter.didExceedMaxLines;
   }
 
   String _getRouteMessage(BuildContext context) {
@@ -129,8 +140,26 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        AppLocalizations.of(context)!.approximatedStation,
+                      _shouldUseMarquee("${AppLocalizations.of(context)!.approximatedStation} | ${widget.isRouteOne ? AppLocalizations.of(context)!.routeOne : AppLocalizations.of(context)!.routeTwo}", screenWidth * 0.5) ? SizedBox(
+                        height: 20.0,
+                        width: screenWidth * 0.5,
+                        child: Marquee(
+                          text: "${AppLocalizations.of(context)!.approximatedStation} | ${widget.isRouteOne ? AppLocalizations.of(context)!.routeOne : AppLocalizations.of(context)!.routeTwo}",
+                          style: Theme.of(context).textTheme.labelLarge,
+                          scrollAxis: Axis.horizontal,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          blankSpace: 16.0,
+                          velocity: 18.0,
+                          startPadding: 0.0,
+                          accelerationDuration: const Duration(seconds: 1),
+                          accelerationCurve: Curves.linear,
+                          decelerationDuration: const Duration(milliseconds: 500),
+                          decelerationCurve: Curves.easeOut,
+                          pauseAfterRound: const Duration(seconds: 2),
+                          showFadingOnlyWhenScrolling: false,
+                        ),
+                      ) : Text(
+                        "${AppLocalizations.of(context)!.approximatedStation} | ${widget.isRouteOne ? AppLocalizations.of(context)!.routeOne : AppLocalizations.of(context)!.routeTwo}",
                         style: Theme.of(context).textTheme.labelLarge,
                       ),
                       VerticalSpacing(4.0),
