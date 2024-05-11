@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:marquee/marquee.dart';
+import 'package:simup_up/views/components/user_stations.dart';
 import 'package:simup_up/views/styles/spaces.dart';
+import 'package:simup_up/views/utils/route_status_checker.dart';
+import 'package:simup_up/views/utils/route_stop_checker.dart';
+import 'package:simup_up/views/utils/route_trip_checker.dart';
 import 'package:simup_up/views/utils/station-model.dart';
 import 'package:simup_up/views/utils/update-observable.dart';
 
@@ -10,12 +16,12 @@ class CurrentStationCard extends StatefulWidget {
   final VoidCallback onCurrentStationTap;
   final UpdateObservable updateObservable;
 
-  const CurrentStationCard(
-      {Key? key,
-      required this.onCurrentStationTap,
-      required this.updateObservable,
-      required this.isRouteOne})
-      : super(key: key);
+  const CurrentStationCard({
+    Key? key,
+    required this.onCurrentStationTap,
+    required this.updateObservable,
+    required this.isRouteOne,
+  }) : super(key: key);
 
   @override
   State<CurrentStationCard> createState() => _CurrentStationCardState();
@@ -29,55 +35,93 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
   @override
   void initState() {
     super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      StationModel.getStationIntervals(context);
+    });
     _currentStationIndex = widget.isRouteOne ? StationModel.currentRouteOne : StationModel.currentRouteTwo;
-    widget.updateObservable
-        .subscribe(_handleUpdate); // Subscribe to update notifications
+    widget.updateObservable.subscribe(_handleUpdate);
   }
 
   @override
   void dispose() {
-    widget.updateObservable
-        .unsubscribe(_handleUpdate); // Unsubscribe from update notifications
+    widget.updateObservable.unsubscribe(_handleUpdate);
     super.dispose();
   }
 
   String _getIconAsset(BuildContext context) {
-    String iconAsset = "";
+    final brightness = Theme.of(context).colorScheme.brightness;
+    return 'assets/images/illustrations/route-${widget.isRouteOne ? 'one' : 'two'}-icon${brightness == Brightness.light ? '' : '-dark'}.svg';
+  }
 
-    if (widget.isRouteOne) {
-      iconAsset = Theme.of(context).colorScheme.brightness == Brightness.light
-          ? 'assets/images/illustrations/route-one-icon.svg'
-          : 'assets/images/illustrations/route-one-icon-dark.svg';
-    } else {
-      iconAsset = Theme.of(context).colorScheme.brightness == Brightness.light
-          ? 'assets/images/illustrations/route-two-icon.svg'
-          : 'assets/images/illustrations/route-two-icon-dark.svg';
-    }
+  bool _shouldUseMarquee(String text, double maxWidth) {
+    final textPainter = TextPainter(
+      text: TextSpan(text: text, style: Theme.of(context).textTheme.bodyMedium),
+      maxLines: 1,
+      textDirection: TextDirection.ltr,
+    )..layout(maxWidth: maxWidth);
 
-    return iconAsset;
+    return textPainter.didExceedMaxLines;
   }
 
   String _getRouteMessage(BuildContext context) {
-    String routeMessage = "";
+    return widget.isRouteOne ? AppLocalizations.of(context)!.routeOneNotOperational : AppLocalizations.of(context)!.routeTwoNotOperational;
+  }
 
-    if (widget.isRouteOne) {
-      routeMessage = AppLocalizations.of(context)!.routeOneNotOperational;
-    } else {
-      routeMessage = AppLocalizations.of(context)!.routeTwoNotOperational;
+  String _getStationName(int stationIndex) {
+    final stations = StationModel.getStationsForDirection(widget.isRouteOne);
+    final matchingStations = stations.where((station) => station['stationIndex'] == _currentStationIndex).toList();
+    String stationName = "";
+
+    // If on stop, we just simply show the respective start/end station.
+
+    if (_checkIfOnStop()) {
+      DateTime currentTime = DateTime.now();
+      int currentHour = currentTime.hour;
+      int currentMinutes = currentTime.minute;
+      bool isItForwardStation = true;
+
+      // Check if it is El Palustre or Villa.
+
+      if (currentHour % 2 == 0) {
+        if (currentMinutes <= 10) {
+          isItForwardStation = false;
+        } else if (currentMinutes >= 50) {
+          isItForwardStation = true;
+        }
+      }
+
+      if (isItForwardStation) {
+        stationName = widget.isRouteOne ? UserStations.stationNames(context)[0] : UserStations.stationNames(context)[3];
+      } else {
+        stationName = UserStations.stationNames(context)[8];
+      }
+
+      return stationName;
     }
 
-    return routeMessage;
+    // If on route, return calculated station.
+
+    if (matchingStations.isNotEmpty) {
+      return matchingStations.first["stationName"];
+    } else {
+      return "";
+    }
+  }
+
+  bool _checkIfOnStop() {
+    return RouteStopChecker.isBusOnStop();
   }
 
   void _handleUpdate() {
-    try {
+    bool isRouteWorking = widget.isRouteOne ? RouteStatusChecker.getRouteOneStatus() : RouteStatusChecker.getRouteTwoStatus();
+
+    if (isRouteWorking) {
+      StationModel.getStationIntervals(context);
       _currentStationIndex = widget.isRouteOne ? StationModel.currentRouteOne : StationModel.currentRouteTwo;
-      _currentStationName = StationModel.getStationsForDirection(widget.isRouteOne)
-          .elementAt(_currentStationIndex)["stationName"];
-      _routeOperational = true;
-    } catch (e) {
-      _routeOperational = false;
+      _currentStationName = _getStationName(_currentStationIndex);
     }
+
+    _routeOperational = isRouteWorking;
 
     setState(() {});
   }
@@ -86,8 +130,8 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
   Widget build(BuildContext context) {
     StationModel.getStationIntervals(context);
     _handleUpdate();
-    double screenWidth = MediaQuery.of(context).size.width;
-    String stationIconAsset = _getIconAsset(context);
+    final screenWidth = MediaQuery.of(context).size.width;
+    final stationIconAsset = _getIconAsset(context);
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -100,14 +144,14 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
           children: [
             _routeOperational
                 ? SvgPicture.asset(
-                    stationIconAsset,
-                    height: 72.0,
-                  )
+              stationIconAsset,
+              height: 72.0,
+            )
                 : Icon(
-                    Icons.departure_board_rounded,
-                    size: 48.0,
-                    color: Theme.of(context).colorScheme.secondary,
-                  ),
+              Icons.departure_board_rounded,
+              size: 48.0,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
             HorizontalSpacing(24.0),
             SizedBox(
               width: screenWidth * 0.5,
@@ -115,56 +159,75 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _routeOperational ? Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        AppLocalizations.of(context)!.approximatedStation,
+                  if (_routeOperational) ...[
+                    _checkIfOnStop() ? Text(
+                      "${AppLocalizations.of(context)!.onStop} | ${widget.isRouteOne ? AppLocalizations.of(context)!.routeOne : AppLocalizations.of(context)!.routeTwo}",
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ) : _shouldUseMarquee("${AppLocalizations.of(context)!.approximatedStation} | ${widget.isRouteOne ? AppLocalizations.of(context)!.routeOne : AppLocalizations.of(context)!.routeTwo}", screenWidth * 0.5) ? SizedBox(
+                      height: 20.0,
+                      width: screenWidth * 0.5,
+                      child: Marquee(
+                        text: "${AppLocalizations.of(context)!.approximatedStation} | ${widget.isRouteOne ? AppLocalizations.of(context)!.routeOne : AppLocalizations.of(context)!.routeTwo}",
                         style: Theme.of(context).textTheme.labelLarge,
+                        scrollAxis: Axis.horizontal,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        blankSpace: 16.0,
+                        velocity: 18.0,
+                        startPadding: 0.0,
+                        accelerationDuration: const Duration(seconds: 1),
+                        accelerationCurve: Curves.linear,
+                        decelerationDuration: const Duration(milliseconds: 500),
+                        decelerationCurve: Curves.easeOut,
+                        pauseAfterRound: const Duration(seconds: 2),
+                        showFadingOnlyWhenScrolling: false,
                       ),
-                      VerticalSpacing(4.0),
-                      Text(
-                        _currentStationName,
-                        style: Theme.of(context).textTheme.displayMedium,
-                      ),
-                      VerticalSpacing(12.0),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                          Theme.of(context).colorScheme.onBackground,
-                          disabledBackgroundColor:
-                          Theme.of(context).colorScheme.surface,
-                          disabledForegroundColor:
-                          Theme.of(context).colorScheme.onTertiaryContainer,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(24.0),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 0.0, horizontal: 16.0),
-                        ),
-                        onPressed: widget.onCurrentStationTap,
-                        child: Text(
-                          AppLocalizations.of(context)!.seeMore,
-                          textHeightBehavior: const TextHeightBehavior(
-                            applyHeightToLastDescent: true,
-                            applyHeightToFirstAscent: false,
-                            leadingDistribution: TextLeadingDistribution.even,
-                          ),
-                          style: Theme.of(context).textTheme.labelMedium,
-                        ),
-                      ),
-                    ],
-                  ) : Text(
-                    _getRouteMessage(context),
-                    style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14.0,
-                      height: 1.2,
-                      color: Theme.of(context).colorScheme.onBackground
+                    ) : Text(
+                      "${AppLocalizations.of(context)!.approximatedStation} | ${widget.isRouteOne ? AppLocalizations.of(context)!.routeOne : AppLocalizations.of(context)!.routeTwo}",
+                      style: Theme.of(context).textTheme.labelLarge,
                     ),
-                  ),
+                    VerticalSpacing(4.0),
+                    Text(
+                      _currentStationName,
+                      style: Theme.of(context).textTheme.displayMedium,
+                    ),
+                    VerticalSpacing(12.0),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                        Theme.of(context).colorScheme.onBackground,
+                        disabledBackgroundColor:
+                        Theme.of(context).colorScheme.surface,
+                        disabledForegroundColor:
+                        Theme.of(context).colorScheme.onTertiaryContainer,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24.0),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 0.0, horizontal: 16.0),
+                      ),
+                      onPressed: widget.onCurrentStationTap,
+                      child: Text(
+                        AppLocalizations.of(context)!.seeMore,
+                        textHeightBehavior: const TextHeightBehavior(
+                          applyHeightToLastDescent: true,
+                          applyHeightToFirstAscent: false,
+                          leadingDistribution: TextLeadingDistribution.even,
+                        ),
+                        style: Theme.of(context).textTheme.labelMedium,
+                      ),
+                    ),
+                  ] else ...[
+                    Text(
+                      _getRouteMessage(context),
+                      style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14.0,
+                          height: 1.2,
+                          color: Theme.of(context).colorScheme.onBackground
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),
