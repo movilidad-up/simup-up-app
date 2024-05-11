@@ -19,6 +19,8 @@ class RouteQueue extends StatefulWidget {
 class _RouteQueueState extends State<RouteQueue> {
   final ItemScrollController itemScrollController = ItemScrollController();
   final ScrollOffsetController scrollOffsetController = ScrollOffsetController();
+  final ScrollOffsetListener scrollOffsetListener = ScrollOffsetListener.create();
+  final ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
   late int _currentStationIndex;
 
   @override
@@ -28,6 +30,11 @@ class _RouteQueueState extends State<RouteQueue> {
     WidgetsBinding.instance.addPostFrameCallback((_) => itemScrollController.jumpTo(
       index: _currentStationIndex,
     ));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -46,11 +53,13 @@ class _RouteQueueState extends State<RouteQueue> {
               child: Expanded(
                 child: ScrollablePositionedList.builder(
                     scrollOffsetController: scrollOffsetController,
+                    scrollOffsetListener: scrollOffsetListener,
                     itemScrollController: itemScrollController,
+                    itemPositionsListener: itemPositionsListener,
                     itemCount: routes.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Opacity(
-                        opacity: (index == _currentStationIndex) ? 1.0 : 0.8,
+                        opacity: (routes.elementAt(index)["stationIndex"] == _currentStationIndex) ? 1.0 : 0.8,
                         child: StationCard(
                           name: routes.elementAt(index)["stationName"],
                           arrivalInfo: routes.elementAt(index)["arrivalTime"],
@@ -78,7 +87,7 @@ class _RouteQueueState extends State<RouteQueue> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  stops: [
+                  stops: const [
                     0.2,
                     1.0
                   ],
@@ -103,7 +112,7 @@ class _RouteQueueState extends State<RouteQueue> {
                   gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
-                    stops: [
+                    stops: const [
                       0.2,
                       1.0
                     ],

@@ -53,14 +53,7 @@ class _DashboardViewState extends State<DashboardView> {
 
   void _updateCurrentStation(int selectedTabIndex) {
     setState(() {
-      // Call the appropriate method from StationModel to update the current station
-      // For example, if selectedTabIndex is 0 (representing Route One),
-      // update the current station for Route One
-      if (selectedTabIndex == 0 || selectedTabIndex == 1) {
-        StationModel.calculateStationIntervals(context, true);
-      } else {
-        StationModel.calculateStationIntervals(context, false);
-      }
+      StationModel.getStationIntervals(context);
     });
   }
 
