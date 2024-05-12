@@ -236,6 +236,38 @@
   "@seeMore": {
     "description": "Label for current station card button."
   },
+  "tourHome": "Home",
+  "@tourHome": {
+    "description": "Label for tour home tip."
+  },
+  "tourHomeDescription": "¡Bienvenido a tu punto de partida! Aquí podrás ver la estación actual de manera rápida y oportuna.",
+  "@tourHomeDescription": {
+    "description": "Description for tour home tip."
+  },
+  "tourRoutes": "Rutas",
+  "@tourRoutes": {
+    "description": "Label for tour routes tip."
+  },
+  "tourRoutesDescription": "¡Explora las opciones de viaje! Descubre las horas estimadas de llegada a cada estación y visualiza todo el sistema de rutas.",
+  "@tourRoutesDescription": {
+    "description": "Description for tour routes tip."
+  },
+  "tourReminders": "Recordatorios",
+  "@tourReminders": {
+    "description": "Label for tour reminders tip."
+  },
+  "tourRemindersDescription": "No vuelvas a perder el autobús. ¡Agenda recordatorios para llegar a tiempo a tus compromisos en la Universidad!",
+  "@tourRemindersDescription": {
+    "description": "Description for tour reminders tip."
+  },
+  "tourMap": "Mapa del Sistema",
+  "@tourMap": {
+    "description": "Label for tour map tip."
+  },
+  "tourMapDescription": "Obtén una vista panorámica del sistema. Navega por todas las estaciones y planifica tu viaje con facilidad.",
+  "@tourMapDescription": {
+    "description": "Description for tour map tip."
+  },
 
   "settingsTitle": "Configuración",
   "notificationsSection": "Notificaciones",
