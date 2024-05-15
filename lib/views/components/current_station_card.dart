@@ -65,7 +65,7 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
   }
 
   bool _checkIfOnStop() {
-    return RouteStopChecker.isBusOnStop();
+    return RouteStopChecker.isBusOnStop(widget.isRouteOne);
   }
 
   void _handleUpdate() {

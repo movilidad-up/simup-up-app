@@ -4,8 +4,8 @@ import 'package:simup_up/views/utils/route_stop_checker.dart';
 import 'package:simup_up/views/utils/station-model.dart';
 
 class RouteDataHandler {
-  static bool _checkIfOnStop() {
-    return RouteStopChecker.isBusOnStop();
+  static bool _checkIfOnStop(bool isRouteOne) {
+    return RouteStopChecker.isBusOnStop(isRouteOne);
   }
 
   static String getCurrentStationName(bool isRouteOne, BuildContext context) {
@@ -16,7 +16,7 @@ class RouteDataHandler {
 
     // If on stop, we just simply show the respective start/end station.
 
-    if (_checkIfOnStop()) {
+    if (_checkIfOnStop(isRouteOne)) {
       DateTime currentTime = DateTime.now();
       int currentHour = currentTime.hour;
       int currentMinutes = currentTime.minute;
@@ -33,7 +33,7 @@ class RouteDataHandler {
       }
 
       if (isItForwardStation) {
-        stationName = isRouteOne ? UserStations.stationNames(context)[0] : UserStations.stationNames(context)[3];
+        stationName = isRouteOne ? UserStations.stationNames(context)[0] : UserStations.stationNames(context)[2];
       } else {
         stationName = UserStations.stationNames(context)[8];
       }

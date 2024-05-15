@@ -49,6 +49,6 @@ class RouteStatusChecker {
   }
 
   static bool shouldGenerateRoute() {
-    return (getRouteOneStatus() || getRouteTwoStatus()) && !RouteStopChecker.isBusOnStop();
+    return (getRouteOneStatus() || getRouteTwoStatus()) && !RouteStopChecker.isBusOnStop(true);
   }
 }

@@ -117,7 +117,7 @@ class TripRouteGenerator {
     currentMinute %= 60;
     String arrivalTime = "";
 
-    if (RouteStopChecker.isBusOnStop()) {
+    if (RouteStopChecker.isBusOnStop(isItRouteOne)) {
       arrivalTime = "Esperando salida";
     } else {
       if (currentMinute <= latestTime.minute) {
