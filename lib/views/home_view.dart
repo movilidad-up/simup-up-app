@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simup_up/views/components/current_station_card.dart';
+import 'package:simup_up/views/components/schedules_card.dart';
 import 'package:simup_up/views/settings_view.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -9,9 +10,10 @@ import 'package:simup_up/views/utils/update-observable.dart';
 
 class HomeView extends StatefulWidget {
   final VoidCallback onCurrentStationTap;
+  final VoidCallback onSchedulesTap;
   final UpdateObservable updateObservable;
 
-  const HomeView({super.key, required this.onCurrentStationTap, required this.updateObservable});
+  const HomeView({super.key, required this.onCurrentStationTap, required this.updateObservable, required this.onSchedulesTap});
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -87,20 +89,28 @@ class _HomeViewState extends State<HomeView> {
                 ),
                 VerticalSpacing(24.0),
                 Expanded(
-                  child: Column(
-                    children: [
-                      CurrentStationCard(
-                        isRouteOne: true,
-                        onCurrentStationTap: widget.onCurrentStationTap,
-                        updateObservable: widget.updateObservable,
+                  child: CustomScrollView(
+                    slivers: [
+                      SliverList(
+                        delegate: SliverChildListDelegate([
+                          SchedulesCard(
+                            onSchedulesTap: widget.onSchedulesTap,
+                          ),
+                          VerticalSpacing(16.0),
+                          CurrentStationCard(
+                            isRouteOne: true,
+                            onCurrentStationTap: widget.onCurrentStationTap,
+                            updateObservable: widget.updateObservable,
+                          ),
+                          VerticalSpacing(16.0),
+                          CurrentStationCard(
+                            isRouteOne: false,
+                            onCurrentStationTap: widget.onCurrentStationTap,
+                            updateObservable: widget.updateObservable,
+                          ),
+                        ]),
                       ),
-                      VerticalSpacing(16.0),
-                      CurrentStationCard(
-                        isRouteOne: false,
-                        onCurrentStationTap: widget.onCurrentStationTap,
-                        updateObservable: widget.updateObservable,
-                      ),
-                    ],
+                    ]
                   ),
                 ),
               ],

@@ -4,6 +4,8 @@ import 'package:simup_up/views/components/bottom-navbar.dart';
 import 'package:simup_up/views/home_view.dart';
 import 'package:simup_up/views/notifications_view.dart';
 import 'package:simup_up/views/routes_view.dart';
+import 'package:simup_up/views/schedules_view.dart';
+import 'package:simup_up/views/utils/custom-page-router.dart';
 import 'package:simup_up/views/utils/station-model.dart';
 import 'package:simup_up/views/utils/update-observable.dart';
 
@@ -64,11 +66,14 @@ class _DashboardViewState extends State<DashboardView> {
         onCurrentStationTap: () {
           _handleRoutesTap();
         },
+        onSchedulesTap: () {
+          Navigator.of(context).push(CustomPageRoute(const SchedulesView()));
+        },
         updateObservable: updateObservable,
       ),
       const RoutesView(),
       const NotificationsView(),
-      const MapView()
+      const MapView(),
     ];
 
     return Scaffold(

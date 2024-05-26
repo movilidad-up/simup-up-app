@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simup_up/views/components/checkbox-item.dart';
 import 'package:simup_up/views/components/option-item.dart';
+import 'package:simup_up/views/dashboard_view.dart';
 import 'package:simup_up/views/privacy_view.dart';
 import 'package:simup_up/views/special_view.dart';
 import 'package:simup_up/views/styles/spaces.dart';
@@ -18,8 +19,8 @@ class SettingsView extends StatefulWidget {
 class _SettingsViewState extends State<SettingsView> {
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
+    return PopScope(
+      canPop: false,
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         body: CustomScrollView(
