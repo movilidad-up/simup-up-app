@@ -27,4 +27,4 @@ Si tienes alguna pregunta o necesitas ayuda con la aplicación, por favor, conta
 
 ## Licencia
 
-Este proyecto está bajo la Licencia MIT - consulta el archivo [LICENSE.md](LICENSE.md) para más detalles.
+Este proyecto está bajo la Licencia MIT - consulta el archivo [LICENSE](LICENSE) para más detalles.
