@@ -34,7 +34,6 @@ class WeatherChecker {
 
   Future<bool> shouldRun() async {
     // Get current time
-    print("api: $apiKey");
     final now = TimeOfDay.now();
 
     // Convert current time to DateTime
@@ -47,13 +46,31 @@ class WeatherChecker {
       now.minute,
     );
 
-    // Define time constraints
-    final startTime = TimeOfDay(hour: 5, minute: 30);
-    final endTime = TimeOfDay(hour: 19, minute: 0);
+    // Define time intervals
+    final intervals = [
+      // 5:30 A.M. - 10:00 A.M.
+      {'start': const TimeOfDay(hour: 5, minute: 30), 'end': const TimeOfDay(hour: 10, minute: 0)},
+      // 10:00 A.M. - 12:00 P.M.
+      {'start': const TimeOfDay(hour: 10, minute: 0), 'end': const TimeOfDay(hour: 12, minute: 0)},
+      // 12:00 P.M. - 3:00 P.M.
+      {'start': const TimeOfDay(hour: 12, minute: 0), 'end': const TimeOfDay(hour: 15, minute: 0)},
+      // 3:00 P.M. - 5:00 P.M.
+      {'start': const TimeOfDay(hour: 15, minute: 0), 'end': const TimeOfDay(hour: 17, minute: 0)},
+    ];
 
-    // Check if current time is within the allowed range (5:30 A.M. to 7:00 P.M.)
-    if (!isTimeWithinRange(currentTime, startTime, endTime)) {
-      print('Current time is not within the allowed range.');
+    // Check if current time is within any of the intervals
+    bool withinInterval = false;
+    for (var interval in intervals) {
+      final startTime = interval['start']!;
+      final endTime = interval['end']!;
+      if (isTimeWithinRange(currentTime, startTime, endTime)) {
+        withinInterval = true;
+        break;
+      }
+    }
+
+    if (!withinInterval) {
+      print('Current time is not within the allowed intervals.');
       return false;
     }
 
