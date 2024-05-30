@@ -298,7 +298,15 @@
   },
   "arrivalTimes": "Horas de llegada",
   "@arrivalTimes": {
-    "description": "Text for arrival times on schedules view."
+    "description": "Text for arrival times on Schedules View."
+  },
+  "systemDelays": "Retrasos en el sistema",
+  "@systemDelays": {
+    "description": "Text for system delays on Weather Card."
+  },
+  "rainyWeather": "Clima lluvioso",
+  "@rainyWeather": {
+    "description": "Text for rainy weather alert on Weather Card."
   },
 
   "settingsTitle": "Configuración",

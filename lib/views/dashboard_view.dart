@@ -8,7 +8,6 @@ import 'package:simup_up/views/schedules_view.dart';
 import 'package:simup_up/views/utils/custom-page-router.dart';
 import 'package:simup_up/views/utils/station-model.dart';
 import 'package:simup_up/views/utils/update-observable.dart';
-
 import 'map_view.dart';
 
 class DashboardView extends StatefulWidget {

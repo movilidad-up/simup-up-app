@@ -75,6 +75,8 @@
   "saturdays": "Sábados",
   "station": "Estación",
   "arrivalTimes": "Horas de llegada",
+  "systemDelays": "Retrasos en el sistema",
+  "rainyWeather": "Clima lluvioso",
 
   "settingsTitle": "Configuración",
   "notificationsSection": "Notificaciones",
