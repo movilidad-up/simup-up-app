@@ -3,11 +3,10 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:marquee/marquee.dart';
-import 'package:simup_up/views/components/user_stations.dart';
 import 'package:simup_up/views/styles/spaces.dart';
+import 'package:simup_up/views/utils/route_data_handler.dart';
 import 'package:simup_up/views/utils/route_status_checker.dart';
 import 'package:simup_up/views/utils/route_stop_checker.dart';
-import 'package:simup_up/views/utils/route_trip_checker.dart';
 import 'package:simup_up/views/utils/station-model.dart';
 import 'package:simup_up/views/utils/update-observable.dart';
 
@@ -29,7 +28,6 @@ class CurrentStationCard extends StatefulWidget {
 
 class _CurrentStationCardState extends State<CurrentStationCard> {
   bool _routeOperational = false;
-  int _currentStationIndex = 0;
   String _currentStationName = "";
 
   @override
@@ -38,7 +36,6 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
     SchedulerBinding.instance.addPostFrameCallback((_) {
       StationModel.getStationIntervals(context);
     });
-    _currentStationIndex = widget.isRouteOne ? StationModel.currentRouteOne : StationModel.currentRouteTwo;
     widget.updateObservable.subscribe(_handleUpdate);
   }
 
@@ -67,49 +64,8 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
     return widget.isRouteOne ? AppLocalizations.of(context)!.routeOneNotOperational : AppLocalizations.of(context)!.routeTwoNotOperational;
   }
 
-  String _getStationName(int stationIndex) {
-    final stations = StationModel.getStationsForDirection(widget.isRouteOne);
-    final matchingStations = stations.where((station) => station['stationIndex'] == _currentStationIndex).toList();
-    String stationName = "";
-
-    // If on stop, we just simply show the respective start/end station.
-
-    if (_checkIfOnStop()) {
-      DateTime currentTime = DateTime.now();
-      int currentHour = currentTime.hour;
-      int currentMinutes = currentTime.minute;
-      bool isItForwardStation = true;
-
-      // Check if it is El Palustre or Villa.
-
-      if (currentHour % 2 == 0) {
-        if (currentMinutes <= 10) {
-          isItForwardStation = false;
-        } else if (currentMinutes >= 50) {
-          isItForwardStation = true;
-        }
-      }
-
-      if (isItForwardStation) {
-        stationName = widget.isRouteOne ? UserStations.stationNames(context)[0] : UserStations.stationNames(context)[3];
-      } else {
-        stationName = UserStations.stationNames(context)[8];
-      }
-
-      return stationName;
-    }
-
-    // If on route, return calculated station.
-
-    if (matchingStations.isNotEmpty) {
-      return matchingStations.first["stationName"];
-    } else {
-      return "";
-    }
-  }
-
   bool _checkIfOnStop() {
-    return RouteStopChecker.isBusOnStop();
+    return RouteStopChecker.isBusOnStop(widget.isRouteOne);
   }
 
   void _handleUpdate() {
@@ -117,8 +73,7 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
 
     if (isRouteWorking) {
       StationModel.getStationIntervals(context);
-      _currentStationIndex = widget.isRouteOne ? StationModel.currentRouteOne : StationModel.currentRouteTwo;
-      _currentStationName = _getStationName(_currentStationIndex);
+      _currentStationName = RouteDataHandler.getCurrentStationName(widget.isRouteOne, context);
     }
 
     _routeOperational = isRouteWorking;
