@@ -93,7 +93,7 @@ class _OnboardingOutroState extends State<OnboardingOutro> {
                     right: 0.0,
                     child: PrimaryButton(buttonText: AppLocalizations.of(context)!.continueNext,
                       onButtonPressed: () {
-                        Navigator.of(context).push(CustomPageRoute(const DashboardView()));
+                        Navigator.of(context).pushAndRemoveUntil(CustomPageRoute(const DashboardView()), (Route<dynamic> route) => false);
                       },
                       isButtonEnabled: true,
                     )
