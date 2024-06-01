@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:home_widget/home_widget.dart';
 import 'package:simup_up/enums/enums.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:simup_up/views/utils/route_status_checker.dart';
@@ -21,6 +22,13 @@ class _StatusCardState extends State<StatusCard> {
   void initState() {
     super.initState();
     _checkStatus();
+  }
+
+  void _updateHomeWidget(String iconName, String statusLabel, String statusTitle) {
+    HomeWidget.saveWidgetData("icon", iconName);
+    HomeWidget.saveWidgetData("label", statusLabel);
+    HomeWidget.saveWidgetData("title", statusTitle);
+    HomeWidget.updateWidget(androidName: "RouteStatusWidget");
   }
 
   void _checkStatus() async {

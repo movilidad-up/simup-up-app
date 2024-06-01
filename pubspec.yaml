@@ -50,6 +50,7 @@ dependencies:
   cron: ^0.6.0
   marquee: ^2.2.3
   feature_discovery: ^0.14.1
+  home_widget: ^0.6.0
 
 dev_dependencies:
   flutter_test:

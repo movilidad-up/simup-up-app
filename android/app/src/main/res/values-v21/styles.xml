@@ -1,26 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
-        <item name="android:windowSplashScreenBackground">@color/primary</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash</item>
-    </style>
-
-    <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
-        <item name="android:windowBackground">?android:colorBackground</item>
-    </style>
 
     <style name="Widget.Android.AppWidget.Container" parent="android:Widget">
         <item name="android:id">@android:id/background</item>
         <item name="android:padding">?attr/appWidgetPadding</item>
         <item name="android:background">@drawable/app_widget_background</item>
-        <item name="android:clipToOutline">true</item>
     </style>
 
     <style name="Widget.Android.AppWidget.InnerView" parent="android:Widget">
         <item name="android:padding">?attr/appWidgetPadding</item>
         <item name="android:background">@drawable/app_widget_inner_view_background</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="android:clipToOutline">true</item>
     </style>
 </resources>
