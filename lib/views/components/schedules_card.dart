@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:simup_up/views/schedules_view.dart';
 import 'package:simup_up/views/styles/spaces.dart';
-import 'package:simup_up/views/utils/custom-page-router.dart';
 
 class SchedulesCard extends StatefulWidget {
   final VoidCallback onSchedulesTap;

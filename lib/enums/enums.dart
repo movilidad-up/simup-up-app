@@ -66,3 +66,9 @@ enum Zone {
   santander,
   tucunare
 }
+
+enum Status {
+  rainy,
+  operational,
+  nonOperational
+}

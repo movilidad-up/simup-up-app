@@ -300,12 +300,28 @@
   "@arrivalTimes": {
     "description": "Text for arrival times on Schedules View."
   },
-  "systemDelays": "Retrasos en el sistema",
-  "@systemDelays": {
+  "operationalLabel": "Buen servicio",
+  "@operationalLabel": {
     "description": "Text for system delays on Weather Card."
   },
-  "rainyWeather": "Clima lluvioso",
-  "@rainyWeather": {
+  "operationalTitle": "Rutas funcionando",
+  "@operationalTitle": {
+    "description": "Text for rainy weather alert on Weather Card."
+  },
+  "nonOperationalLabel": "Fuera de operación",
+  "@nonOperationalLabel": {
+    "description": "Text for system delays on Weather Card."
+  },
+  "nonOperationalTitle": "Rutas en reposo",
+  "@nonOperationalTitle": {
+    "description": "Text for rainy weather alert on Weather Card."
+  },
+  "rainyLabel": "Retrasos en el sistema",
+  "@rainyLabel": {
+    "description": "Text for system delays on Weather Card."
+  },
+  "rainyTitle": "Clima lluvioso",
+  "@rainyTitle": {
     "description": "Text for rainy weather alert on Weather Card."
   },
 
