@@ -1,4 +1,3 @@
-import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -55,21 +54,19 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return FeatureDiscovery(
-      child: MaterialApp(
-        title: 'Movilidad UP',
-        debugShowCheckedModeBanner: false,
-        theme: AppThemes.defaultLight,
-        darkTheme: AppThemes.defaultDark,
-        supportedLocales: L10n.all,
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        home: widget.userExists ? const DashboardView() : const OnboardingView(),
-      ),
+    return MaterialApp(
+      title: 'Movilidad UP',
+      debugShowCheckedModeBanner: false,
+      theme: AppThemes.defaultLight,
+      darkTheme: AppThemes.defaultDark,
+      supportedLocales: L10n.all,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      home: widget.userExists ? const DashboardView() : const OnboardingView(),
     );
   }
 }
