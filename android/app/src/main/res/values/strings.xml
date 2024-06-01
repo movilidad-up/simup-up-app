@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="status_label">Buen servicio</string>
-    <string name="status_title">Rutas operacionales</string>
-    <string name="last_update">Ultima actualización</string>
-    <string name="add_widget">Add widget</string>
-    <string name="app_widget_description">This is an app widget description</string>
-</resources>
