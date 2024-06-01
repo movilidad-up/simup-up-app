@@ -47,9 +47,9 @@ class _SchedulesCardState extends State<SchedulesCard> {
                         ],
                       ),
                       VerticalSpacing(12.0),
-                      const Icon(
+                      Icon(
                         Icons.arrow_forward,
-                        color: Colors.black,
+                        color: Theme.of(context).colorScheme.onBackground,
                         size: 24.0,
                       ),
                     ],
