@@ -81,6 +81,7 @@ class _DashboardViewState extends State<DashboardView> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: BottomNavbar(
+              context: context,
               currentIndex: _currentIndex,
               onTap: (index) {
                 setState(() {
