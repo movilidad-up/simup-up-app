@@ -39,7 +39,7 @@ class _StatusCardState extends State<StatusCard> {
   }
 
   bool _isRouteOperational() {
-    return RouteStatusChecker.shouldGenerateRoute();
+    return RouteStatusChecker.getRouteOneStatus();
   }
 
   Map<String, dynamic> _getStatusInfo() {
