@@ -33,14 +33,14 @@ class RouteDetailsView extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
               pinned: true,
               centerTitle: true,
-              backgroundColor: Theme.of(context).colorScheme.background,
+              backgroundColor: Theme.of(context).colorScheme.surface,
               title: Text(UserStations.stationNames(context)
                   .elementAt(stationIndex),
                 style: Theme.of(context).textTheme.labelSmall
@@ -50,7 +50,7 @@ class RouteDetailsView extends StatelessWidget {
                 enableFeedback: false,
                 icon: Icon(
                   Icons.arrow_back_rounded,
-                  color: Theme.of(context).colorScheme.onBackground,
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
                 onPressed: () {
                   Navigator.of(context).pop();

@@ -12,7 +12,7 @@ class TermsView extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
@@ -20,7 +20,7 @@ class TermsView extends StatelessWidget {
               centerTitle: true,
               elevation: 4,
               shadowColor: Colors.grey[100]!,
-              backgroundColor: Theme.of(context).colorScheme.background,
+              backgroundColor: Theme.of(context).colorScheme.surface,
               scrolledUnderElevation: 0.4,
               title: Text(
                 AppLocalizations.of(context)!.termsLabel,
@@ -29,7 +29,7 @@ class TermsView extends StatelessWidget {
               leading: IconButton(
                   icon: Icon(
                     Icons.arrow_back_rounded,
-                    color: Theme.of(context).colorScheme.onBackground,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                   enableFeedback: false,
                   onPressed: () {

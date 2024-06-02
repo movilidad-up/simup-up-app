@@ -71,7 +71,7 @@ class _GetStartedZoneState extends State<GetStartedZone> {
               ),
               border: const OutlineInputBorder(),
             ),
-            iconEnabledColor: Theme.of(context).colorScheme.onBackground,
+            iconEnabledColor: Theme.of(context).colorScheme.onSurface,
             icon: const Icon(Icons.keyboard_arrow_down),
             hint: Text(
                 AppLocalizations.of(context)!.yourZoneNameHint,

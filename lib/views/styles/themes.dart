@@ -3,13 +3,13 @@ import 'package:simup_up/views/styles/colors.dart';
 
 class AppThemes {
   static ThemeData _generateThemeData({
-    required Color background,
     required Color inverseSurface,
-    required Color onBackground,
     required Color surface,
     required Color surfaceVariant,
     required Color onSurface,
     required Color onSurfaceVariant,
+    required Color surfaceContainer,
+    required Color surfaceContainerHigh,
     required Color outline,
     required Color primary,
     required Color onPrimary,
@@ -26,12 +26,12 @@ class AppThemes {
             fontFamily: 'Inter',
             fontSize: 32,
             fontWeight: FontWeight.w600,
-            color: onBackground),
+            color: onSurface),
         displayMedium: TextStyle(
             fontFamily: 'Inter',
             fontSize: 24,
             fontWeight: FontWeight.w600,
-            color: onBackground),
+            color: onSurface),
         displaySmall: TextStyle(
             fontFamily: 'Inter',
             fontSize: 16.0,
@@ -41,7 +41,7 @@ class AppThemes {
         ),
         headlineMedium: TextStyle(
             fontFamily: 'Inter',
-            color: onBackground,
+            color: onSurface,
             fontSize: 16.0,
             fontWeight: FontWeight.w600
         ),
@@ -55,7 +55,7 @@ class AppThemes {
             fontFamily: 'Inter',
             fontSize: 14,
             fontWeight: FontWeight.w500,
-            color: onBackground,
+            color: onSurface,
         ),
         bodyMedium: TextStyle(
             fontFamily: 'Inter',
@@ -82,7 +82,7 @@ class AppThemes {
           letterSpacing: 0.5,
           fontSize: 14.0,
           fontWeight: FontWeight.w600,
-          color: background,
+          color: surface,
         ),
         labelSmall: TextStyle(
             fontFamily: 'Inter',
@@ -93,13 +93,13 @@ class AppThemes {
         ),
       ),
       colorScheme: ColorScheme.fromSeed(
-        background: background,
         inverseSurface: inverseSurface,
-        onBackground: onBackground,
         surface: surface,
         onSurface: onSurface,
         onSurfaceVariant: onSurfaceVariant,
         surfaceVariant: surfaceVariant,
+        surfaceContainer: surfaceContainer, // surface
+        surfaceContainerHigh: surfaceContainerHigh, // onSurface
         outline: outline,
         primary: primary,
         onPrimary: onPrimary,
@@ -116,14 +116,14 @@ class AppThemes {
   }
 
   static ThemeData defaultLight = _generateThemeData(
-    background: AppColors.bgLight,
-    onBackground: AppColors.fgLight,
     primary: AppColors.primaryLight,
     onPrimary: AppColors.disabledPrimaryLight,
     onPrimaryContainer: AppColors.activePrimaryLight,
     secondary: AppColors.secondaryLight,
-    surface: AppColors.primarySurfaceLight,
-    onSurface: AppColors.secondarySurfaceLight,
+    surface: AppColors.bgLight,
+    onSurface: AppColors.fgLight,
+    surfaceContainer: AppColors.primarySurfaceLight,
+    surfaceContainerHigh: AppColors.secondarySurfaceLight,
     onSurfaceVariant: AppColors.tertiarySurfaceLight,
     surfaceVariant: AppColors.disabledSurfaceLight,
     inverseSurface: AppColors.transparentBackgroundLight,
@@ -135,14 +135,14 @@ class AppThemes {
   );
 
   static ThemeData defaultDark = _generateThemeData(
-    background: AppColors.bgDark,
-    onBackground: AppColors.fgDark,
     primary: AppColors.primaryDark,
     onPrimary: AppColors.disabledPrimaryDark,
     onPrimaryContainer: AppColors.activePrimaryDark,
     secondary: AppColors.secondaryDark,
-    surface: AppColors.primarySurfaceDark,
-    onSurface: AppColors.secondarySurfaceDark,
+    surface: AppColors.bgDark,
+    onSurface: AppColors.fgDark,
+    surfaceContainer: AppColors.primarySurfaceDark,
+    surfaceContainerHigh: AppColors.secondarySurfaceDark,
     onSurfaceVariant: AppColors.tertiarySurfaceDark,
     surfaceVariant: AppColors.disabledSurfaceDark,
     inverseSurface: AppColors.transparentBackgroundDark,

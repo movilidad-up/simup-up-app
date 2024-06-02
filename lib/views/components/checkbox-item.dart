@@ -105,9 +105,9 @@ class _CheckboxItemState extends State<CheckboxItem> {
                   Transform.scale(
                     scale: 0.8,
                     child: Switch(
-                      activeColor: Theme.of(context).colorScheme.background,
+                      activeColor: Theme.of(context).colorScheme.surface,
                       activeTrackColor: Theme.of(context).colorScheme.secondary,
-                      inactiveTrackColor: Theme.of(context).colorScheme.background,
+                      inactiveTrackColor: Theme.of(context).colorScheme.surface,
                       value: isChecked,
                       onChanged: (value) {
                         try {

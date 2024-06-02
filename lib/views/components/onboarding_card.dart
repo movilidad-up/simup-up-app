@@ -16,7 +16,7 @@ class OnboardingCard extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.background,
+        color: Theme.of(context).colorScheme.surface,
       ),
       child: Padding(
         padding: const EdgeInsets.only(
@@ -73,14 +73,14 @@ class OnboardingCard extends StatelessWidget {
                     onTap: onNextPressed,
                     child: DecoratedBox(
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surface,
+                        color: Theme.of(context).colorScheme.surfaceContainer,
                         borderRadius: BorderRadius.circular(100.0),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Icon(
                           Icons.arrow_forward,
-                          color: Theme.of(context).colorScheme.onBackground,
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                       ),
                     ),

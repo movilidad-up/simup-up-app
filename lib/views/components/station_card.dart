@@ -22,7 +22,7 @@ class StationCard extends StatelessWidget {
         width: screenWidth,
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: isCurrentStation ? Theme.of(context).colorScheme.onPrimaryContainer : Theme.of(context).colorScheme.background,
+            color: isCurrentStation ? Theme.of(context).colorScheme.onPrimaryContainer : Theme.of(context).colorScheme.surface,
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),

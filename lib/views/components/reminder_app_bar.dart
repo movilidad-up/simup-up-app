@@ -17,7 +17,7 @@ class ReminderAppBar extends StatelessWidget {
     return SliverAppBar(
       pinned: true,
       centerTitle: true,
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       title: Text(
         isEditing
             ? AppLocalizations.of(context)!.editReminder
@@ -33,7 +33,7 @@ class ReminderAppBar extends StatelessWidget {
             enableFeedback: false,
             icon: Icon(
               Icons.delete_forever_rounded,
-              color: Theme.of(context).colorScheme.onBackground,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
             onPressed: onDelete,
           ),
@@ -44,7 +44,7 @@ class ReminderAppBar extends StatelessWidget {
         enableFeedback: false,
         icon: Icon(
           Icons.arrow_back_rounded,
-          color: Theme.of(context).colorScheme.onBackground,
+          color: Theme.of(context).colorScheme.onSurface,
         ),
         onPressed: onBack,
       ),

@@ -90,7 +90,7 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
+        color: Theme.of(context).colorScheme.surfaceContainer,
         borderRadius: BorderRadius.circular(24.0),
       ),
       child: Padding(
@@ -149,9 +149,9 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
-                        Theme.of(context).colorScheme.onBackground,
+                        Theme.of(context).colorScheme.onSurface,
                         disabledBackgroundColor:
-                        Theme.of(context).colorScheme.surface,
+                        Theme.of(context).colorScheme.surfaceContainer,
                         disabledForegroundColor:
                         Theme.of(context).colorScheme.onTertiaryContainer,
                         shape: RoundedRectangleBorder(

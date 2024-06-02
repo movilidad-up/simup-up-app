@@ -92,7 +92,7 @@ class _RouteQueueState extends State<RouteQueue> {
                     1.0
                   ],
                   colors: [
-                    Theme.of(context).colorScheme.background,
+                    Theme.of(context).colorScheme.surface,
                     Theme.of(context).colorScheme.inverseSurface
                   ],
                 )
@@ -117,7 +117,7 @@ class _RouteQueueState extends State<RouteQueue> {
                       1.0
                     ],
                     colors: [
-                      Theme.of(context).colorScheme.background,
+                      Theme.of(context).colorScheme.surface,
                       Theme.of(context).colorScheme.inverseSurface
                     ],
                   )

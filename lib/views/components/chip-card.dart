@@ -22,7 +22,7 @@ class ChipCard extends StatelessWidget {
       onTap: isEnabled ? onCardTap : null,
       child: DecoratedBox(
           decoration: BoxDecoration(
-            color: isSelected ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.surface,
+            color: isSelected ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.surfaceContainer,
             borderRadius: BorderRadius.circular(8.0)
           ),
         child: Padding(

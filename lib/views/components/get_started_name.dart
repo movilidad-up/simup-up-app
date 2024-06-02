@@ -40,7 +40,7 @@ class GetStartedName extends StatelessWidget {
                 borderSide: BorderSide.none,
               ),
               filled: true,
-              fillColor: Theme.of(context).colorScheme.background,
+              fillColor: Theme.of(context).colorScheme.surface,
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {

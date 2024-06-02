@@ -19,7 +19,7 @@ class _SchedulesCardState extends State<SchedulesCard> {
   Widget build(BuildContext context) {
     return Material(
       borderRadius: BorderRadius.circular(24.0),
-      color: Theme.of(context).colorScheme.surface,
+      color: Theme.of(context).colorScheme.surfaceContainer,
       child: InkWell(
         borderRadius: BorderRadius.circular(24.0),
         onTap: widget.onSchedulesTap,
@@ -49,7 +49,7 @@ class _SchedulesCardState extends State<SchedulesCard> {
                       VerticalSpacing(12.0),
                       Icon(
                         Icons.arrow_forward,
-                        color: Theme.of(context).colorScheme.onBackground,
+                        color: Theme.of(context).colorScheme.onSurface,
                         size: 24.0,
                       ),
                     ],

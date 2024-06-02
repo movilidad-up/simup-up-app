@@ -69,7 +69,7 @@ class _StatusCardState extends State<StatusCard> {
 
     return Material(
       borderRadius: BorderRadius.circular(24.0),
-      color: Theme.of(context).colorScheme.surface,
+      color: Theme.of(context).colorScheme.surfaceContainer,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
         child: Padding(
@@ -101,7 +101,7 @@ class _StatusCardState extends State<StatusCard> {
                         Text(
                           statusInfo["title"],
                           style: TextStyle(
-                            color: Theme.of(context).colorScheme.onBackground,
+                            color: Theme.of(context).colorScheme.onSurface,
                             fontSize: 20.0,
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w600

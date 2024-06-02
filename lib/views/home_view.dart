@@ -82,7 +82,7 @@ class _HomeViewState extends State<HomeView> {
                         padding: const EdgeInsets.all(4.0),
                         child: Icon(
                           Icons.settings,
-                          color: Theme.of(context).colorScheme.onBackground,
+                          color: Theme.of(context).colorScheme.onSurface,
                           size: 24.0,
                         ),
                       ),
