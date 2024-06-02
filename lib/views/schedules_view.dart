@@ -21,7 +21,7 @@ class _SchedulesViewState extends State<SchedulesView> {
       child: Scaffold(
         appBar: AppBar(
           scrolledUnderElevation: 0.0,
-          backgroundColor: Theme.of(context).colorScheme.background,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           centerTitle: true,
           title: Text(
             AppLocalizations.of(context)!.schedule,
@@ -30,7 +30,7 @@ class _SchedulesViewState extends State<SchedulesView> {
           leading: IconButton(
               icon: Icon(
                 Icons.arrow_back_rounded,
-                color: Theme.of(context).colorScheme.onBackground,
+                color: Theme.of(context).colorScheme.onSurface,
               ),
               enableFeedback: false,
               onPressed: () {
@@ -38,7 +38,7 @@ class _SchedulesViewState extends State<SchedulesView> {
               }
           ),
         ),
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: SafeArea(
             child: SizedBox(
               height: screenHeight,

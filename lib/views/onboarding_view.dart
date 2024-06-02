@@ -44,7 +44,7 @@ class _OnboardingViewState extends State<OnboardingView> {
     }
 
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 180),
@@ -78,7 +78,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                           } : null,
                           icon: Icon(
                             Icons.arrow_back,
-                            color: Theme.of(context).colorScheme.onBackground,
+                            color: Theme.of(context).colorScheme.onSurface,
                             size: 24.0,
                           )),
                     ),

@@ -20,7 +20,7 @@ class TripRouteGenerator {
 
   static List<int> routeOneArrivalTimes = [0, 6, 2, 2, 5, 3, 3, 1, 3];
   static List<int> routeTwoArrivalTimesForward = [15, 2, 5, 3, 3, 1, 3];
-  static List<int> routeTwoArrivalTimesBackwards = [10, 3, 1, 3, 3, 5, 6, 4];
+  static List<int> routeTwoArrivalTimesBackwards = [0, 3, 1, 3, 3, 5, 6, 4];
 
   static int getCurrentRouteOneIndex() {
     return currentRouteOne;

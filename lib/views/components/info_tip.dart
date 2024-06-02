@@ -18,14 +18,14 @@ class InfoTip extends StatelessWidget {
       children: [
         DecoratedBox(
           decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface,
+          color: Theme.of(context).colorScheme.surfaceContainer,
             borderRadius: BorderRadius.circular(16.0)
           ),
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Icon(
               tipIcon,
-              color: Theme.of(context).colorScheme.onBackground,
+              color: Theme.of(context).colorScheme.onSurface,
               size: 24.0,
             ),
           ),

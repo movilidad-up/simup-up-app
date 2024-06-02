@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:simup_up/views/schedules_view.dart';
 import 'package:simup_up/views/styles/spaces.dart';
-import 'package:simup_up/views/utils/custom-page-router.dart';
 
 class SchedulesCard extends StatefulWidget {
   final VoidCallback onSchedulesTap;
@@ -21,7 +19,7 @@ class _SchedulesCardState extends State<SchedulesCard> {
   Widget build(BuildContext context) {
     return Material(
       borderRadius: BorderRadius.circular(24.0),
-      color: Theme.of(context).colorScheme.surface,
+      color: Theme.of(context).colorScheme.surfaceContainer,
       child: InkWell(
         borderRadius: BorderRadius.circular(24.0),
         onTap: widget.onSchedulesTap,
@@ -49,9 +47,9 @@ class _SchedulesCardState extends State<SchedulesCard> {
                         ],
                       ),
                       VerticalSpacing(12.0),
-                      const Icon(
+                      Icon(
                         Icons.arrow_forward,
-                        color: Colors.black,
+                        color: Theme.of(context).colorScheme.onSurface,
                         size: 24.0,
                       ),
                     ],

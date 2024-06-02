@@ -22,7 +22,7 @@ class _NavButtonState extends State<NavButton> {
         padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
         child: Icon(
           widget.icon,
-          color: widget.selected ? Theme.of(context).colorScheme.onBackground : Theme.of(context).colorScheme.background,
+          color: widget.selected ? Theme.of(context).colorScheme.onBackground : Theme.of(context).colorScheme.surface,
           size: 24.0,
         ),
       ),

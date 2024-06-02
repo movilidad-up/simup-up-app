@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:showcaseview/showcaseview.dart';
 import 'package:simup_up/views/components/primary_button.dart';
 import 'package:simup_up/views/dashboard_view.dart';
 import 'package:simup_up/views/home_view.dart';
@@ -93,7 +94,9 @@ class _OnboardingOutroState extends State<OnboardingOutro> {
                     right: 0.0,
                     child: PrimaryButton(buttonText: AppLocalizations.of(context)!.continueNext,
                       onButtonPressed: () {
-                        Navigator.of(context).push(CustomPageRoute(const DashboardView()));
+                        Navigator.of(context).pushAndRemoveUntil(CustomPageRoute(ShowCaseWidget(
+                          builder: (context) => const DashboardView(),
+                        )), (Route<dynamic> route) => false);
                       },
                       isButtonEnabled: true,
                     )

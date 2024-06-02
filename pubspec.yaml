@@ -27,6 +27,9 @@ environment:
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
+dependency_overrides:
+  fading_edge_scrollview: ^4.1.1
+
 dependencies:
   flutter:
     sdk: flutter
@@ -49,7 +52,7 @@ dependencies:
   skeletonizer: ^1.1.1
   cron: ^0.6.0
   marquee: ^2.2.3
-  feature_discovery: ^0.14.1
+  showcaseview: ^3.0.0
 
 dev_dependencies:
   flutter_test:

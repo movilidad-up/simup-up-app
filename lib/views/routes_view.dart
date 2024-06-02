@@ -48,7 +48,7 @@ class _RoutesViewState extends State<RoutesView> {
                             Tooltip(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8.0),
-                                color: Theme.of(context).colorScheme.onBackground,
+                                color: Theme.of(context).colorScheme.onSurface,
                               ),
                               triggerMode: TooltipTriggerMode.tap,
                               textStyle: TextStyle(
@@ -61,7 +61,7 @@ class _RoutesViewState extends State<RoutesView> {
                               message: AppLocalizations.of(context)!.predictionModelDisclaimer,
                               child: Icon(
                                 Icons.help_rounded,
-                                color: Theme.of(context).colorScheme.onBackground,
+                                color: Theme.of(context).colorScheme.onSurface,
                                 size: 24.0,
                               ),
                             )

@@ -21,7 +21,7 @@ class ProgressNav extends StatelessWidget {
               onPressed: onBackPressed,
               icon: Icon(
                 Icons.arrow_back,
-                color: Theme.of(context).colorScheme.onBackground,
+                color: Theme.of(context).colorScheme.onSurface,
                 size: 24.0,
               ),
             ),
@@ -34,7 +34,7 @@ class ProgressNav extends StatelessWidget {
                 return LinearProgressIndicator(
                   value: value,
                   semanticsLabel: 'Onboarding progress indicator',
-                  backgroundColor: Theme.of(context).colorScheme.onSurface,
+                  backgroundColor: Theme.of(context).colorScheme.surfaceContainerHigh,
                   valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.onBackground),
                 );
               },
