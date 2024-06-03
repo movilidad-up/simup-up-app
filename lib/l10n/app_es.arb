@@ -39,7 +39,7 @@
   "editReminder": "Editar recordatorio",
   "addReminder": "Añadir recordatorio",
   "updateReminder": "Actualizar recordatorio",
-  "activeReminders": "Recordatorios activos",
+  "activeReminders": "Recordatorios",
   "emptyReminders": "Aún no hay recordatorios",
   "emptyRoutes": "El bus esta descansando",
   "routeOneOperationsTime": "Recuerda que el bus esta funcional desde las 5:30 A.M. hasta las 7:00 P.M. en esta ruta.",

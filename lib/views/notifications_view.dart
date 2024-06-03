@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simup_up/views/components/empty-notifications.dart';
+import 'package:simup_up/views/components/label_button.dart';
 import 'package:simup_up/views/components/primary_button.dart';
 import 'package:simup_up/views/components/reminder_card.dart';
 import 'package:simup_up/views/styles/spaces.dart';
@@ -42,61 +43,81 @@ class _NotificationsViewState extends State<NotificationsView> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    return SafeArea(
-        child: SizedBox(
-      height: screenHeight,
-      width: screenWidth,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-                top: 32.0, bottom: 0.0, left: 24.0, right: 24.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: SizedBox(
-                width: screenWidth,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(AppLocalizations.of(context)!.notifications,
-                        style: Theme.of(context).textTheme.displayMedium,
-                        textAlign: TextAlign.start),
-                    VerticalSpacing(8.0),
-                    Text(AppLocalizations.of(context)!.notificationsDescription,
-                        style: Theme.of(context).textTheme.bodySmall,
-                        textAlign: TextAlign.start),
-                  ],
+    return CustomScrollView(
+      slivers: [
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: SafeArea(
+              child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 32.0, bottom: 0.0, left: 24.0, right: 24.0),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: SizedBox(
+                    width: screenWidth,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(AppLocalizations.of(context)!.notifications,
+                            style: Theme.of(context).textTheme.displayMedium,
+                            textAlign: TextAlign.start),
+                        VerticalSpacing(8.0),
+                        Text(
+                            AppLocalizations.of(context)!
+                                .notificationsDescription,
+                            style: Theme.of(context).textTheme.bodySmall,
+                            textAlign: TextAlign.start),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          VerticalSpacing(24.0),
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
+              VerticalSpacing(24.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      AppLocalizations.of(context)!.activeReminders,
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontFamily: 'Inter',
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w600,
-                          color: Theme.of(context).colorScheme.onBackground),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          AppLocalizations.of(context)!.activeReminders,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w600,
+                              color: Theme.of(context).colorScheme.onSurface),
+                        ),
+                        LabelButton(
+                            buttonIcon: Icons.add,
+                            buttonText:
+                                AppLocalizations.of(context)!.addReminder,
+                            hasPadding: false,
+                            onButtonPressed: () {
+                              Navigator.of(context)
+                                  .push(CustomPageRoute(AddNotificationView(
+                                onReminderAdded: () {
+                                  _loadReminders();
+                                },
+                              )));
+                            },
+                            isButtonEnabled: true)
+                      ],
                     ),
                     VerticalSpacing(16.0),
-                    SizedBox(
-                      width: screenWidth,
-                      height: screenHeight * 0.5,
-                      child: reminders.isEmpty
-                          ? const EmptyNotifications()
-                          : ListView.builder(
+                    reminders.isEmpty
+                        ? const EmptyNotifications()
+                        : SizedBox(
+                            width: screenWidth,
+                            height: screenHeight * 0.72,
+                            child: ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
                               itemCount: reminders.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return Padding(
@@ -108,34 +129,22 @@ class _NotificationsViewState extends State<NotificationsView> {
                                         reminders.elementAt(index)["day"],
                                     operationTimeIndex:
                                         reminders.elementAt(index)["time"],
-                                    reminderIndex: reminders.elementAt(index)["id"],
+                                    reminderIndex:
+                                        reminders.elementAt(index)["id"],
                                     reminderItem: reminders.elementAt(index),
                                     onReminderUpdated: _loadReminders,
                                   ),
                                 );
                               },
                             ),
-                    ),
+                          ),
                   ],
                 ),
-                PrimaryButton(
-                    buttonText: AppLocalizations.of(context)!.addReminder,
-                    hasPadding: false,
-                    onButtonPressed: () {
-                      Navigator.of(context)
-                          .push(CustomPageRoute(AddNotificationView(
-                        onReminderAdded: () {
-                          _loadReminders();
-                        },
-                      )));
-                    },
-                    isButtonEnabled: true)
-              ],
-            ),
+              ),
+            ],
           )),
-          VerticalSpacing(24.0)
-        ],
-      ),
-    ));
+        )
+      ],
+    );
   }
 }

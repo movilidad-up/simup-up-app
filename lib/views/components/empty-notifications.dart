@@ -10,43 +10,49 @@ class EmptyNotifications extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SizedBox(
-          width: screenWidth * 0.72,
-          child: Column(
-            children: [
-              Text(
-                AppLocalizations.of(context)!.emptyReminders,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14.0,
-                  color: Theme.of(context)
-                      .colorScheme
-                      .onBackground,
-                ),
+    return DecoratedBox(
+      decoration: const BoxDecoration(color: Colors.transparent),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 32.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: screenWidth * 0.72,
+              child: Column(
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.emptyReminders,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14.0,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onBackground,
+                    ),
+                  ),
+                  VerticalSpacing(4.0),
+                  Text(
+                    AppLocalizations.of(context)!.emptyRemindersDescription,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodySmall
+                  ),
+                ],
               ),
-              VerticalSpacing(4.0),
-              Text(
-                AppLocalizations.of(context)!.emptyRemindersDescription,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodySmall
-              ),
-            ],
-          ),
+            ),
+            VerticalSpacing(16.0),
+            SvgPicture.asset(Theme.of(context)
+                .colorScheme
+                .brightness ==
+                Brightness.light
+                ? "assets/images/illustrations/empty-reminders.svg"
+                : "assets/images/illustrations/empty-reminders-dark.svg"),
+          ],
         ),
-        VerticalSpacing(16.0),
-        SvgPicture.asset(Theme.of(context)
-            .colorScheme
-            .brightness ==
-            Brightness.light
-            ? "assets/images/illustrations/empty-reminders.svg"
-            : "assets/images/illustrations/empty-reminders-dark.svg"),
-      ],
+      ),
     );
   }
 }

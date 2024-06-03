@@ -39,7 +39,7 @@
   "editReminder": "Edit Reminder",
   "addReminder": "Add Reminder",
   "updateReminder": "Update Reminder",
-  "activeReminders": "Active Reminders",
+  "activeReminders": "Reminders",
   "emptyReminders": "No Reminders Yet",
   "emptyRemindersDescription": "Tap 'Add a Reminder' to notify you about the bus arrival at your study campus",
   "emptyRoutes": "Bus is Resting",
