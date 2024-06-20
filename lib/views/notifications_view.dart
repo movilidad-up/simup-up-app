@@ -9,6 +9,8 @@ import 'package:simup_up/views/utils/custom-page-router.dart';
 import 'package:simup_up/views/utils/database_manager.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+import 'components/empty-notifications.dart';
+
 class NotificationsView extends StatefulWidget {
   const NotificationsView({super.key});
 
@@ -207,7 +209,9 @@ class _NotificationsViewState extends State<NotificationsView> {
                 ],
               ),
             ),
-            AnimatedSwitcher(
+            reminders.isEmpty
+                ? const EmptyNotifications()
+                : AnimatedSwitcher(
               duration: const Duration(milliseconds: 300),
               child: renderReminders(),
             ),
