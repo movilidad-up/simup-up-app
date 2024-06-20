@@ -70,7 +70,7 @@ class _OnboardingOutroState extends State<OnboardingOutro> {
                               fontFamily: 'Inter',
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
-                              color: Theme.of(context).colorScheme.onBackground
+                              color: Theme.of(context).colorScheme.onSurface
                           ),
                         ),
                         VerticalSpacing(8.0),

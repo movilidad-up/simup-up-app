@@ -179,7 +179,7 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
                           fontWeight: FontWeight.w500,
                           fontSize: 14.0,
                           height: 1.2,
-                          color: Theme.of(context).colorScheme.onBackground
+                          color: Theme.of(context).colorScheme.onSurface
                       ),
                     ),
                   ],

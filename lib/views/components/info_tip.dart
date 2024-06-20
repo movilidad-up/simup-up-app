@@ -42,7 +42,7 @@ class InfoTip extends StatelessWidget {
                   fontFamily: 'Inter',
                   fontSize: 16.0,
                   fontWeight: FontWeight.w500,
-                  color: Theme.of(context).colorScheme.onBackground
+                  color: Theme.of(context).colorScheme.onSurface
                 ),
               ),
               Text(

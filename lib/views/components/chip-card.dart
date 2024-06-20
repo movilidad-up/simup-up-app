@@ -12,7 +12,7 @@ class ChipCard extends StatelessWidget {
   Widget build(BuildContext context) {
     Color _getTextColor() {
       if (isEnabled) {
-        return isSelected ? Theme.of(context).colorScheme.background : Theme.of(context).colorScheme.onBackground;
+        return isSelected ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.onSurface;
       } else {
         return Theme.of(context).colorScheme.onTertiaryContainer;
       }

@@ -34,7 +34,7 @@ class PrimaryButton extends StatelessWidget {
         child: Text(
           buttonText,
           style: TextStyle(
-            color: isButtonEnabled ? Theme.of(context).colorScheme.background : Theme.of(context).colorScheme.onTertiaryContainer,
+            color: isButtonEnabled ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.onTertiaryContainer,
           ),
         ),
       ),

@@ -72,4 +72,10 @@ class DatabaseHelper {
       print("Error deleting all reminders: $e");
     }
   }
+
+  Future<bool> canAddReminder() async {
+    Database db = await database;
+    int count = Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM reminders')) ?? 0;
+    return count < 10;
+  }
 }

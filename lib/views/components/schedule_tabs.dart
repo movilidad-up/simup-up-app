@@ -71,7 +71,7 @@ class _ScheduleTabsState extends State<ScheduleTabs> {
               style: TextStyle(
                   fontFamily: 'Inter',
                   fontSize: 14.0,
-                  color: Theme.of(context).colorScheme.onBackground),
+                  color: Theme.of(context).colorScheme.onSurface),
             ),
             Text(
               textRight,
@@ -79,7 +79,7 @@ class _ScheduleTabsState extends State<ScheduleTabs> {
               style: TextStyle(
                   fontFamily: 'Inter',
                   fontSize: 14.0,
-                  color: Theme.of(context).colorScheme.onBackground),
+                  color: Theme.of(context).colorScheme.onSurface),
             ),
           ],
         ));
@@ -94,7 +94,7 @@ class _ScheduleTabsState extends State<ScheduleTabs> {
           decoration: BoxDecoration(
               border: Border.all(width: 1.0, color: const Color(0xFFE9E9E7)),
               borderRadius: BorderRadius.circular(24.0),
-              color: Theme.of(context).colorScheme.background),
+              color: Theme.of(context).colorScheme.surface),
           child: SizedBox(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -151,7 +151,7 @@ class _ScheduleTabsState extends State<ScheduleTabs> {
           decoration: BoxDecoration(
               border: Border.all(width: 1.0, color: const Color(0xFFE9E9E7)),
               borderRadius: BorderRadius.circular(24.0),
-              color: Theme.of(context).colorScheme.background),
+              color: Theme.of(context).colorScheme.surface),
           child: SizedBox(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,

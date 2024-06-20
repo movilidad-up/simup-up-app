@@ -54,7 +54,7 @@ class _RoutesViewState extends State<RoutesView> {
                               textStyle: TextStyle(
                                 fontFamily: 'Inter',
                                 fontSize: 14.0,
-                                color: Theme.of(context).colorScheme.background
+                                color: Theme.of(context).colorScheme.surface
                               ),
                               margin: const EdgeInsets.symmetric(horizontal: 24.0),
                               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),

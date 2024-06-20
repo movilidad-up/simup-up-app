@@ -28,7 +28,7 @@ class EmptyRoutes extends StatelessWidget {
                   fontSize: 14.0,
                   color: Theme.of(context)
                       .colorScheme
-                      .onBackground,
+                      .onSurface,
                 ),
               ),
               VerticalSpacing(4.0),
