@@ -35,7 +35,7 @@ class ProgressNav extends StatelessWidget {
                   value: value,
                   semanticsLabel: 'Onboarding progress indicator',
                   backgroundColor: Theme.of(context).colorScheme.surfaceContainerHigh,
-                  valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.onBackground),
+                  valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.onSurface),
                 );
               },
             ),
@@ -47,7 +47,7 @@ class ProgressNav extends StatelessWidget {
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontSize: 14.0,
-                color: Theme.of(context).colorScheme.onBackground
+                color: Theme.of(context).colorScheme.onSurface
             ),),
           ),
         ],

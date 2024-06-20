@@ -44,7 +44,7 @@ class OnboardingCard extends StatelessWidget {
                           letterSpacing: -0.6,
                           height: 0,
                           fontWeight: FontWeight.w600,
-                          color: Theme.of(context).colorScheme.onBackground
+                          color: Theme.of(context).colorScheme.onSurface
                       ),
                       textAlign: TextAlign.start,
                     ),

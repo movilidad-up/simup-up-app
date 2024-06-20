@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:simup_up/enums/enums.dart';
 import 'package:simup_up/views/components/chips_container.dart';
+import 'package:simup_up/views/components/custom_toast.dart';
 import 'package:simup_up/views/components/primary_button.dart';
 import 'package:simup_up/views/components/reminder_app_bar.dart';
 import 'package:simup_up/views/components/user_campuses.dart';
@@ -17,11 +18,11 @@ import 'package:flutter_timezone/flutter_timezone.dart';
 class AddNotificationView extends StatefulWidget {
   final int editingIndex;
   final Map<String, dynamic> editingItem;
-  final Function() onReminderAdded;
+  final Function(String) onReminderUpdate;
 
   const AddNotificationView(
       {super.key,
-      required this.onReminderAdded,
+      required this.onReminderUpdate,
       this.editingIndex = -1,
       this.editingItem = const {}});
 
@@ -51,6 +52,15 @@ class _AddNotificationViewState extends State<AddNotificationView> {
     super.initState();
   }
 
+  void _showToastOnError() {
+    CustomToast.buildToast(
+        context,
+        const Color(0xFFE40000),
+        AppLocalizations.of(context)!.reminderErrorTitle,
+        AppLocalizations.of(context)!.reminderErrorText,
+        Icons.error_rounded);
+  }
+
   void _createNewReminder() async {
     bool isEditing = widget.editingIndex >= 0;
     setState(() {
@@ -75,10 +85,12 @@ class _AddNotificationViewState extends State<AddNotificationView> {
       await dbHelper.deleteReminder(widget.editingIndex);
       await _cancelReminder();
 
-      widget.onReminderAdded();
+      widget.onReminderUpdate('delete');
+      print('Reminder deleted');
 
-      Navigator.of(context).pop();
+      Navigator.of(context).pop(true);
     } catch (err) {
+      _showToastOnError();
       log("Error while deleting reminder with id=${widget.editingIndex}: ${err}");
     }
   }
@@ -96,10 +108,11 @@ class _AddNotificationViewState extends State<AddNotificationView> {
 
       await _scheduleReminder();
 
-      widget.onReminderAdded();
+      widget.onReminderUpdate('add');
 
       Navigator.of(context).pop();
     } catch (err) {
+      _showToastOnError();
       log("Error while saving new reminder: ${err}");
     }
   }
@@ -197,10 +210,11 @@ class _AddNotificationViewState extends State<AddNotificationView> {
         'reminderId': _notificationId,
       });
 
-      widget.onReminderAdded();
+      widget.onReminderUpdate('update');
 
       Navigator.of(context).pop();
     } catch (err) {
+      _showToastOnError();
       log("Error while update reminder: ${err}");
     }
   }
@@ -256,6 +270,7 @@ class _AddNotificationViewState extends State<AddNotificationView> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -326,7 +341,7 @@ class _AddNotificationViewState extends State<AddNotificationView> {
                                   ),
                                   iconEnabledColor: Theme.of(context)
                                       .colorScheme
-                                      .onBackground,
+                                      .onSurface,
                                   icon: const Icon(Icons.keyboard_arrow_down),
                                   hint: Text(
                                     AppLocalizations.of(context)!
@@ -358,7 +373,7 @@ class _AddNotificationViewState extends State<AddNotificationView> {
                                             fontWeight: FontWeight.w500,
                                             color: Theme.of(context)
                                                 .colorScheme
-                                                .onBackground),
+                                                .onSurface),
                                       ),
                                     );
                                   }).toList(),
@@ -372,7 +387,7 @@ class _AddNotificationViewState extends State<AddNotificationView> {
                                         fontSize: 14.0,
                                         color: Theme.of(context)
                                             .colorScheme
-                                            .onBackground),
+                                            .onSurface),
                                     textAlign: TextAlign.start),
                                 VerticalSpacing(12.0),
                                 ChipsContainer(
@@ -392,7 +407,7 @@ class _AddNotificationViewState extends State<AddNotificationView> {
                                         fontSize: 14.0,
                                         color: Theme.of(context)
                                             .colorScheme
-                                            .onBackground),
+                                            .onSurface),
                                     textAlign: TextAlign.start),
                                 VerticalSpacing(12.0),
                                 ChipsContainer(

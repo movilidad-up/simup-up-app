@@ -99,7 +99,7 @@ class _GetStartedZoneState extends State<GetStartedZone> {
                   style: TextStyle(
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w500,
-                    color: Theme.of(context).colorScheme.onBackground
+                    color: Theme.of(context).colorScheme.onSurface
                   ),
                 ),
               );

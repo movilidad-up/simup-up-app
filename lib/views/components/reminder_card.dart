@@ -11,7 +11,7 @@ class ReminderCard extends StatelessWidget {
   final int dayOfWeekIndex;
   final int reminderIndex;
   final Map<String, dynamic> reminderItem;
-  final Function() onReminderUpdated;
+  final Function(String) onReminderUpdated;
 
   const ReminderCard({super.key, required this.onReminderUpdated, required this.operationTimeIndex, required this.dayOfWeekIndex, required this.campusIndex, required this.reminderIndex, required this.reminderItem});
 
@@ -70,7 +70,7 @@ class ReminderCard extends StatelessWidget {
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w600,
                           fontSize: 14.0,
-                          color: Theme.of(context).colorScheme.onBackground
+                          color: Theme.of(context).colorScheme.onSurface
                       ),
                     ),
                     VerticalSpacing(2.0),
@@ -97,9 +97,7 @@ class ReminderCard extends StatelessWidget {
               child: IconButton(
                   onPressed: (){
                     Navigator.of(context).push(CustomPageRoute(AddNotificationView(
-                      onReminderAdded: () {
-                        onReminderUpdated();
-                      },
+                      onReminderUpdate: onReminderUpdated,
                       editingIndex: reminderIndex,
                       editingItem: reminderItem,
                     )));
