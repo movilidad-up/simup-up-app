@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Movilidad UP',
+      title: 'Movilidad',
       debugShowCheckedModeBanner: false,
       theme: AppThemes.defaultLight,
       darkTheme: AppThemes.defaultDark,

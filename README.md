@@ -1,4 +1,4 @@
-# SIMUP UP - Movilidad Unipamplona
+# SIMUP - Movilidad
 
 [![Plataformas](https://img.shields.io/badge/Plataformas-Android%20%7C%20iOS-green)]()
 
