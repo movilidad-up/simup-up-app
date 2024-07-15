@@ -86,28 +86,31 @@ class _StatusCardState extends State<StatusCard> {
                       size: 34.0,
                     ),
                     HorizontalSpacing(16.0),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          statusInfo["label"],
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.tertiary,
-                              fontSize: 16.0,
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            statusInfo["label"],
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.tertiary,
+                                fontSize: 16.0,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500
+                            ),
+                          ),
+                          Text(
+                            maxLines: 2,
+                            statusInfo["title"],
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onSurface,
+                              fontSize: 20.0,
                               fontFamily: 'Inter',
-                              fontWeight: FontWeight.w500
+                              fontWeight: FontWeight.w600
+                            ),
                           ),
-                        ),
-                        Text(
-                          statusInfo["title"],
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onSurface,
-                            fontSize: 20.0,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w600
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     VerticalSpacing(12.0),
                   ],

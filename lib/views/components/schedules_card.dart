@@ -33,18 +33,20 @@ class _SchedulesCardState extends State<SchedulesCard> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            AppLocalizations.of(context)!.schedules,
-                            style: Theme.of(context).textTheme.labelLarge,
-                          ),
-                          Text(
-                            AppLocalizations.of(context)!.goToSchedules,
-                            style: Theme.of(context).textTheme.displayMedium,
-                          ),
-                        ],
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.schedules,
+                              style: Theme.of(context).textTheme.labelLarge,
+                            ),
+                            Text(
+                              AppLocalizations.of(context)!.goToSchedules,
+                              style: Theme.of(context).textTheme.displayMedium,
+                            ),
+                          ],
+                        ),
                       ),
                       VerticalSpacing(12.0),
                       Icon(
