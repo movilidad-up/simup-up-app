@@ -50,7 +50,7 @@
   "selectCampusReminder": "Select the campus, days, and arrival times",
   "notifyThisDay": "Notify me on",
   "notifyThisHour": "At the times",
-  "notifyWhenCampus": "Notify me when arriving at:",
+  "notifyWhenCampus": "Notify when arriving at:",
   "busArrival": "The bus is about to arrive!",
   "busMessage1": "The bus is arriving at",
   "busMessage2": "and will depart approximately at",
