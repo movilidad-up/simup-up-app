@@ -118,12 +118,14 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
                     _checkIfOnStop() ? Text(
                       "${AppLocalizations.of(context)!.onStop} | ${widget.isRouteOne ? AppLocalizations.of(context)!.routeOne : AppLocalizations.of(context)!.routeTwo}",
                       style: Theme.of(context).textTheme.labelLarge,
+                      textScaler: const TextScaler.linear(1.0),
                     ) : _shouldUseMarquee("${AppLocalizations.of(context)!.approximatedStation} | ${widget.isRouteOne ? AppLocalizations.of(context)!.routeOne : AppLocalizations.of(context)!.routeTwo}", screenWidth * 0.5) ? SizedBox(
                       height: 20.0,
                       width: screenWidth * 0.5,
                       child: Marquee(
                         text: "${AppLocalizations.of(context)!.approximatedStation} | ${widget.isRouteOne ? AppLocalizations.of(context)!.routeOne : AppLocalizations.of(context)!.routeTwo}",
                         style: Theme.of(context).textTheme.labelLarge,
+                        textScaleFactor: 1.0,
                         scrollAxis: Axis.horizontal,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         blankSpace: 16.0,
@@ -139,11 +141,13 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
                     ) : Text(
                       "${AppLocalizations.of(context)!.approximatedStation} | ${widget.isRouteOne ? AppLocalizations.of(context)!.routeOne : AppLocalizations.of(context)!.routeTwo}",
                       style: Theme.of(context).textTheme.labelLarge,
+                      textScaler: const TextScaler.linear(1.0),
                     ),
                     VerticalSpacing(4.0),
                     Text(
                       _currentStationName,
                       style: Theme.of(context).textTheme.displayMedium,
+                      textScaler: const TextScaler.linear(1.0),
                     ),
                     VerticalSpacing(12.0),
                     ElevatedButton(
@@ -169,6 +173,7 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
                           leadingDistribution: TextLeadingDistribution.even,
                         ),
                         style: Theme.of(context).textTheme.labelMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                     ),
                   ] else ...[
@@ -181,6 +186,7 @@ class _CurrentStationCardState extends State<CurrentStationCard> {
                           height: 1.2,
                           color: Theme.of(context).colorScheme.onSurface
                       ),
+                      textScaler: const TextScaler.linear(1.0),
                     ),
                   ],
                 ],

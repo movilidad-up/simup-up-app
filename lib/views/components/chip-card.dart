@@ -35,6 +35,7 @@ class ChipCard extends StatelessWidget {
               fontSize: 14.0,
               color: _getTextColor(),
             ),
+            textScaler: const TextScaler.linear(1.0),
           ),
         ),
       ),

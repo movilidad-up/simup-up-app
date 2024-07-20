@@ -44,6 +44,7 @@ class InfoTip extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                   color: Theme.of(context).colorScheme.onSurface
                 ),
+                textScaler: const TextScaler.linear(1.0),
               ),
               Text(
                 tipDescription,
@@ -54,6 +55,7 @@ class InfoTip extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     color: Theme.of(context).colorScheme.tertiary
                 ),
+                textScaler: const TextScaler.linear(1.0),
               )
             ],
           ),

@@ -161,11 +161,13 @@ class _NotificationsViewState extends State<NotificationsView> {
                     Text(
                       AppLocalizations.of(context)!.notifications,
                       style: Theme.of(context).textTheme.displayMedium,
+                      textScaler: const TextScaler.linear(1.0),
                     ),
                     VerticalSpacing(8.0),
                     Text(
                       AppLocalizations.of(context)!.notificationsDescription,
                       style: Theme.of(context).textTheme.bodySmall,
+                      textScaler: const TextScaler.linear(1.0),
                     ),
                   ],
                 ),
@@ -187,6 +189,7 @@ class _NotificationsViewState extends State<NotificationsView> {
                           fontWeight: FontWeight.w600,
                           color: Theme.of(context).colorScheme.onSurface,
                         ),
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       GestureDetector(
                         onTap: _showToastOnDisable,

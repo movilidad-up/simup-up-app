@@ -70,6 +70,7 @@ class ReminderCard extends StatelessWidget {
                           fontSize: 12.0,
                           color: Theme.of(context).colorScheme.tertiary
                         ),
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(2.0),
                       Text(
@@ -82,6 +83,7 @@ class ReminderCard extends StatelessWidget {
                             fontSize: 14.0,
                             color: Theme.of(context).colorScheme.onSurface
                         ),
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(2.0),
                       Text(
@@ -94,6 +96,7 @@ class ReminderCard extends StatelessWidget {
                             fontSize: 12.0,
                             color: Theme.of(context).colorScheme.tertiary
                         ),
+                        textScaler: const TextScaler.linear(1.0),
                       )
                     ],
                   ),

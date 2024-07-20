@@ -50,6 +50,7 @@ class LabelButton extends StatelessWidget {
                 fontWeight: FontWeight.w500,
                 color: isButtonEnabled ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.onTertiaryContainer,
               ),
+              textScaler: const TextScaler.linear(1.0),
             ),
           ],
         ),

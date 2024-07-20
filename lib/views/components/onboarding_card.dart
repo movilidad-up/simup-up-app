@@ -47,6 +47,7 @@ class OnboardingCard extends StatelessWidget {
                           color: Theme.of(context).colorScheme.onSurface
                       ),
                       textAlign: TextAlign.start,
+                      textScaler: const TextScaler.linear(1.0),
                     ),
                     VerticalSpacing(8.0),
                     Text(

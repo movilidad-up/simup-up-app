@@ -42,6 +42,7 @@ class CustomToast {
                           fontSize: 14.0,
                           color: primaryColor,
                         ),
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(4.0),
                       Text(
@@ -54,6 +55,7 @@ class CustomToast {
                           fontSize: 14.0,
                           color: primaryColor.withOpacity(0.64),
                         ),
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                     ],
                   ),

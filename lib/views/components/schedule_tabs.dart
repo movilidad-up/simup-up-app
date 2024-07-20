@@ -55,6 +55,7 @@ class _ScheduleTabsState extends State<ScheduleTabs> {
           child: Text(
             text,
             style: Theme.of(context).textTheme.bodySmall,
+            textScaler: const TextScaler.linear(1.0),
           )),
     );
   }
@@ -72,6 +73,7 @@ class _ScheduleTabsState extends State<ScheduleTabs> {
                   fontFamily: 'Inter',
                   fontSize: 14.0,
                   color: Theme.of(context).colorScheme.onSurface),
+              textScaler: const TextScaler.linear(1.0),
             ),
             Text(
               textRight,
@@ -80,6 +82,7 @@ class _ScheduleTabsState extends State<ScheduleTabs> {
                   fontFamily: 'Inter',
                   fontSize: 14.0,
                   color: Theme.of(context).colorScheme.onSurface),
+              textScaler: const TextScaler.linear(1.0),
             ),
           ],
         ));

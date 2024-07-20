@@ -36,6 +36,7 @@ class PrimaryButton extends StatelessWidget {
           style: TextStyle(
             color: isButtonEnabled ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.onTertiaryContainer,
           ),
+          textScaler: const TextScaler.linear(1.0),
         ),
       ),
     );

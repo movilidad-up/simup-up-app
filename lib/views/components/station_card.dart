@@ -41,7 +41,8 @@ class StationCard extends StatelessWidget {
                   children: [
                     Text(
                       name,
-                      style: Theme.of(context).textTheme.headlineMedium
+                      style: Theme.of(context).textTheme.headlineMedium,
+                      textScaler: const TextScaler.linear(1.0),
                     ),
                     VerticalSpacing(4.0),
                     Text(
@@ -54,6 +55,7 @@ class StationCard extends StatelessWidget {
                           fontSize: 12.0,
                           fontWeight: FontWeight.normal
                       ),
+                      textScaler: const TextScaler.linear(1.0),
                     ),
                     VerticalSpacing(4.0),
                     Row(
@@ -68,6 +70,7 @@ class StationCard extends StatelessWidget {
                               fontSize: 12.0,
                               fontWeight: FontWeight.w500
                           ),
+                          textScaler: const TextScaler.linear(1.0),
                         ),
                         Icon(
                           Icons.keyboard_arrow_right,

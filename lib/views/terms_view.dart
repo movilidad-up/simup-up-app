@@ -25,6 +25,7 @@ class TermsView extends StatelessWidget {
               title: Text(
                 AppLocalizations.of(context)!.termsLabel,
                 style: Theme.of(context).textTheme.labelLarge,
+                textScaler: const TextScaler.linear(1.0),
               ),
               leading: IconButton(
                   icon: Icon(
@@ -47,116 +48,139 @@ class TermsView extends StatelessWidget {
                       Text(
                         AppLocalizations.of(context)!.termsAndConditionsTitle,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Text(
                           AppLocalizations.of(context)!.lastUpdatedLabel,
                           style: Theme.of(context).textTheme.headlineMedium,
+                          textScaler: const TextScaler.linear(1.0),
                         ),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.termsText,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.useOfAppLabel,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.useText1,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       Text(
                         AppLocalizations.of(context)!.useText2,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.userContentLabel,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.userContentText,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.privacyLabel,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.privacyText,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.intellectualPropertyLabel,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.intellectualPropertyText,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.prohibitedActivitiesLabel,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.prohibitedText1,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       Text(
                         AppLocalizations.of(context)!.prohibitedText2,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.limitationOfLiabilityLabel,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.liabilityText,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.changesToTermsLabel,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.changesToTermsText,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.terminationLabel,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.terminationText,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.governingLawLabel,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.governingLawText,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       GestureDetector(
@@ -172,12 +196,14 @@ class TermsView extends StatelessWidget {
                             color: Theme.of(context).colorScheme.primary,
                             decoration: TextDecoration.underline,
                           ),
+                          textScaler: const TextScaler.linear(1.0),
                         ),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.contactUsLabel,
                         style: Theme.of(context).textTheme.headlineSmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -189,6 +215,7 @@ class TermsView extends StatelessWidget {
                             color: Theme.of(context).primaryColor,
                             decoration: TextDecoration.underline,
                           ),
+                          textScaler: const TextScaler.linear(1.0),
                         ),
                       ),
                       VerticalSpacing(16.0)

@@ -34,6 +34,7 @@ class _OptionItemState extends State<OptionItem> {
                     widget.label,
                     style: Theme.of(context).textTheme.titleSmall,
                     maxLines: 1,
+                    textScaler: const TextScaler.linear(1.0),
                   ),
                   Text(
                     widget.description,
@@ -41,6 +42,7 @@ class _OptionItemState extends State<OptionItem> {
                     textAlign: TextAlign.left,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
+                    textScaler: const TextScaler.linear(1.0),
                   ),
                 ],
               ),

@@ -50,6 +50,7 @@ class _GetStartedZoneState extends State<GetStartedZone> {
               color: Theme.of(context).colorScheme.tertiary,
             ),
             textAlign: TextAlign.center,
+            textScaler: const TextScaler.linear(1.0),
           ),
           VerticalSpacing(16.0),
           DropdownButtonFormField<int>(
@@ -79,6 +80,7 @@ class _GetStartedZoneState extends State<GetStartedZone> {
                 fontFamily: 'Inter',
                 color: Theme.of(context).colorScheme.tertiary
               ),
+              textScaler: const TextScaler.linear(1.0),
             ),
             value: selectedZoneIndex,
             onChanged: (int? newValue) {
@@ -101,6 +103,7 @@ class _GetStartedZoneState extends State<GetStartedZone> {
                     fontWeight: FontWeight.w500,
                     color: Theme.of(context).colorScheme.onSurface
                   ),
+                  textScaler: const TextScaler.linear(1.0),
                 ),
               );
             }).toList(),
