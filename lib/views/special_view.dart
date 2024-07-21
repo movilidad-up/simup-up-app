@@ -25,6 +25,7 @@ class SpecialView extends StatelessWidget {
               title: Text(
                 AppLocalizations.of(context)!.devLetterTitle,
                 style: Theme.of(context).textTheme.labelLarge,
+                textScaler: const TextScaler.linear(1.0),
               ),
               leading: IconButton(
                   icon: Icon(
@@ -47,11 +48,13 @@ class SpecialView extends StatelessWidget {
                       Text(
                         AppLocalizations.of(context)!.thisLetterIsSpecial,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.devLetter,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(24.0),
                       Center(

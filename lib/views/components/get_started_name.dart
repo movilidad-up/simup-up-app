@@ -24,6 +24,7 @@ class GetStartedName extends StatelessWidget {
                 fontWeight: FontWeight.normal,
                 color: Theme.of(context).colorScheme.tertiary),
             textAlign: TextAlign.center,
+            textScaler: const TextScaler.linear(1.0),
           ),
           TextFormField(
             textAlign:  TextAlign.center,

@@ -26,6 +26,7 @@ class _SchedulesViewState extends State<SchedulesView> {
           title: Text(
             AppLocalizations.of(context)!.schedule,
             style: Theme.of(context).textTheme.labelLarge,
+            textScaler: const TextScaler.linear(1.0),
           ),
           leading: IconButton(
               icon: Icon(
@@ -58,11 +59,15 @@ class _SchedulesViewState extends State<SchedulesView> {
                             Text(
                                 AppLocalizations.of(context)!.schedules,
                                 style: Theme.of(context).textTheme.displayMedium,
-                                textAlign: TextAlign.start),
+                                textAlign: TextAlign.start,
+                                textScaler: const TextScaler.linear(1.0),
+                            ),
                             VerticalSpacing(8.0),
                             Text(AppLocalizations.of(context)!.schedulesDescription,
                                 style: Theme.of(context).textTheme.bodySmall,
-                                textAlign: TextAlign.start),
+                                textAlign: TextAlign.start,
+                                textScaler: const TextScaler.linear(1.0),
+                            ),
                           ],
                         ),
                       ),

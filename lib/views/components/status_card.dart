@@ -98,6 +98,7 @@ class _StatusCardState extends State<StatusCard> {
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500
                             ),
+                            textScaler: const TextScaler.linear(1.0),
                           ),
                           Text(
                             maxLines: 2,
@@ -108,6 +109,7 @@ class _StatusCardState extends State<StatusCard> {
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w600
                             ),
+                            textScaler: const TextScaler.linear(1.0),
                           ),
                         ],
                       ),

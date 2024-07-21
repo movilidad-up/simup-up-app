@@ -23,6 +23,7 @@ class ReminderAppBar extends StatelessWidget {
             ? AppLocalizations.of(context)!.editReminder
             : AppLocalizations.of(context)!.addReminder,
         style: Theme.of(context).textTheme.labelSmall,
+        textScaler: const TextScaler.linear(1.0),
       ),
       scrolledUnderElevation: 0.2,
       actions: [
@@ -38,7 +39,7 @@ class ReminderAppBar extends StatelessWidget {
             onPressed: onDelete,
           ),
         )
-            : SizedBox(),
+            : const SizedBox(),
       ],
       leading: IconButton(
         enableFeedback: false,

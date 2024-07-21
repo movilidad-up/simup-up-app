@@ -48,7 +48,9 @@ class ProgressNav extends StatelessWidget {
                 fontFamily: 'Inter',
                 fontSize: 14.0,
                 color: Theme.of(context).colorScheme.onSurface
-            ),),
+              ),
+              textScaler: const TextScaler.linear(1.0),
+            ),
           ),
         ],
       ),

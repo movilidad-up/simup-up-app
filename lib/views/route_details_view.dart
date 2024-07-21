@@ -43,7 +43,8 @@ class RouteDetailsView extends StatelessWidget {
               backgroundColor: Theme.of(context).colorScheme.surface,
               title: Text(UserStations.stationNames(context)
                   .elementAt(stationIndex),
-                style: Theme.of(context).textTheme.labelSmall
+                style: Theme.of(context).textTheme.labelSmall,
+                textScaler: const TextScaler.linear(1.0),
               ),
               scrolledUnderElevation: 0.2,
               leading: IconButton(
@@ -85,12 +86,14 @@ class RouteDetailsView extends StatelessWidget {
                             UserStations.stationNames(context)
                                 .elementAt(stationIndex),
                             style:  Theme.of(context).textTheme.displayLarge,
+                            textScaler: const TextScaler.linear(1.0),
                           ),
                           VerticalSpacing(8.0),
                           Text(
                             UserStations.stationInfo(context)
                                 .elementAt(stationIndex),
-                            style: Theme.of(context).textTheme.displaySmall
+                            style: Theme.of(context).textTheme.displaySmall,
+                            textScaler: const TextScaler.linear(1.0),
                           ),
                           VerticalSpacing(16.0),
                           Text(
@@ -101,6 +104,7 @@ class RouteDetailsView extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 color: Theme.of(context).colorScheme.primary
                             ),
+                            textScaler: const TextScaler.linear(1.0),
                           ),
                           VerticalSpacing(16.0),
                           InfoTip(

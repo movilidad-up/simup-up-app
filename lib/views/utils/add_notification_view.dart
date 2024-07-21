@@ -303,14 +303,18 @@ class _AddNotificationViewState extends State<AddNotificationView> {
                                     style: Theme.of(context)
                                         .textTheme
                                         .displayMedium,
-                                    textAlign: TextAlign.start),
+                                    textAlign: TextAlign.start,
+                                    textScaler: const TextScaler.linear(1.0),
+                                ),
                                 VerticalSpacing(8.0),
                                 Text(
                                     AppLocalizations.of(context)!
                                         .selectCampusReminder,
                                     style:
                                         Theme.of(context).textTheme.bodySmall,
-                                    textAlign: TextAlign.start),
+                                    textAlign: TextAlign.start,
+                                    textScaler: const TextScaler.linear(1.0),
+                                ),
                                 VerticalSpacing(16.0),
                                 DropdownButtonFormField<int>(
                                   isDense: true,
@@ -351,6 +355,7 @@ class _AddNotificationViewState extends State<AddNotificationView> {
                                         color: Theme.of(context)
                                             .colorScheme
                                             .tertiary),
+                                    textScaler: const TextScaler.linear(1.0),
                                   ),
                                   value: selectedCampusIndex,
                                   onChanged: (int? newValue) {
@@ -374,6 +379,7 @@ class _AddNotificationViewState extends State<AddNotificationView> {
                                             color: Theme.of(context)
                                                 .colorScheme
                                                 .onSurface),
+                                        textScaler: const TextScaler.linear(1.0),
                                       ),
                                     );
                                   }).toList(),
@@ -388,7 +394,9 @@ class _AddNotificationViewState extends State<AddNotificationView> {
                                         color: Theme.of(context)
                                             .colorScheme
                                             .onSurface),
-                                    textAlign: TextAlign.start),
+                                    textAlign: TextAlign.start,
+                                    textScaler: const TextScaler.linear(1.0),
+                                ),
                                 VerticalSpacing(12.0),
                                 ChipsContainer(
                                   selectedChip: _dayOfWeekIndex,
@@ -408,7 +416,9 @@ class _AddNotificationViewState extends State<AddNotificationView> {
                                         color: Theme.of(context)
                                             .colorScheme
                                             .onSurface),
-                                    textAlign: TextAlign.start),
+                                    textAlign: TextAlign.start,
+                                    textScaler: const TextScaler.linear(1.0),
+                                ),
                                 VerticalSpacing(12.0),
                                 ChipsContainer(
                                   selectedChip: _timeOfDayIndex,

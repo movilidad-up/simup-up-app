@@ -30,12 +30,14 @@ class EmptyRoutes extends StatelessWidget {
                       .colorScheme
                       .onSurface,
                 ),
+                textScaler: const TextScaler.linear(1.0),
               ),
               VerticalSpacing(4.0),
               Text(
                   isItRouteOne ? AppLocalizations.of(context)!.routeOneOperationsTime : AppLocalizations.of(context)!.routeTwoOperationsTime,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodySmall
+                  style: Theme.of(context).textTheme.bodySmall,
+                  textScaler: const TextScaler.linear(1.0),
               ),
             ],
           ),

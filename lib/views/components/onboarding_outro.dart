@@ -72,6 +72,7 @@ class _OnboardingOutroState extends State<OnboardingOutro> {
                               fontWeight: FontWeight.w600,
                               color: Theme.of(context).colorScheme.onSurface
                           ),
+                          textScaler: const TextScaler.linear(1.0),
                         ),
                         VerticalSpacing(8.0),
                         Text(
@@ -83,6 +84,7 @@ class _OnboardingOutroState extends State<OnboardingOutro> {
                               fontWeight: FontWeight.w400,
                               color: Color(0xFF646462)
                           ),
+                          textScaler: const TextScaler.linear(1.0),
                         ),
                       ],
                     ),

@@ -112,7 +112,7 @@ class _OnboardingFrameState extends State<OnboardingFrame> with SingleTickerProv
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('userName', userData.userName);
     prefs.setInt('userZone', userData.userZone.index);
-    prefs.setBool('enableTaskReminders', true);
+    prefs.setBool('enableReminders', true);
     prefs.setBool('tourCompleted', false);
   }
 

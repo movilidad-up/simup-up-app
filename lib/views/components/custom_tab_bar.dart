@@ -37,6 +37,7 @@ class CustomTabBar extends StatelessWidget {
                       fontSize: 14.0,
                       color: selectedIndex == index ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.onSurface,
                     ),
+                    textScaler: const TextScaler.linear(1.0),
                   ),
                 ),
               ),

@@ -23,6 +23,7 @@ class PrivacyView extends StatelessWidget {
               title: Text(
                 AppLocalizations.of(context)!.privacyPolicyLabel,
                 style: Theme.of(context).textTheme.labelLarge,
+                textScaler: const TextScaler.linear(1.0),
               ),
               leading: IconButton(
                   icon: Icon(
@@ -46,96 +47,115 @@ class PrivacyView extends StatelessWidget {
                       Text(
                         AppLocalizations.of(context)!.privacyPolicyTitle,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.lastUpdatedLabel,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.privacyPolicyText,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.informationWeCollectLabel,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.informationWeCollectText,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.howWeUseYourInformationLabel,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.howWeUseYourInformationText,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.dataStorageLabel,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.dataStorageText,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.yourChoicesLabel,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.yourChoicesText,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.securityLabel,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.securityText,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.childrensPrivacyLabel,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.childrensPrivacyText,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.changesToPrivacyPolicyLabel,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.changesToPrivacyPolicyText,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0),
                       Text(
                         AppLocalizations.of(context)!.contactUsLabel,
                         style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(8.0),
                       Text(
                         AppLocalizations.of(context)!.contactUsText,
                         style: Theme.of(context).textTheme.bodySmall,
+                        textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(16.0)
                     ],

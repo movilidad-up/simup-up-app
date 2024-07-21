@@ -33,12 +33,14 @@ class EmptyNotifications extends StatelessWidget {
                           .colorScheme
                           .onSurface,
                     ),
+                    textScaler: const TextScaler.linear(1.0),
                   ),
                   VerticalSpacing(4.0),
                   Text(
                     AppLocalizations.of(context)!.emptyRemindersDescription,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodySmall
+                    style: Theme.of(context).textTheme.bodySmall,
+                    textScaler: const TextScaler.linear(1.0),
                   ),
                 ],
               ),

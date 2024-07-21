@@ -43,7 +43,9 @@ class _RoutesViewState extends State<RoutesView> {
                             Text(
                                 AppLocalizations.of(context)!.busTracking,
                                 style: Theme.of(context).textTheme.displayMedium,
-                                textAlign: TextAlign.start),
+                                textAlign: TextAlign.start,
+                                textScaler: const TextScaler.linear(1.0),
+                            ),
                             HorizontalSpacing(8.0),
                             Tooltip(
                               decoration: BoxDecoration(
@@ -70,7 +72,9 @@ class _RoutesViewState extends State<RoutesView> {
                         VerticalSpacing(8.0),
                         Text(AppLocalizations.of(context)!.busTrackingDescription,
                             style: Theme.of(context).textTheme.bodySmall,
-                            textAlign: TextAlign.start),
+                            textAlign: TextAlign.start,
+                            textScaler: const TextScaler.linear(1.0),
+                        ),
                       ],
                     ),
                   ),
