@@ -92,7 +92,7 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ],
                 ),
-                VerticalSpacing(24.0),
+                VerticalSpacing(16.0),
                 Expanded(
                   child: Stack(
                     children: [
