@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:simup_up/views/components/animated_rectangle.dart';
 import 'package:simup_up/views/components/current_station_card.dart';
 import 'package:simup_up/views/components/schedules_card.dart';
 import 'package:simup_up/views/components/status_card.dart';
@@ -95,28 +94,74 @@ class _HomeViewState extends State<HomeView> {
                 ),
                 VerticalSpacing(24.0),
                 Expanded(
-                  child: CustomScrollView(
-                    slivers: [
-                      SliverList(
-                        delegate: SliverChildListDelegate([
-                          const StatusCard(),
-                          VerticalSpacing(16.0),
-                          SchedulesCard(
-                            onSchedulesTap: widget.onSchedulesTap,
+                  child: Stack(
+                    children: [
+                      CustomScrollView(
+                      slivers: [
+                        SliverList(
+                          delegate: SliverChildListDelegate([
+                            VerticalSpacing(16.0),
+                            const StatusCard(),
+                            VerticalSpacing(16.0),
+                            SchedulesCard(
+                              onSchedulesTap: widget.onSchedulesTap,
+                            ),
+                            VerticalSpacing(16.0),
+                            CurrentStationCard(
+                              isRouteOne: true,
+                              onCurrentStationTap: widget.onCurrentStationTap,
+                              updateObservable: widget.updateObservable,
+                            ),
+                            VerticalSpacing(16.0),
+                            CurrentStationCard(
+                              isRouteOne: false,
+                              onCurrentStationTap: widget.onCurrentStationTap,
+                              updateObservable: widget.updateObservable,
+                            ),
+                            VerticalSpacing(16.0),
+                          ]),
+                        ),
+                      ]
+                    ),
+                      Positioned(
+                        top: -1.0,
+                        child: SizedBox(
+                          width: screenWidth,
+                          height: 24.0,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    Theme.of(context).colorScheme.surface,
+                                    const Color(0x00FAF9F6),
+                                  ]
+                              ),
+                            ),
+                            child: const SizedBox(),
                           ),
-                          VerticalSpacing(16.0),
-                          CurrentStationCard(
-                            isRouteOne: true,
-                            onCurrentStationTap: widget.onCurrentStationTap,
-                            updateObservable: widget.updateObservable,
+                        ),
+                      ),
+                      Positioned(
+                        bottom: -1.0,
+                        child: SizedBox(
+                          width: screenWidth,
+                          height: 24.0,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    const Color(0x00FAF9F6),
+                                    Theme.of(context).colorScheme.surface,
+                                  ]
+                              ),
+                            ),
+                            child: const SizedBox(),
                           ),
-                          VerticalSpacing(16.0),
-                          CurrentStationCard(
-                            isRouteOne: false,
-                            onCurrentStationTap: widget.onCurrentStationTap,
-                            updateObservable: widget.updateObservable,
-                          ),
-                        ]),
+                        ),
                       ),
                     ]
                   ),
