@@ -59,6 +59,7 @@
   "at": "a las",
   "approximatedStation": "Estación aproximada",
   "seeMore": "Ver más",
+  "moreInfo": "Más información",
   "tourHome": "Home",
   "tourHomeDescription": "¡Bienvenido a tu punto de partida! Aquí podrás ver la estación actual de manera rápida y oportuna.",
   "tourRoutes": "Rutas",
@@ -151,6 +152,7 @@
   "reminderAdded": "Se ha agregado su recordatorio ;)",
   "reminderUpdated": "Su recordatorio ha sido actualizado :)",
   "reminderDeleted": "Su recordatorio ha sido eliminado ;)",
+  "isWithinYourZone": "Rutas disponibles hacia tu zona:",
 
   "monday": "Lunes",
   "tuesday": "Martes",

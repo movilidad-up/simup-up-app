@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simup_up/views/components/current_station_card.dart';
 import 'package:simup_up/views/components/schedules_card.dart';
 import 'package:simup_up/views/components/status_card.dart';
@@ -7,6 +6,7 @@ import 'package:simup_up/views/settings_view.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:simup_up/views/utils/custom-page-router.dart';
+import 'package:simup_up/views/utils/shared_prefs.dart';
 import 'package:simup_up/views/utils/update-observable.dart';
 
 class HomeView extends StatefulWidget {
@@ -31,9 +31,8 @@ class _HomeViewState extends State<HomeView> {
   }
 
   void _loadUserData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      userName = prefs.getString('userName') ?? '';
+      userName = SharedPrefs().prefs.getString('userName') ?? '';
     });
   }
 

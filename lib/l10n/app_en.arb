@@ -59,6 +59,7 @@
   "at": "at",
   "approximatedStation": "Approximate Station",
   "seeMore": "See more",
+  "moreInfo": "More info",
   "tourHome": "Home",
   "tourHomeDescription": "Welcome to your starting point! Here you can quickly and timely see the current station.",
   "tourRoutes": "Routes",
@@ -150,6 +151,7 @@
   "reminderAdded": "Your reminder has been added ;)",
   "reminderUpdated": "Your reminder has been updated :)",
   "reminderDeleted": "Your reminder has been deleted ;)",
+  "isWithinYourZone": "Available routes to your area:",
 
   "monday": "Monday",
   "tuesday": "Tuesday",

@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:simup_up/views/utils/shared_prefs.dart';
 
 class CheckboxItem extends StatefulWidget {
   final String label;
@@ -55,8 +56,7 @@ class _CheckboxItemState extends State<CheckboxItem> {
   }
 
   void _updatePreferenceState(String preferenceKey, bool pushState) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool(preferenceKey, pushState);
+    await SharedPrefs().prefs.setBool(preferenceKey, pushState);
   }
 
   @override

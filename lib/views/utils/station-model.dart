@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:simup_up/views/utils/route_status_checker.dart';
-import 'package:simup_up/views/utils/route_stop_checker.dart';
 import 'package:simup_up/views/utils/trip_route_generator.dart';
 
 class StationModel {

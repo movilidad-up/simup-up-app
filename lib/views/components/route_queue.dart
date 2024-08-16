@@ -78,6 +78,7 @@ class _RouteQueueState extends State<RouteQueue> {
                         name: routes.elementAt(index)["stationName"],
                         arrivalInfo: routes.elementAt(index)["arrivalTime"],
                         isCurrentStation: routes.elementAt(index)["stationIndex"] == _currentStationIndex,
+                        stationIndex: routes.elementAt(index)["stationIndex"],
                         onTap: () {
                           Navigator.of(context).push(
                             CustomPageRoute(
