@@ -31,8 +31,8 @@ class _StationCardState extends State<StationCard> {
 
   void _isWithinUserZone() {
     try {
-      int? userZoneIndex = SharedPrefs().prefs.getInt('userZone')!;
-      Zone? userZone = UserZones.zoneList.elementAt(userZoneIndex!);
+      int? userZoneIndex = SharedPrefs().prefs.getInt('userZone');
+      Zone userZone = UserZones.zoneList.elementAt(userZoneIndex!);
 
       if (userZoneIndex != null) {
         List<Zone> zones = UserStations.stationRoutes.elementAt(widget.stationIndex);
