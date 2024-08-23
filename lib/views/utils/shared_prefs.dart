@@ -13,4 +13,13 @@ class SharedPrefs {
   Future<void> init() async {
     prefs = await SharedPreferences.getInstance();
   }
+
+  Future<void> reload() async {
+    prefs = await SharedPreferences.getInstance();
+  }
+
+  // Clear all preferences if needed
+  Future<void> clearAll() async {
+    await prefs.clear();
+  }
 }

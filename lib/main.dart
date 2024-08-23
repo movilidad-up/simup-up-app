@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:showcaseview/showcaseview.dart';
@@ -18,9 +19,10 @@ Future<void> main() async {
   tz.initializeTimeZones();
   final String timeZone = await FlutterTimezone.getLocalTimezone();
   tz.setLocalLocation(tz.getLocation(timeZone));
+  await dotenv.load();
   await LocalNotificationService().init();
   await SharedPrefs().init();
-  String? userName = SharedPrefs().prefs.getString('userName')!;
+  String? userName = SharedPrefs().prefs.getString('userName');
   bool validUser = (userName != null);
 
   SystemChrome.setPreferredOrientations(

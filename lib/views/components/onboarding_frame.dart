@@ -113,6 +113,7 @@ class _OnboardingFrameState extends State<OnboardingFrame> with SingleTickerProv
     await SharedPrefs().prefs.setInt('userZone', userData.userZone.index);
     await SharedPrefs().prefs.setBool('enableReminders', true);
     await SharedPrefs().prefs.setBool('tourCompleted', false);
+    await SharedPrefs().reload();
   }
 
   bool _isContinueButtonEnabled() {

@@ -57,6 +57,7 @@ class _CheckboxItemState extends State<CheckboxItem> {
 
   void _updatePreferenceState(String preferenceKey, bool pushState) async {
     await SharedPrefs().prefs.setBool(preferenceKey, pushState);
+    await SharedPrefs().reload();
   }
 
   @override

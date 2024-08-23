@@ -31,6 +31,8 @@ class _HomeViewState extends State<HomeView> {
   }
 
   void _loadUserData() async {
+    await SharedPrefs().reload();
+
     setState(() {
       userName = SharedPrefs().prefs.getString('userName') ?? '';
     });

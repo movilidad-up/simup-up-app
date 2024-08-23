@@ -29,7 +29,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
 
   void _checkTourCompletion(BuildContext context) async {
     try {
-      bool? isTourCompleted = SharedPrefs().prefs.getBool('tourCompleted')!;
+      bool? isTourCompleted = SharedPrefs().prefs.getBool('tourCompleted');
 
       if (isTourCompleted == null || !isTourCompleted) {
         _startShowcase();
@@ -49,6 +49,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
 
   void _updateTourCompletion() async {
     await SharedPrefs().prefs.setBool('tourCompleted', true);
+    await SharedPrefs().reload();
   }
 
   @override
