@@ -135,9 +135,9 @@ class _HomeViewState extends State<HomeView> {
                                   begin: Alignment.topCenter,
                                   end: Alignment.bottomCenter,
                                   colors: [
-                                    Theme.of(context).colorScheme.surface,
-                                    const Color(0x00FAF9F6),
-                                  ]
+                                    Theme.of(context).colorScheme.surface.withOpacity(1.0),
+                                    Theme.of(context).colorScheme.surface.withOpacity(0.0),
+                                  ],
                               ),
                             ),
                             child: const SizedBox(),
@@ -155,9 +155,9 @@ class _HomeViewState extends State<HomeView> {
                                   begin: Alignment.topCenter,
                                   end: Alignment.bottomCenter,
                                   colors: [
-                                    const Color(0x00FAF9F6),
-                                    Theme.of(context).colorScheme.surface,
-                                  ]
+                                    Theme.of(context).colorScheme.surface.withOpacity(0.0),
+                                    Theme.of(context).colorScheme.surface.withOpacity(1.0),
+                                  ],
                               ),
                             ),
                             child: const SizedBox(),
