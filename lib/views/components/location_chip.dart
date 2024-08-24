@@ -48,7 +48,7 @@ class _LocationChipState extends State<LocationChip> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Icon(Icons.directions_bus_rounded, size: 16.0, color: Colors.white,),
+              Icon(Icons.directions_bus_rounded, size: 16.0, color: Theme.of(context).colorScheme.surface),
               HorizontalSpacing(4.0),
               SizedBox(
                 height: 20.0,

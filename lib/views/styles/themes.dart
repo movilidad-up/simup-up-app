@@ -5,7 +5,7 @@ class AppThemes {
   static ThemeData _generateThemeData({
     required Color inverseSurface,
     required Color surface,
-    required Color surfaceVariant,
+    required Color surfaceContainerHighest,
     required Color onSurface,
     required Color onSurfaceVariant,
     required Color surfaceContainer,
@@ -97,7 +97,7 @@ class AppThemes {
         surface: surface,
         onSurface: onSurface,
         onSurfaceVariant: onSurfaceVariant,
-        surfaceVariant: surfaceVariant,
+        surfaceContainerHighest: surfaceContainerHighest,
         surfaceContainer: surfaceContainer, // surface
         surfaceContainerHigh: surfaceContainerHigh, // onSurface
         outline: outline,
@@ -125,7 +125,7 @@ class AppThemes {
     surfaceContainer: AppColors.primarySurfaceLight,
     surfaceContainerHigh: AppColors.secondarySurfaceLight,
     onSurfaceVariant: AppColors.tertiarySurfaceLight,
-    surfaceVariant: AppColors.disabledSurfaceLight,
+    surfaceContainerHighest: AppColors.fgLight,
     inverseSurface: AppColors.transparentBackgroundLight,
     outline: AppColors.primaryOutlineLight,
     tertiary: AppColors.primaryGrayLight,
@@ -144,7 +144,7 @@ class AppThemes {
     surfaceContainer: AppColors.primarySurfaceDark,
     surfaceContainerHigh: AppColors.secondarySurfaceDark,
     onSurfaceVariant: AppColors.tertiarySurfaceDark,
-    surfaceVariant: AppColors.disabledSurfaceDark,
+    surfaceContainerHighest: AppColors.bgDark,
     inverseSurface: AppColors.transparentBackgroundDark,
     outline: AppColors.primaryOutlineDark,
     tertiary: AppColors.primaryGrayDark,
