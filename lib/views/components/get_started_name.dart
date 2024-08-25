@@ -37,6 +37,12 @@ class GetStartedName extends StatelessWidget {
             ),
             decoration: InputDecoration(
               hintText: AppLocalizations.of(context)!.yourNameHint,
+              hintStyle: TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).colorScheme.onTertiary
+              ),
               border: const OutlineInputBorder(
                 borderSide: BorderSide.none,
               ),

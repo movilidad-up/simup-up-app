@@ -54,7 +54,13 @@ class _ScheduleTabsState extends State<ScheduleTabs> {
           padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
           child: Text(
             text,
-            style: Theme.of(context).textTheme.bodySmall,
+            style: TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                height: 1.4
+            ),
             textScaler: const TextScaler.linear(1.0),
           )),
     );

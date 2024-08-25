@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simup_up/enums/enums.dart';
 import 'package:simup_up/models/UserData.dart';
 import 'package:simup_up/views/components/get_started_name.dart';
@@ -10,6 +9,7 @@ import 'package:simup_up/views/components/primary_button.dart';
 import 'package:simup_up/views/components/progress_nav.dart';
 import 'package:simup_up/views/onboarding_view.dart';
 import 'package:simup_up/views/utils/custom-page-router.dart';
+import 'package:simup_up/views/utils/shared_prefs.dart';
 
 class OnboardingFrame extends StatefulWidget {
   @override
@@ -109,11 +109,11 @@ class _OnboardingFrameState extends State<OnboardingFrame> with SingleTickerProv
   }
 
   void _saveUserData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('userName', userData.userName);
-    prefs.setInt('userZone', userData.userZone.index);
-    prefs.setBool('enableReminders', true);
-    prefs.setBool('tourCompleted', false);
+    await SharedPrefs().prefs.setString('userName', userData.userName);
+    await SharedPrefs().prefs.setInt('userZone', userData.userZone.index);
+    await SharedPrefs().prefs.setBool('enableReminders', true);
+    await SharedPrefs().prefs.setBool('tourCompleted', false);
+    await SharedPrefs().reload();
   }
 
   bool _isContinueButtonEnabled() {

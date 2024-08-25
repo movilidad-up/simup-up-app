@@ -1,10 +1,11 @@
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class WeatherChecker {
-  final String apiKey = const String.fromEnvironment('WEATHER_API_KEY', defaultValue: 'default_api_key');
+  final String apiKey = dotenv.env['WEATHER_API_KEY'] ?? 'default_api_key';
 
   WeatherChecker();
 

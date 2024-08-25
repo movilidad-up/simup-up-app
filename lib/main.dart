@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:showcaseview/showcaseview.dart';
+import 'package:simup_up/views/utils/shared_prefs.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:flutter_timezone/flutter_timezone.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simup_up/views/dashboard_view.dart';
 import 'package:simup_up/views/onboarding_view.dart';
 import 'package:simup_up/views/styles/themes.dart';
@@ -18,9 +19,10 @@ Future<void> main() async {
   tz.initializeTimeZones();
   final String timeZone = await FlutterTimezone.getLocalTimezone();
   tz.setLocalLocation(tz.getLocation(timeZone));
+  await dotenv.load();
   await LocalNotificationService().init();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  String? userName = prefs.getString('userName');
+  await SharedPrefs().init();
+  String? userName = SharedPrefs().prefs.getString('userName');
   bool validUser = (userName != null);
 
   SystemChrome.setPreferredOrientations(
@@ -31,9 +33,7 @@ Future<void> main() async {
   );
 
   runApp(
-    MyApp(
-        userExists: validUser
-    ),
+      MyApp(userExists: validUser)
   );
 }
 

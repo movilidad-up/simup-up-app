@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:simup_up/views/components/nav-button.dart';
+import 'package:simup_up/views/utils/shared_prefs.dart';
 
 class BottomNavbar extends StatefulWidget {
   final BuildContext context;
@@ -29,8 +29,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
 
   void _checkTourCompletion(BuildContext context) async {
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      bool? isTourCompleted = prefs.getBool('tourCompleted');
+      bool? isTourCompleted = SharedPrefs().prefs.getBool('tourCompleted');
 
       if (isTourCompleted == null || !isTourCompleted) {
         _startShowcase();
@@ -49,8 +48,8 @@ class _BottomNavbarState extends State<BottomNavbar> {
   }
 
   void _updateTourCompletion() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('tourCompleted', true);
+    await SharedPrefs().prefs.setBool('tourCompleted', true);
+    await SharedPrefs().reload();
   }
 
   @override

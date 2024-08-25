@@ -18,10 +18,10 @@ class RouteQueue extends StatefulWidget {
 
 class _RouteQueueState extends State<RouteQueue> {
   final ItemScrollController itemScrollController = ItemScrollController();
-  final ScrollOffsetController scrollOffsetController = ScrollOffsetController();
-  final ScrollOffsetListener scrollOffsetListener = ScrollOffsetListener.create();
   final ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
   late int _currentStationIndex;
+  double _scrollOffsetTop = 0.0;
+  double _scrollOffsetBottom = 0.0;
 
   @override
   void initState() {
@@ -30,11 +30,27 @@ class _RouteQueueState extends State<RouteQueue> {
     WidgetsBinding.instance.addPostFrameCallback((_) => itemScrollController.jumpTo(
       index: _currentStationIndex,
     ));
+    itemPositionsListener.itemPositions.addListener(_updateScrollOffset);
   }
 
   @override
   void dispose() {
+    itemPositionsListener.itemPositions.removeListener(_updateScrollOffset);
     super.dispose();
+  }
+
+  void _updateScrollOffset() {
+    final positions = itemPositionsListener.itemPositions.value;
+    if (positions.isNotEmpty) {
+      final minIndex = positions.map((position) => position.index).reduce((a, b) => a < b ? a : b);
+      final maxIndex = positions.map((position) => position.index).reduce((a, b) => a > b ? a : b);
+      final itemCount = widget.routeList.length;
+
+      setState(() {
+        _scrollOffsetTop = minIndex == 0 ? 0.0 : 1.0;
+        _scrollOffsetBottom = maxIndex == itemCount - 1 ? 0.0 : 1.0;
+      });
+    }
   }
 
   @override
@@ -52,81 +68,81 @@ class _RouteQueueState extends State<RouteQueue> {
               duration: const Duration(milliseconds: 300),
               child: Expanded(
                 child: ScrollablePositionedList.builder(
-                    scrollOffsetController: scrollOffsetController,
-                    scrollOffsetListener: scrollOffsetListener,
-                    itemScrollController: itemScrollController,
-                    itemPositionsListener: itemPositionsListener,
-                    itemCount: routes.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Opacity(
-                        opacity: (routes.elementAt(index)["stationIndex"] == _currentStationIndex) ? 1.0 : 0.8,
-                        child: StationCard(
-                          name: routes.elementAt(index)["stationName"],
-                          arrivalInfo: routes.elementAt(index)["arrivalTime"],
-                          isCurrentStation: routes.elementAt(index)["stationIndex"] == _currentStationIndex,
-                          onTap: () {
-                            Navigator.of(context).push(
-                                CustomPageRoute(
-                                    RouteDetailsView(stationIndex: routes.elementAt(index)["stationIndex"]),
-                                )
-                            );
-                          },
-                        ),
-                      );
-                  }),
+                  itemScrollController: itemScrollController,
+                  itemPositionsListener: itemPositionsListener,
+                  itemCount: routes.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Opacity(
+                      opacity: (routes.elementAt(index)["stationIndex"] == _currentStationIndex) ? 1.0 : 0.8,
+                      child: StationCard(
+                        name: routes.elementAt(index)["stationName"],
+                        arrivalInfo: routes.elementAt(index)["arrivalTime"],
+                        isCurrentStation: routes.elementAt(index)["stationIndex"] == _currentStationIndex,
+                        stationIndex: routes.elementAt(index)["stationIndex"],
+                        onTap: () {
+                          Navigator.of(context).push(
+                            CustomPageRoute(
+                              RouteDetailsView(stationIndex: routes.elementAt(index)["stationIndex"]),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ],
         ),
         Positioned(
-            top: 0.0,
-            left: 0.0,
-            right: 0.0,
+          top: 0.0,
+          left: 0.0,
+          right: 0.0,
+          child: AnimatedOpacity(
+            duration: const Duration(milliseconds: 300),
+            opacity: _scrollOffsetTop,
             child: DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  stops: const [
-                    0.2,
-                    1.0
-                  ],
                   colors: [
-                    Theme.of(context).colorScheme.surface,
-                    Theme.of(context).colorScheme.inverseSurface
+                    Theme.of(context).colorScheme.surface.withOpacity(1.0),
+                    Theme.of(context).colorScheme.surface.withOpacity(0.0),
                   ],
-                )
+                ),
               ),
               child: SizedBox(
                 width: screenWidth,
                 height: 80.0,
               ),
-            )
+            ),
+          ),
         ),
         Positioned(
-            bottom: 0.0,
-            left: 0.0,
-            right: 0.0,
+          bottom: 0.0,
+          left: 0.0,
+          right: 0.0,
+          child: AnimatedOpacity(
+            duration: const Duration(milliseconds: 300),
+            opacity: _scrollOffsetBottom,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    stops: const [
-                      0.2,
-                      1.0
-                    ],
-                    colors: [
-                      Theme.of(context).colorScheme.surface,
-                      Theme.of(context).colorScheme.inverseSurface
-                    ],
-                  )
+                gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [
+                    Theme.of(context).colorScheme.surface.withOpacity(1.0),
+                    Theme.of(context).colorScheme.surface.withOpacity(0.0),
+                  ],
+                ),
               ),
               child: SizedBox(
                 width: screenWidth,
                 height: 80.0,
               ),
-            )
+            ),
+          ),
         ),
       ],
     );

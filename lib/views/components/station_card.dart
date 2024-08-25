@@ -1,14 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:simup_up/enums/enums.dart';
+import 'package:simup_up/views/components/location_chip.dart';
+import 'package:simup_up/views/components/user_stations.dart';
+import 'package:simup_up/views/components/user_zones.dart';
 import 'package:simup_up/views/styles/spaces.dart';
+import 'package:simup_up/views/utils/shared_prefs.dart';
 
-class StationCard extends StatelessWidget {
+class StationCard extends StatefulWidget {
   final String name;
   final String arrivalInfo;
+  final int stationIndex;
   final bool isCurrentStation;
   final VoidCallback onTap;
-  const StationCard({super.key, required this.name, required this.arrivalInfo, required this.onTap, required this.isCurrentStation});
+  const StationCard({super.key, required this.name, required this.arrivalInfo, required this.onTap, required this.isCurrentStation, required this.stationIndex});
+
+  @override
+  State<StationCard> createState() => _StationCardState();
+}
+
+class _StationCardState extends State<StationCard> {
+  bool isWithinUserZone = false;
+
+  @override
+  void initState() {
+    _isWithinUserZone();
+    super.initState();
+  }
+
+  void _isWithinUserZone() {
+    try {
+      int? userZoneIndex = SharedPrefs().prefs.getInt('userZone');
+      Zone userZone = UserZones.zoneList.elementAt(userZoneIndex!);
+
+      if (userZoneIndex != null) {
+        List<Zone> zones = UserStations.stationRoutes.elementAt(widget.stationIndex);
+        isWithinUserZone = zones.contains(userZone);
+      }
+    } catch (e) {
+      print('Error while retrieving user zone: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +50,12 @@ class StationCard extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return InkWell(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: SizedBox(
         width: screenWidth,
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: isCurrentStation ? Theme.of(context).colorScheme.onPrimaryContainer : Theme.of(context).colorScheme.surface,
+            color: widget.isCurrentStation ? Theme.of(context).colorScheme.onPrimaryContainer : Theme.of(context).colorScheme.surface,
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -31,7 +64,7 @@ class StationCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SvgPicture.asset(
-                    isCurrentStation ? enabledStationLineAsset : disabledStationLineAsset,
+                    widget.isCurrentStation ? enabledStationLineAsset : disabledStationLineAsset,
                     fit: BoxFit.fill,
                 ),
                 HorizontalSpacing(0.0),
@@ -40,15 +73,15 @@ class StationCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      name,
+                      widget.name,
                       style: Theme.of(context).textTheme.headlineMedium,
                       textScaler: const TextScaler.linear(1.0),
                     ),
                     VerticalSpacing(4.0),
                     Text(
-                      isCurrentStation
-                          ? AppLocalizations.of(context)!.currentStation + arrivalInfo
-                          : AppLocalizations.of(context)!.arrivalTime + arrivalInfo,
+                      widget.isCurrentStation
+                          ? AppLocalizations.of(context)!.currentStation + widget.arrivalInfo
+                          : AppLocalizations.of(context)!.arrivalTime + widget.arrivalInfo,
                       style: TextStyle(
                           fontFamily: 'Inter',
                           color: Theme.of(context).colorScheme.tertiary,
@@ -63,7 +96,7 @@ class StationCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Más información",
+                          AppLocalizations.of(context)!.moreInfo,
                           style: TextStyle(
                               fontFamily: 'Inter',
                               color: Theme.of(context).colorScheme.primary,
@@ -79,6 +112,14 @@ class StationCard extends StatelessWidget {
                         )
                       ],
                     ),
+                    isWithinUserZone ? Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        VerticalSpacing(4.0),
+                        const LocationChip()
+                      ],
+                    ) : const SizedBox()
                   ],
                 )
               ],
