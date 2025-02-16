@@ -169,6 +169,7 @@
   "historyDescription": "Acá se visualizarán las asistencias enviadas durante este mes.",
   "goToHistory": "Ir a Historial de Asistencias",
   "signature": "Firma",
+  "createYourSignature": "Crear tu firma virtual",
   "goToSignature": "Visualiza o Edita tu Firma",
   "date": "Fecha",
   "route": "Ruta",

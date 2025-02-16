@@ -168,6 +168,7 @@
   "historyDescription": "Here you will see the attendance submissions sent during this month.",
   "goToHistory": "Go to Attendance History",
   "signature": "Signature",
+  "createYourSignature": "Create your signature",
   "goToSignature": "View or Edit Your Signature",
   "date": "Date",
   "route": "Route",

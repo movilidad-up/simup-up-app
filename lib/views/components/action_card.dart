@@ -5,10 +5,11 @@ class ActionCard extends StatefulWidget {
   final VoidCallback onSchedulesTap;
   final String subtitle;
   final String title;
+  final bool isPrimaryAction;
 
   const ActionCard({
     Key? key,
-    required this.onSchedulesTap, required this.subtitle, required this.title,
+    required this.onSchedulesTap, required this.subtitle, required this.title, this.isPrimaryAction = false,
   }) : super(key: key);
 
   @override
@@ -45,7 +46,12 @@ class _ActionCardState extends State<ActionCard> {
                             ),
                             Text(
                               widget.title,
-                              style: Theme.of(context).textTheme.headlineMedium,
+                              style: widget.isPrimaryAction ? TextStyle(
+                                  color: Theme.of(context).colorScheme.onSurface,
+                                  fontSize: 20.0,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w600
+                              ) : Theme.of(context).textTheme.headlineMedium,
                               textScaler: const TextScaler.linear(1.0),
                             ),
                           ],
@@ -56,7 +62,7 @@ class _ActionCardState extends State<ActionCard> {
                         Icons.arrow_forward,
                         color: Theme.of(context).colorScheme.onSurface,
                         size: 24.0,
-                      ),
+                      )
                     ],
                   ),
                 ),
