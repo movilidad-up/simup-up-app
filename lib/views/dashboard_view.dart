@@ -1,5 +1,6 @@
 import 'package:cron/cron.dart';
 import 'package:flutter/material.dart';
+import 'package:simup_up/views/attendance_view.dart';
 import 'package:simup_up/views/components/bottom-navbar.dart';
 import 'package:simup_up/views/home_view.dart';
 import 'package:simup_up/views/notifications_view.dart';
@@ -71,6 +72,7 @@ class _DashboardViewState extends State<DashboardView> {
         updateObservable: updateObservable,
       ),
       const RoutesView(),
+      const AttendanceView(),
       const NotificationsView(),
       const MapView(),
     ];
