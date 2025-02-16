@@ -5,7 +5,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
 import 'package:simup_up/views/components/action_card.dart';
 import 'package:simup_up/views/components/attendance_status.dart';
+import 'package:simup_up/views/history-view.dart';
 import 'package:simup_up/views/styles/spaces.dart';
+import 'package:simup_up/views/utils/custom-page-router.dart';
 
 class AttendanceView extends StatefulWidget {
   const AttendanceView({super.key});
@@ -105,7 +107,9 @@ class _AttendanceViewState extends State<AttendanceView> {
                   ),
                   VerticalSpacing(16.0),
                   ActionCard(
-                    onSchedulesTap: (){},
+                    onSchedulesTap: () {
+                      Navigator.of(context).push(CustomPageRoute(const HistoryView()));
+                    },
                     subtitle: AppLocalizations.of(context)!.history,
                     title: AppLocalizations.of(context)!.goToHistory,
                   ),
