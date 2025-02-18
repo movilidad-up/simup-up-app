@@ -55,6 +55,7 @@ dependencies:
   showcaseview: ^4.0.1
   flutter_styled_toast: 2.2.1
   flutter_dotenv: ^5.0.2
+  flutter_blue_plus: ^1.35.3
 
 dev_dependencies:
   flutter_test:

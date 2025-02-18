@@ -100,3 +100,8 @@ enum Status {
   operational,
   nonOperational
 }
+
+enum SendStatus {
+  sent,
+  awaiting,
+}

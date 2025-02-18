@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:simup_up/enums/enums.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AttendanceStatus extends StatefulWidget {
+  final SendStatus status;
+
   const AttendanceStatus({
-    Key? key,
+    Key? key, required this.status,
   }) : super(key: key);
 
   @override
@@ -25,14 +28,28 @@ class _AttendanceStatusState extends State<AttendanceStatus> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Icon(
-              Icons.bus_alert_rounded,
+              widget.status == SendStatus.awaiting ? Icons.bus_alert_rounded : Icons.schedule_send_rounded,
               size: 32.0,
               color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
         ),
         HorizontalSpacing(16.0),
-        Column(
+        widget.status == SendStatus.awaiting ? Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              AppLocalizations.of(context)!.awaitingConnection,
+              style: Theme.of(context).textTheme.headlineMedium,
+              textScaler: const TextScaler.linear(1.0),
+            ),
+            Text(
+              AppLocalizations.of(context)!.awaitingConnectionDescription,
+              style: Theme.of(context).textTheme.labelLarge,
+              textScaler: const TextScaler.linear(1.0),
+            ),
+          ],
+        ) : Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(

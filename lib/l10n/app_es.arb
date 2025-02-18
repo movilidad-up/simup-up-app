@@ -173,6 +173,10 @@
   "goToSignature": "Visualiza o Edita tu Firma",
   "date": "Fecha",
   "route": "Ruta",
+  "beaconAttendanceSent": "¡Asistencia Enviada!",
+  "beaconAttendanceSentInfo": "Se ha enviado su asistencia.",
+  "beaconAttendanceFailed": "Ha ocurrido un error",
+  "beaconAttendanceFailedInfo": "No se ha enviado su asistencia.",
 
   "monday": "Lunes",
   "tuesday": "Martes",

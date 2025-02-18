@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:http/http.dart' as http;
+import 'package:simup_up/enums/enums.dart';
 import 'package:simup_up/views/components/action_card.dart';
 import 'package:simup_up/views/components/attendance_status.dart';
+import 'package:simup_up/views/components/submit_attendance_button.dart';
 import 'package:simup_up/views/history-view.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:simup_up/views/utils/custom-page-router.dart';
@@ -71,7 +70,7 @@ class _AttendanceViewState extends State<AttendanceView> {
                     textScaler: const TextScaler.linear(1.0),
                   ),
                   VerticalSpacing(8.0),
-                  AttendanceStatus(),
+                  AttendanceStatus(status: SendStatus.sent),
                   VerticalSpacing(16.0),
                   Text(
                     AppLocalizations.of(context)!.manualSubmit,
@@ -89,11 +88,7 @@ class _AttendanceViewState extends State<AttendanceView> {
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   VerticalSpacing(16.0),
-                  ActionCard(
-                    onSchedulesTap: (){},
-                    subtitle: AppLocalizations.of(context)!.attendance,
-                    title: AppLocalizations.of(context)!.submitMyAttendance,
-                  ),
+                  SubmitAttendanceButton(),
                   VerticalSpacing(16.0),
                   Text(
                     AppLocalizations.of(context)!.manageAttendance,

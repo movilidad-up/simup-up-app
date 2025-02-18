@@ -172,6 +172,10 @@
   "goToSignature": "View or Edit Your Signature",
   "date": "Date",
   "route": "Route",
+  "beaconAttendanceSent": "Attendance Sent!",
+  "beaconAttendanceSentInfo": "Your attendance has been submitted.",
+  "beaconAttendanceFailed": "An error has occurred",
+  "beaconAttendanceFailedInfo": "Your attendance was not submitted.",
 
   "monday": "Monday",
   "tuesday": "Tuesday",
