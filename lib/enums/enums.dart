@@ -113,5 +113,6 @@ enum RadarStatus {
   tooFar,
   noSignal,
   bluetoothDisabled,
-  success
+  success,
+  successQueue
 }

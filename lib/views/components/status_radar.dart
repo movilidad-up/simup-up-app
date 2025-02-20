@@ -1,4 +1,6 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:simup_up/enums/enums.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:simup_up/views/styles/spaces.dart';
@@ -39,9 +41,17 @@ class _StatusRadarState extends State<StatusRadar>
     super.dispose();
   }
 
+  Future<bool> checkInternetConnection() async {
+    return await InternetConnection().hasInternetAccess;
+  }
+
   Future<RadarStatus> sendAttendance() async {
     await Future.delayed(Duration(seconds: 3));
     return RadarStatus.success;
+  }
+
+  Future<void> queueAttendanceForLater() async {
+    await Future.delayed(Duration(seconds: 5));
   }
 
   Future<void> _handleAttendanceSubmission() async {
@@ -57,7 +67,16 @@ class _StatusRadarState extends State<StatusRadar>
         currentStatus = RadarStatus.sending;
       });
 
-      currentStatus = await sendAttendance();
+      bool hasInternet = await checkInternetConnection();
+
+      if (hasInternet) {
+        currentStatus = await sendAttendance();
+      } else {
+        await queueAttendanceForLater();
+        setState(() {
+          currentStatus = RadarStatus.successQueue;
+        });
+      }
     }
 
     setState(() {
@@ -68,6 +87,14 @@ class _StatusRadarState extends State<StatusRadar>
           AppLocalizations.of(context)!.beaconAttendanceSent,
           AppLocalizations.of(context)!.beaconAttendanceSentInfo,
           Icons.check_circle,
+        );
+      } else if (currentStatus == RadarStatus.successQueue) {
+        CustomToast.buildToast(
+          context,
+          const Color(0xFFFFA500),
+          "Attendance Queued",
+          "Your attendance will be sent when online.",
+          Icons.schedule,
         );
       } else {
         CustomToast.buildToast(
@@ -81,6 +108,7 @@ class _StatusRadarState extends State<StatusRadar>
       _controller.stop();
     });
   }
+
 
   @override
   Widget build(BuildContext context) {

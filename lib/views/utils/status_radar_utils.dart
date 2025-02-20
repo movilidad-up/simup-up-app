@@ -11,6 +11,7 @@ class StatusRadarUtils {
     RadarStatus.noSignal: Colors.redAccent,
     RadarStatus.bluetoothDisabled: Colors.grey,
     RadarStatus.success: Colors.green,
+    RadarStatus.successQueue: Colors.greenAccent,
   };
 
   static const Map<RadarStatus, IconData> statusIcons = {
@@ -21,6 +22,7 @@ class StatusRadarUtils {
     RadarStatus.noSignal: Icons.wifi_tethering_error_rounded,
     RadarStatus.bluetoothDisabled: Icons.bluetooth_disabled,
     RadarStatus.success: Icons.check_circle,
+    RadarStatus.successQueue: Icons.cloud_sync_rounded,
   };
 
   static String getStatusText(BuildContext context, RadarStatus status) {
@@ -32,6 +34,7 @@ class StatusRadarUtils {
       RadarStatus.noSignal: AppLocalizations.of(context)!.unknownStatus,
       RadarStatus.bluetoothDisabled: AppLocalizations.of(context)!.disabledStatus,
       RadarStatus.success: AppLocalizations.of(context)!.successStatus,
+      RadarStatus.successQueue: AppLocalizations.of(context)!.successQueueStatus,
     }[status]!;
   }
 
@@ -44,6 +47,7 @@ class StatusRadarUtils {
       RadarStatus.noSignal: AppLocalizations.of(context)!.unknownStatusInfo,
       RadarStatus.bluetoothDisabled: AppLocalizations.of(context)!.disabledStatusInfo,
       RadarStatus.success: AppLocalizations.of(context)!.successStatusInfo,
+      RadarStatus.successQueue: AppLocalizations.of(context)!.successQueueStatusInfo,
     }[status]!;
   }
 }

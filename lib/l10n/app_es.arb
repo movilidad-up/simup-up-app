@@ -196,6 +196,8 @@
   "unknownStatusInfo": "No hemos detectado la señal, vuelva a intentarlo",
   "successStatus": "¡Asistencia enviada!",
   "successStatusInfo": "Se ha enviado su asistencia con exito ¡Gracias! :)",
+  "successQueueStatus": "Asistencia en espera",
+  "successQueueStatusInfo": "Su asistencia se enviará automáticamente cuando vuelva a estar en línea.",
 
   "monday": "Lunes",
   "tuesday": "Martes",

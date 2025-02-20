@@ -56,6 +56,7 @@ dependencies:
   flutter_styled_toast: 2.2.1
   flutter_dotenv: ^5.0.2
   flutter_blue_plus: ^1.35.3
+  internet_connection_checker_plus: ^2.7.0
 
 dev_dependencies:
   flutter_test:
