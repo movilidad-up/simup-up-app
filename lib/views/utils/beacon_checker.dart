@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter/services.dart';
+import 'package:simup_up/enums/enums.dart';
 
 class BeaconChecker {
   static final List<String> validBeaconMACs = [
@@ -12,18 +13,24 @@ class BeaconChecker {
   static const double maxAllowedDistance = 12.0; // Max 12 meters (bus length)
   static const double environmentalFactor = 6.0; // Inside a bus (requires testing)
 
-  static Future<void> initializeBeaconScanning() async {
-    try {
-      await FlutterBluePlus.startScan();
-    } on PlatformException catch (e) {
-      print("Beacon scanning initialization failed: ${e.message}");
-    }
+  static Future<bool> isNearValidBeacon() async {
+    RadarStatus status = await checkBeaconStatus();
+    return status == RadarStatus.sending;
   }
 
-  static Future<bool> isNearValidBeacon() async {
-    Completer<bool> beaconFound = Completer<bool>();
+  static Future<RadarStatus> checkBeaconStatus() async {
 
-    await initializeBeaconScanning(); // Ensures scanning is started
+    // Check if bluetooth is enabled.
+
+    bool isBluetoothOn = await FlutterBluePlus.adapterState.first == BluetoothAdapterState.on;
+    if (!isBluetoothOn) {
+      return RadarStatus.bluetoothDisabled;
+    }
+
+    // Initialize scanning and update status to scanning.
+
+    await initializeBeaconScanning();
+    Completer<RadarStatus> statusCompleter = Completer<RadarStatus>();
 
     StreamSubscription? scanSubscription;
     scanSubscription = FlutterBluePlus.scanResults.listen((scanResults) {
@@ -33,30 +40,36 @@ class BeaconChecker {
 
         if (validBeaconMACs.contains(macAddress)) {
           double distance = estimateDistance(rssi);
-          // print("✅ Valid beacon detected: $macAddress | RSSI: $rssi | Distance: ${distance.toStringAsFixed(2)}m");
 
           if (distance <= maxAllowedDistance) {
-            beaconFound.complete(true);
+            scanSubscription?.cancel();
+            statusCompleter.complete(RadarStatus.sending);
+            return;
           } else {
-            // print("🚫 Too far from the bus! Distance: ${distance.toStringAsFixed(2)}m.");
-            beaconFound.complete(false);
+            scanSubscription?.cancel();
+            statusCompleter.complete(RadarStatus.tooFar);
+            return;
           }
-
-          scanSubscription?.cancel();
-          return;
         }
       }
     });
 
     Future.delayed(Duration(seconds: 6), () {
-      if (!beaconFound.isCompleted) {
-        // print("❌ No beacon detected, stopping scan.");
-        beaconFound.complete(false);
+      if (!statusCompleter.isCompleted) {
+        scanSubscription?.cancel();
+        statusCompleter.complete(RadarStatus.noSignal);
       }
-      scanSubscription?.cancel();
     });
 
-    return beaconFound.future;
+    return statusCompleter.future;
+  }
+
+  static Future<void> initializeBeaconScanning() async {
+    try {
+      await FlutterBluePlus.startScan();
+    } on PlatformException catch (e) {
+      print("Beacon scanning initialization failed: \${e.message}");
+    }
   }
 
   static double estimateDistance(int rssi) {

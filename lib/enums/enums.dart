@@ -105,3 +105,13 @@ enum SendStatus {
   sent,
   awaiting,
 }
+
+enum RadarStatus {
+  ready,
+  scanning,
+  sending,
+  tooFar,
+  noSignal,
+  bluetoothDisabled,
+  success
+}

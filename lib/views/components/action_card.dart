@@ -6,10 +6,11 @@ class ActionCard extends StatefulWidget {
   final String subtitle;
   final String title;
   final bool isPrimaryAction;
+  final IconData icon;
 
   const ActionCard({
     Key? key,
-    required this.onSchedulesTap, required this.subtitle, required this.title, this.isPrimaryAction = false,
+    required this.onSchedulesTap, required this.subtitle, required this.title, this.isPrimaryAction = false, this.icon = Icons.arrow_forward_rounded,
   }) : super(key: key);
 
   @override
@@ -59,7 +60,7 @@ class _ActionCardState extends State<ActionCard> {
                       ),
                       VerticalSpacing(12.0),
                       Icon(
-                        Icons.arrow_forward,
+                        widget.icon,
                         color: Theme.of(context).colorScheme.onSurface,
                         size: 24.0,
                       )
