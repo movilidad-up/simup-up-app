@@ -179,6 +179,7 @@
   "beaconAttendance": "Bluetooth Attendance",
   "beaconAttendanceInfo": "Please make sure to turn on Bluetooth mode on your mobile device, then press submit attendance.",
   "qrAttendance": "QR Attendance",
+  "qrAttendanceInfo": "Please scan one of the QR codes located at the bus attendance points below.",
   "submitMyQrAttendance": "Submit my QR Attendance",
 
   "readyStatus": "Tap to submit attendance",
@@ -197,6 +198,7 @@
   "successStatusInfo": "Your attendance has been successfully submitted. Thank you! :)",
   "successQueueStatus": "Attendance Pending",
   "successQueueStatusInfo": "Your attendance will be sent automatically once you are back online.",
+  "goBack": "Return",
 
   "monday": "Monday",
   "tuesday": "Tuesday",

@@ -57,6 +57,7 @@ dependencies:
   flutter_dotenv: ^5.0.2
   flutter_blue_plus: ^1.35.3
   internet_connection_checker_plus: ^2.7.0
+  mobile_scanner: ^6.0.6
 
 dev_dependencies:
   flutter_test:

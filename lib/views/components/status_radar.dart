@@ -115,7 +115,7 @@ class _StatusRadarState extends State<StatusRadar>
     double screenWidth = MediaQuery.of(context).size.width;
 
     bool isProcessing = currentStatus == RadarStatus.scanning || currentStatus == RadarStatus.sending;
-    bool isSuccess = currentStatus == RadarStatus.success;
+    bool isSuccess = currentStatus == RadarStatus.success || currentStatus == RadarStatus.successQueue;
 
     return InkWell(
       onTap: (!isProcessing && !isSuccess) ? _handleAttendanceSubmission : null,
@@ -188,7 +188,7 @@ class _StatusRadarState extends State<StatusRadar>
                         ),
                       ),
                       child: Text(
-                        "Regresar",
+                        AppLocalizations.of(context)!.goBack,
                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

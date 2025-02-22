@@ -5,6 +5,7 @@ import 'package:simup_up/views/beacon_attendance_view.dart';
 import 'package:simup_up/views/components/action_card.dart';
 import 'package:simup_up/views/components/attendance_status.dart';
 import 'package:simup_up/views/history-view.dart';
+import 'package:simup_up/views/qr_attendance_view.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:simup_up/views/utils/custom-page-router.dart';
 
@@ -101,7 +102,7 @@ class _AttendanceViewState extends State<AttendanceView> {
                     VerticalSpacing(16.0),
                     ActionCard(
                       onSchedulesTap: () {
-                        Navigator.of(context).push(CustomPageRoute(const BeaconAttendanceView()));
+                        Navigator.of(context).push(CustomPageRoute(const QrAttendanceView()));
                       },
                       subtitle: AppLocalizations.of(context)!.qrAttendance,
                       title: AppLocalizations.of(context)!.submitMyQrAttendance,

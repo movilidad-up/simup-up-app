@@ -180,6 +180,7 @@
   "beaconAttendance": "Asistencia Bluetooth",
   "beaconAttendanceInfo": "Por favor, asegúrese de encender el modo bluetooth en su dispositivo móvil, y a continuación presione enviar asistencia.",
   "qrAttendance": "Asistencia QR",
+  "qrAttendanceInfo": "Por favor, escanee a continuación alguno de los códigos QR ubicados en los puntos de asistencia del bus.",
   "submitMyQrAttendance": "Enviar mi Asistencia QR",
 
   "readyStatus": "Toca para enviar asistencia",
@@ -198,6 +199,7 @@
   "successStatusInfo": "Se ha enviado su asistencia con exito ¡Gracias! :)",
   "successQueueStatus": "Asistencia en espera",
   "successQueueStatusInfo": "Su asistencia se enviará automáticamente cuando vuelva a estar en línea.",
+  "goBack": "Regresar",
 
   "monday": "Lunes",
   "tuesday": "Martes",
