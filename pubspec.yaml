@@ -58,6 +58,9 @@ dependencies:
   flutter_blue_plus: ^1.35.3
   internet_connection_checker_plus: ^2.7.0
   mobile_scanner: ^6.0.6
+  signature: ^6.0.0
+  encrypt: ^5.0.3
+  path_provider: ^2.1.5
 
 dev_dependencies:
   flutter_test:

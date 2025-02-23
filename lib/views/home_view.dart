@@ -4,6 +4,7 @@ import 'package:simup_up/views/components/current_station_card.dart';
 import 'package:simup_up/views/components/schedules_card.dart';
 import 'package:simup_up/views/components/status_card.dart';
 import 'package:simup_up/views/settings_view.dart';
+import 'package:simup_up/views/signature_form_view.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:simup_up/views/utils/custom-page-router.dart';
@@ -107,7 +108,10 @@ class _HomeViewState extends State<HomeView> {
                     delegate: SliverChildListDelegate([
                       VerticalSpacing(16.0),
                       ActionCard(
-                        onSchedulesTap: () {},
+                        onSchedulesTap: () {
+                          Navigator.of(context)
+                              .push(CustomPageRoute(SignatureFormView()));
+                        },
                         subtitle: AppLocalizations.of(context)!.myAttendance,
                         title: AppLocalizations.of(context)!.createYourSignature,
                         isPrimaryAction: true,

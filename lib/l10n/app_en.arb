@@ -181,6 +181,12 @@
   "qrAttendance": "QR Attendance",
   "qrAttendanceInfo": "Please scan one of the QR codes located at the bus attendance points below.",
   "submitMyQrAttendance": "Submit my QR Attendance",
+  "digitalSignature": "Digital Signature",
+  "digitalSignatureInfo": "To automatically register your attendance each time you board the bus, you only need to create your digital signature. This will be your only step.",
+  "drawSignature": "Draw Your Signature",
+  "drawSignatureInfo": "To finish, please draw your signature.",
+  "allDone": "All Set!",
+  "allDoneInfo": "Your digital signature has been successfully created. Each time you board the bus, your attendance will be sent automatically :)",
 
   "readyStatus": "Tap to submit attendance",
   "readyStatusInfo": "Tap this button to submit your attendance",

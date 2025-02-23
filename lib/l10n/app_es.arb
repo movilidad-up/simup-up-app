@@ -182,6 +182,12 @@
   "qrAttendance": "Asistencia QR",
   "qrAttendanceInfo": "Por favor, escanee a continuación alguno de los códigos QR ubicados en los puntos de asistencia del bus.",
   "submitMyQrAttendance": "Enviar mi Asistencia QR",
+  "digitalSignature": "Firma Digital",
+  "digitalSignatureInfo": "Para que podamos registrar tu asistencia de manera automática cada vez que subas al bus, solo necesitas crear tu firma digital. Este será tu único paso.",
+  "drawSignature": "Dibuja tu firma",
+  "drawSignatureInfo": "Para finalizar, por favor, dibuja tu firma.",
+  "allDone": "¡Todo listo!",
+  "allDoneInfo": "Tu firma digital ha sido creada exitosamente, cada que subas al bus, se enviará automaticamente tu asistencia :)",
 
   "readyStatus": "Toca para enviar asistencia",
   "readyStatusInfo": "Toque este botón para enviar su asistencia",
