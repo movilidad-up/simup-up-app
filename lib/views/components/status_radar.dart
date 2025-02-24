@@ -4,6 +4,7 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
 import 'package:simup_up/enums/enums.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:simup_up/views/styles/spaces.dart';
+import 'package:simup_up/views/utils/attendance_service.dart';
 import 'package:simup_up/views/utils/beacon_checker.dart';
 import 'package:simup_up/views/utils/status_radar_utils.dart';
 import 'custom_toast.dart';
@@ -21,6 +22,46 @@ class _StatusRadarState extends State<StatusRadar>
   late AnimationController _controller;
   late Animation<double> _opacityAnimation;
   RadarStatus currentStatus = RadarStatus.ready;
+  int detectedRoute = 1;
+
+  int getTripNumber(DateTime currentTime) {
+    // Define trip schedules (Monday - Friday & Saturday)
+    final List<String> weekdayTrips = [
+      "06:00", "08:00", "10:00", "12:00", "14:00", "16:00", "18:00"
+    ];
+    final List<String> saturdayTrips = [
+      "06:00", "08:00", "10:00", "12:00", "14:00", "16:00"
+    ];
+
+    // Select the correct schedule based on the day
+    List<String> tripSchedule = currentTime.weekday == DateTime.saturday
+        ? saturdayTrips
+        : weekdayTrips;
+
+    // Iterate through the trips to determine the current trip number
+    for (int i = 0; i < tripSchedule.length; i++) {
+      DateTime tripTime = DateTime(
+        currentTime.year,
+        currentTime.month,
+        currentTime.day,
+        int.parse(tripSchedule[i].split(":")[0]),
+        int.parse(tripSchedule[i].split(":")[1]),
+      );
+
+      if (currentTime.isBefore(tripTime)) {
+        return i + 1; // Trip numbers are 1-based
+      }
+    }
+
+    // If it's past the last trip time, return the last trip number
+    return tripSchedule.length;
+  }
+
+  void main() {
+    DateTime now = DateTime.now();
+    int tripNumber = getTripNumber(now);
+    print("Current trip number: $tripNumber");
+  }
 
   @override
   void initState() {
@@ -46,12 +87,22 @@ class _StatusRadarState extends State<StatusRadar>
   }
 
   Future<RadarStatus> sendAttendance() async {
-    await Future.delayed(Duration(seconds: 3));
-    return RadarStatus.success;
+    try {
+      await AttendanceService().registerAttendanceFromSignature(detectedRoute, "bluetooth_beacon");
+      return RadarStatus.success;
+    } catch (e) {
+      print("❌ Error sending attendance: $e");
+      return RadarStatus.tooFar;
+    }
   }
 
   Future<void> queueAttendanceForLater() async {
-    await Future.delayed(Duration(seconds: 5));
+    try {
+      await AttendanceService().queueAttendanceForLater(detectedRoute, "bluetooth_beacon");
+      print("📌 Attendance stored for later.");
+    } catch (e) {
+      print("❌ Error queuing attendance: $e");
+    }
   }
 
   Future<void> _handleAttendanceSubmission() async {
@@ -61,6 +112,7 @@ class _StatusRadarState extends State<StatusRadar>
     });
 
     currentStatus = await BeaconChecker.checkBeaconStatus();
+    detectedRoute = BeaconChecker.detectedRouteNumber!;
 
     if (currentStatus == RadarStatus.sending) {
       setState(() {

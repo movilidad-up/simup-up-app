@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:simup_up/views/utils/attendance_service.dart';
 
 class QrAttendanceView extends StatefulWidget {
   const QrAttendanceView({Key? key}) : super(key: key);
@@ -13,33 +15,72 @@ class QrAttendanceView extends StatefulWidget {
 
 class _QrAttendanceViewState extends State<QrAttendanceView> {
   String scanResult = "Escanea un código QR";
+  int routeNumber = 1;
   bool isScanning = true;
 
-  void _processQRCode(String rawValue) {
+  Future<void> _processQRCode(String rawValue) async {
     try {
       final Map<String, dynamic> data = jsonDecode(rawValue);
 
       if (data["type"] == "movilidad_qr" && data.containsKey("route")) {
-        int routeNumber = int.parse(data["route"]);
+        routeNumber = int.tryParse(data["route"]) ?? -1;
+
         if (routeNumber >= 1 && routeNumber <= 3) {
           setState(() {
             scanResult = "Asistencia registrada en la ruta $routeNumber";
             isScanning = false;
           });
+
+          bool hasInternet = await checkInternetConnection();
+
+          if (hasInternet) {
+            bool success = await sendAttendance();
+            if (!success) {
+              await queueAttendanceForLater(); // Fallback if sending fails
+            }
+          } else {
+            await queueAttendanceForLater();
+          }
         } else {
-          setState(() {
-            scanResult = "Número de ruta inválido";
-          });
+          _updateScanResult("Número de ruta inválido");
         }
       } else {
-        setState(() {
-          scanResult = "QR no válido";
-        });
+        _updateScanResult("QR no válido");
       }
     } catch (e) {
-      setState(() {
-        scanResult = "Error al leer el QR";
-      });
+      _updateScanResult("Error al leer el QR");
+    }
+  }
+
+  void _updateScanResult(String message) {
+    setState(() => scanResult = message);
+  }
+
+  Future<bool> checkInternetConnection() async {
+    try {
+      return await InternetConnection().hasInternetAccess;
+    } catch (e) {
+      print("⚠️ Error checking internet connection: $e");
+      return false;
+    }
+  }
+
+  Future<bool> sendAttendance() async {
+    try {
+      await AttendanceService().registerAttendanceFromSignature(routeNumber, "qr_code");
+      return true;
+    } catch (e) {
+      print("❌ Error sending attendance: $e");
+      return false;
+    }
+  }
+
+  Future<void> queueAttendanceForLater() async {
+    try {
+      await AttendanceService().queueAttendanceForLater(routeNumber, "qr_code");
+      print("📌 Attendance stored for later.");
+    } catch (e) {
+      print("❌ Error queuing attendance: $e");
     }
   }
 

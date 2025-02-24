@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simup_up/enums/enums.dart';
 import 'package:simup_up/views/beacon_attendance_view.dart';
 import 'package:simup_up/views/components/action_card.dart';
@@ -7,6 +8,7 @@ import 'package:simup_up/views/components/attendance_status.dart';
 import 'package:simup_up/views/history-view.dart';
 import 'package:simup_up/views/qr_attendance_view.dart';
 import 'package:simup_up/views/styles/spaces.dart';
+import 'package:simup_up/views/utils/attendance_service.dart';
 import 'package:simup_up/views/utils/custom-page-router.dart';
 
 class AttendanceView extends StatefulWidget {
@@ -17,12 +19,38 @@ class AttendanceView extends StatefulWidget {
 }
 
 class _AttendanceViewState extends State<AttendanceView> {
-  bool canCheckAttendance =
-      true; // Prevent multiple submissions for the same trip
+  bool canCheckAttendance = true;
 
   @override
   void initState() {
     super.initState();
+    _loadAttendanceStatus();
+  }
+
+  Future<Map<String, dynamic>> getAttendanceStatus() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? lastDate = prefs.getString('last_attendance_date');
+    String? lastTime = prefs.getString('attendance_last_time');
+    int? lastTrip = prefs.getInt('last_attendance_trip');
+    String? state = prefs.getString('attendance_state');
+
+    return {
+      'lastDate': lastDate,
+      'lastTime': lastTime,
+      'lastTrip': lastTrip,
+      'state': state,
+    };
+  }
+
+  Future<void> _loadAttendanceStatus() async {
+    final prefs = await SharedPreferences.getInstance();
+    DateTime now = DateTime.now();
+    int tripNumber = AttendanceService().getTripNumber(now);
+    bool hasSubmitted = prefs.getBool('attendance_trip_$tripNumber') ?? false;
+
+    setState(() {
+      canCheckAttendance = !hasSubmitted;
+    });
   }
 
   @override
@@ -72,7 +100,24 @@ class _AttendanceViewState extends State<AttendanceView> {
                       textScaler: const TextScaler.linear(1.0),
                     ),
                     VerticalSpacing(8.0),
-                    AttendanceStatus(status: SendStatus.sent),
+                    FutureBuilder<Map<String, dynamic>>(
+                      future: getAttendanceStatus(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) return CircularProgressIndicator();
+
+                        String lastDate = snapshot.data!['lastDate'];
+                        String lastTime = snapshot.data!['lastTime'];
+                        String state = snapshot.data!['state'];
+
+                        if (lastDate == null) {
+                          return AttendanceStatus(status: SendStatus.awaiting);
+                        } else if (state == 'queue') {
+                          return AttendanceStatus(status: SendStatus.queue, lastDate: lastDate, lastTime: lastTime);
+                        } else {
+                          return AttendanceStatus(status: SendStatus.sent, lastDate: lastDate, lastTime: lastTime);
+                        }
+                      },
+                    ),
                     VerticalSpacing(16.0),
                     Text(
                       AppLocalizations.of(context)!.manualSubmit,
@@ -92,8 +137,13 @@ class _AttendanceViewState extends State<AttendanceView> {
                     VerticalSpacing(16.0),
                     // SubmitAttendanceButton(),
                     ActionCard(
+                      isEnabled: canCheckAttendance,
                       onSchedulesTap: () {
-                        Navigator.of(context).push(CustomPageRoute(const BeaconAttendanceView()));
+                        Navigator.of(context).push(CustomPageRoute(const BeaconAttendanceView())).then((_) {
+                          setState(() {
+                            _loadAttendanceStatus();
+                          });
+                        });
                       },
                       subtitle: AppLocalizations.of(context)!.beaconAttendance,
                       title: AppLocalizations.of(context)!.submitMyBeaconAttendance,
@@ -101,8 +151,13 @@ class _AttendanceViewState extends State<AttendanceView> {
                     ),
                     VerticalSpacing(16.0),
                     ActionCard(
+                      isEnabled: canCheckAttendance,
                       onSchedulesTap: () {
-                        Navigator.of(context).push(CustomPageRoute(const QrAttendanceView()));
+                        Navigator.of(context).push(CustomPageRoute(const QrAttendanceView())).then((_) {
+                          setState(() {
+                            _loadAttendanceStatus();
+                          });
+                        });
                       },
                       subtitle: AppLocalizations.of(context)!.qrAttendance,
                       title: AppLocalizations.of(context)!.submitMyQrAttendance,
@@ -133,6 +188,7 @@ class _AttendanceViewState extends State<AttendanceView> {
                       subtitle: AppLocalizations.of(context)!.signature,
                       title: AppLocalizations.of(context)!.goToSignature,
                     ),
+                    VerticalSpacing(24.0),
                   ],
                 ),
               ),

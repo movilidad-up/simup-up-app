@@ -5,8 +5,6 @@ import 'package:simup_up/views/components/status_radar.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'components/action_card.dart';
-
 class BeaconAttendanceView extends StatefulWidget {
   const BeaconAttendanceView({Key? key}) : super(key: key);
 

@@ -5,9 +5,12 @@ import 'package:flutter/services.dart';
 import 'package:simup_up/enums/enums.dart';
 
 class BeaconChecker {
-  static final List<String> validBeaconMACs = [
-    "C8:13:C2:2A:E9:A1", // Add more MAC addresses as needed
-  ];
+  static int detectedRouteNumber = 1;
+
+  static final Map<String, int> beaconRouteMap = {
+    "C8:13:C2:2A:E9:A1": 1,
+    "AB:CD:EF:12:34:56": 2,
+  };
 
   static const int txPower = -59; // Default Tx Power at 1m
   static const double maxAllowedDistance = 12.0; // Max 12 meters (bus length)
@@ -38,11 +41,12 @@ class BeaconChecker {
         String macAddress = result.device.id.id.toUpperCase();
         int rssi = result.rssi;
 
-        if (validBeaconMACs.contains(macAddress)) {
+        if (beaconRouteMap.containsKey(macAddress)) {
           double distance = estimateDistance(rssi);
 
           if (distance <= maxAllowedDistance) {
             scanSubscription?.cancel();
+            detectedRouteNumber = beaconRouteMap[macAddress]!;
             statusCompleter.complete(RadarStatus.sending);
             return;
           } else {

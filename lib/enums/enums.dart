@@ -104,6 +104,7 @@ enum Status {
 enum SendStatus {
   sent,
   awaiting,
+  queue
 }
 
 enum RadarStatus {
