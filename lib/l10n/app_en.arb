@@ -211,6 +211,13 @@
   "successQueueStatus": "Attendance Pending",
   "successQueueStatusInfo": "Your attendance will be sent automatically once you are back online.",
   "goBack": "Return",
+  "beacon": "Bluetooth",
+  "qrCode": "QR Code",
+  "redirectIn": "Redirecting to ticket in",
+  "showTicket": "Show ticket",
+  "seconds": "seconds",
+  "sent": "Sent",
+  "onQueue": "On queue",
 
   "monday": "Monday",
   "tuesday": "Tuesday",

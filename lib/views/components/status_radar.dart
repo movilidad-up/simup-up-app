@@ -1,11 +1,17 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:showcaseview/showcaseview.dart';
 import 'package:simup_up/enums/enums.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:simup_up/views/attendance_log_view.dart';
+import 'package:simup_up/views/attendance_view.dart';
+import 'package:simup_up/views/components/primary_button.dart';
+import 'package:simup_up/views/dashboard_view.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:simup_up/views/utils/attendance_service.dart';
 import 'package:simup_up/views/utils/beacon_checker.dart';
+import 'package:simup_up/views/utils/custom-page-router.dart';
 import 'package:simup_up/views/utils/status_radar_utils.dart';
 import 'custom_toast.dart';
 
@@ -23,6 +29,7 @@ class _StatusRadarState extends State<StatusRadar>
   late Animation<double> _opacityAnimation;
   RadarStatus currentStatus = RadarStatus.ready;
   int detectedRoute = 1;
+  int _countdown = 5;
 
   int getTripNumber(DateTime currentTime) {
     // Define trip schedules (Monday - Friday & Saturday)
@@ -105,6 +112,20 @@ class _StatusRadarState extends State<StatusRadar>
     }
   }
 
+  Future<void> _startCountdown() async {
+    while (_countdown > 0) {
+      setState(() {}); // Update UI
+      await Future.delayed(const Duration(seconds: 1));
+      _countdown--;
+    }
+
+    // Redirect to AttendanceLogView after countdown
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const AttendanceLogView(methodId: 'beacon')),
+    );
+  }
+
   Future<void> _handleAttendanceSubmission() async {
     setState(() {
       currentStatus = RadarStatus.scanning;
@@ -140,6 +161,7 @@ class _StatusRadarState extends State<StatusRadar>
           AppLocalizations.of(context)!.beaconAttendanceSentInfo,
           Icons.check_circle,
         );
+        _startCountdown();
       } else if (currentStatus == RadarStatus.successQueue) {
         CustomToast.buildToast(
           context,
@@ -148,6 +170,7 @@ class _StatusRadarState extends State<StatusRadar>
           "Your attendance will be sent when online.",
           Icons.schedule,
         );
+        _startCountdown();
       } else {
         CustomToast.buildToast(
           context,
@@ -168,6 +191,14 @@ class _StatusRadarState extends State<StatusRadar>
 
     bool isProcessing = currentStatus == RadarStatus.scanning || currentStatus == RadarStatus.sending;
     bool isSuccess = currentStatus == RadarStatus.success || currentStatus == RadarStatus.successQueue;
+
+    String successStatusText() {
+      if (currentStatus == RadarStatus.success || currentStatus == RadarStatus.successQueue) {
+        return ". ${AppLocalizations.of(context)!.redirectIn} $_countdown ${AppLocalizations.of(context)!.seconds}.";
+      } else {
+        return "";
+      }
+    }
 
     return InkWell(
       onTap: (!isProcessing && !isSuccess) ? _handleAttendanceSubmission : null,
@@ -212,7 +243,7 @@ class _StatusRadarState extends State<StatusRadar>
             ),
             VerticalSpacing(16.0),
             SizedBox(
-              width: screenWidth * 0.8,
+              width: screenWidth - 48,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -223,29 +254,34 @@ class _StatusRadarState extends State<StatusRadar>
                   ),
                   VerticalSpacing(4.0),
                   Text(
-                    StatusRadarUtils.getStatusInfoText(context, currentStatus),
+                    StatusRadarUtils.getStatusInfoText(context, currentStatus) + successStatusText(),
                     style: Theme.of(context).textTheme.labelLarge,
                     textAlign: TextAlign.center,
                   ),
                   if (isSuccess) ...[
                     VerticalSpacing(16.0),
-                    ElevatedButton(
-                      onPressed: () => Navigator.pop(context),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 32.0, vertical: 12.0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                      child: Text(
-                        AppLocalizations.of(context)!.goBack,
-                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                    PrimaryButton(
+                      onButtonPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => const AttendanceLogView(methodId: 'beacon')),
+                        );
+                      },
+                      isButtonEnabled: true,
+                      hasPadding: false,
+                      buttonText: AppLocalizations.of(context)!.showTicket
+                    ),
+                    VerticalSpacing(8.0),
+                    PrimaryButton(
+                      primaryStyle: false,
+                      onButtonPressed: () {
+                        Navigator.of(context).pushAndRemoveUntil(CustomPageRoute(ShowCaseWidget(
+                          builder: (context) => const DashboardView(customIndex: 2),
+                        )), (Route<dynamic> route) => false);
+                      },
+                      isButtonEnabled: true,
+                      hasPadding: false,
+                      buttonText: AppLocalizations.of(context)!.goBack
                     ),
                   ],
                 ],

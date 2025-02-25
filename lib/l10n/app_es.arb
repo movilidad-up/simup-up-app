@@ -211,6 +211,13 @@
   "successQueueStatus": "Asistencia en espera",
   "successQueueStatusInfo": "Su asistencia se enviará automáticamente cuando vuelva a estar en línea.",
   "goBack": "Regresar",
+  "beacon": "Bluetooth",
+  "qrCode": "Código QR",
+  "redirectIn": "Redireccionando a ticket",
+  "showTicket": "Mostrar ticket",
+  "seconds": "segundos",
+  "sent": "Enviada",
+  "onQueue": "En cola",
 
   "monday": "Lunes",
   "tuesday": "Martes",
