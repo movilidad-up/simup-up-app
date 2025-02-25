@@ -24,22 +24,20 @@ class AttendanceService {
     String timeId = DateFormat("jm").format(attendanceSentDate);
     String dayId = DateFormat("yyyy-MM-dd").format(attendanceSentDate);
 
-    // 🟢 Save attendance status locally
+    String todayKey = 'attendance_${attendanceSentDate.year}_${attendanceSentDate.month}_${attendanceSentDate.day}_trip_$tripNumber';
+
     await prefs.setString('attendance_last_date', dayId);
     await prefs.setString('attendance_last_time', timeId);
     await prefs.setString('attendance_last_route', routeName);
     await prefs.setInt('attendance_last_trip', tripNumber);
-    await prefs.setBool('attendance_trip_$tripNumber', true);
+    await prefs.setBool(todayKey, true);
 
-    // 1️⃣ Update attendance status (for AttendanceStatus widget)
     await prefs.setString('last_attendance_date', dayId);
     await prefs.setString('last_attendance_time', timeId);
     await prefs.setString('attendance_state', state);
 
-    // 2️⃣ Save attendance history (for HistoryView)
     List<String> history = prefs.getStringList('attendance_history') ?? [];
 
-    // Add new record (format: "date|route")
     history.add("$dayId|$routeName");
 
     // Remove records older than 30 days

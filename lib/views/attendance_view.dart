@@ -45,8 +45,15 @@ class _AttendanceViewState extends State<AttendanceView> {
   Future<void> _loadAttendanceStatus() async {
     final prefs = await SharedPreferences.getInstance();
     DateTime now = DateTime.now();
+
+    // Get trip number
     int tripNumber = AttendanceService().getTripNumber(now);
-    bool hasSubmitted = prefs.getBool('attendance_trip_$tripNumber') ?? false;
+
+    // Create a unique key for today's attendance
+    String todayKey = 'attendance_${now.year}_${now.month}_${now.day}_trip_$tripNumber';
+
+    // Check if attendance was submitted today for this trip
+    bool hasSubmitted = prefs.getBool(todayKey) ?? false;
 
     setState(() {
       canCheckAttendance = !hasSubmitted;

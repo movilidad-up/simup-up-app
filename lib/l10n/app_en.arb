@@ -187,6 +187,12 @@
   "drawSignatureInfo": "To finish, please draw your signature.",
   "allDone": "All Set!",
   "allDoneInfo": "Your digital signature has been successfully created. Each time you board the bus, your attendance will be sent automatically :)",
+  "attendanceConfirmation": "You have marked attendance!",
+  "attendanceConfirmationInfo": "Thank you very much for marking attendance in our transportation system. Show this receipt if requested. :)",
+  "hour": "Time",
+  "studentId": "Student ID",
+  "attendanceStatus": "Attendance Status",
+  "method": "Method",
 
   "readyStatus": "Tap to submit attendance",
   "readyStatusInfo": "Tap this button to submit your attendance",
