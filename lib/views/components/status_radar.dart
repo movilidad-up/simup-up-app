@@ -184,7 +184,6 @@ class _StatusRadarState extends State<StatusRadar>
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
