@@ -219,6 +219,8 @@
   "sent": "Enviada",
   "onQueue": "En cola",
   "noAttendanceRecords": "No hay asistencias registradas este mes.",
+  "aboutSignature": "Registra tu asistencia",
+  "aboutSignatureInfo": "Para que podamos registrar tu asistencia de manera automática cada vez que subas al bus, solo necesitas crear tu firma digital. Este será tu único paso.",
 
   "monday": "Lunes",
   "tuesday": "Martes",

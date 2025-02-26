@@ -219,6 +219,8 @@
   "sent": "Sent",
   "onQueue": "On queue",
   "noAttendanceRecords": "No attendances registered this month.",
+  "aboutSignature": "Register your attendance",
+  "aboutSignatureInfo": "To automatically register your attendance every time you board the bus, you only need to create your digital signature. This will be your only step.",
 
   "monday": "Monday",
   "tuesday": "Tuesday",

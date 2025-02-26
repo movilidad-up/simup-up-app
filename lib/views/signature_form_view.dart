@@ -71,10 +71,12 @@ class _SignatureFormViewState extends State<SignatureFormView> {
 
   void _nextStep() {
     if (_currentStep == 0) {
+      setState(() => _currentStep++);
+    } else if (_currentStep == 1) {
       if (_formKey.currentState?.validate() == true) {
         setState(() => _currentStep++);
       }
-    } else if (_currentStep == 1 && !_signatureController.isEmpty) {
+    } else if (_currentStep == 2 && !_signatureController.isEmpty) {
       setState(() => _currentStep++);
       _saveSignature();
     }
@@ -146,6 +148,9 @@ class _SignatureFormViewState extends State<SignatureFormView> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> signatureTitles = [AppLocalizations.of(context)!.aboutSignature, AppLocalizations.of(context)!.digitalSignature, AppLocalizations.of(context)!.drawSignature];
+    List<String> signatureInfo = [AppLocalizations.of(context)!.aboutSignatureInfo, AppLocalizations.of(context)!.digitalSignatureInfo, AppLocalizations.of(context)!.drawSignatureInfo];
+
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
         body: SafeArea(
@@ -196,12 +201,12 @@ class _SignatureFormViewState extends State<SignatureFormView> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            (_currentStep == 0) ? AppLocalizations.of(context)!.digitalSignature : AppLocalizations.of(context)!.drawSignature,
+                            signatureTitles[_currentStep],
                             style: Theme.of(context).textTheme.displayMedium,
                           ),
                           SizedBox(height: 8.0),
                           Text(
-                            (_currentStep == 0) ? AppLocalizations.of(context)!.digitalSignatureInfo : AppLocalizations.of(context)!.drawSignatureInfo,
+                            signatureInfo[_currentStep],
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ],
@@ -209,8 +214,10 @@ class _SignatureFormViewState extends State<SignatureFormView> {
                     ),
                   ),
                   _currentStep == 0
-                      ? _buildUserInfoForm()
+                      ? PrimaryButton(buttonText: AppLocalizations.of(context)!.continueNext, onButtonPressed: () => _nextStep(), isButtonEnabled: true)
                       : _currentStep == 1
+                      ? _buildUserInfoForm()
+                      : _currentStep == 2
                           ? _buildSignaturePad()
                           : _buildSuccessScreen(),
                   VerticalSpacing(16.0)
