@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simup_up/views/components/attendance-card.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/intl.dart';
 
 import 'components/action_card.dart';
 
@@ -13,6 +15,52 @@ class HistoryView extends StatefulWidget {
 }
 
 class _HistoryViewState extends State<HistoryView> {
+  List<Map<String, String>> _filteredAttendances = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAttendances();
+  }
+
+  Future<void> _loadAttendances() async {
+    final prefs = await SharedPreferences.getInstance();
+    final List<String>? storedAttendances = prefs.getStringList('attendance_history');
+
+    if (storedAttendances == null) return;
+
+    final now = DateTime.now();
+    final currentMonth = now.month;
+    final currentYear = now.year;
+
+    List<Map<String, String>> filtered = [];
+
+    for (String record in storedAttendances) {
+      List<String> parts = record.split('|');
+      if (parts.length < 2) continue;
+
+      DateTime recordDate = DateTime.parse(parts[0]);
+
+      String? storedTime = prefs.getString('attendance_last_time');
+      String formattedTime = storedTime ?? DateFormat("hh:mm a").format(recordDate);
+
+      String formattedRoute = parts[1].replaceAll('_', '');
+      formattedRoute = formattedRoute.replaceFirst('route', '');
+
+      if (recordDate.year == currentYear && recordDate.month == currentMonth) {
+        filtered.add({
+          'date': "${DateFormat("dd/MM/yyyy").format(recordDate)}",
+          'time': formattedTime,
+          'routeNumber': formattedRoute,
+        });
+      }
+    }
+
+    setState(() {
+      _filteredAttendances = filtered;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -84,22 +132,16 @@ class _HistoryViewState extends State<HistoryView> {
                           ),
                           textScaler: const TextScaler.linear(1.0),
                         ),
-                        SizedBox(height: 4.0),
                         VerticalSpacing(16.0),
-                        AttendanceCard(
-                          date: "20/02/2025 a las 12:00 P.M.",
-                          route: "1",
-                        ),
-                        VerticalSpacing(8.0),
-                        AttendanceCard(
-                          date: "20/02/2025 a las 12:00 P.M.",
-                          route: "1",
-                        ),
-                        VerticalSpacing(8.0),
-                        AttendanceCard(
-                          date: "20/02/2025 a las 12:00 P.M.",
-                          route: "1",
-                        ),
+                        if (_filteredAttendances.isEmpty)
+                          Text(AppLocalizations.of(context)!.noAttendanceRecords),
+                        for (var attendance in _filteredAttendances) ...[
+                          AttendanceCard(
+                            date: "${attendance['date']!} ${AppLocalizations.of(context)!.at} ${attendance['time']!}",
+                            route: "${AppLocalizations.of(context)!.route} ${attendance['routeNumber']!}",
+                          ),
+                          VerticalSpacing(8.0),
+                        ],
                       ],
                     ),
                   ),

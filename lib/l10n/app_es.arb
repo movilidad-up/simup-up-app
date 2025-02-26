@@ -218,6 +218,7 @@
   "seconds": "segundos",
   "sent": "Enviada",
   "onQueue": "En cola",
+  "noAttendanceRecords": "No hay asistencias registradas este mes.",
 
   "monday": "Lunes",
   "tuesday": "Martes",

@@ -218,6 +218,7 @@
   "seconds": "seconds",
   "sent": "Sent",
   "onQueue": "On queue",
+  "noAttendanceRecords": "No attendances registered this month.",
 
   "monday": "Monday",
   "tuesday": "Tuesday",
