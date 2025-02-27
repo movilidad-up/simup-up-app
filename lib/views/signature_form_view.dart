@@ -11,6 +11,11 @@ import 'package:simup_up/views/styles/spaces.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignatureFormView extends StatefulWidget {
+  final int startStep;
+  final Map<String, dynamic>? signatureData;
+
+  SignatureFormView({this.signatureData, this.startStep = 0});
+
   @override
   _SignatureFormViewState createState() => _SignatureFormViewState();
 }
@@ -35,6 +40,21 @@ class _SignatureFormViewState extends State<SignatureFormView> {
   @override
   void initState() {
     super.initState();
+    _currentStep = widget.startStep;
+
+    if (widget.signatureData != null) {
+      _nameController.text = widget.signatureData!['name'];
+      _surnameController.text = widget.signatureData!['lastName'];
+      _documentNumberController.text = widget.signatureData!['documentNumber'];
+      _documentType = widget.signatureData!['documentType'];
+      _role = widget.signatureData!['academicProgram'];
+
+      // If there is a saved signature, load it
+      if (widget.signatureData!['signatureImage'] != null) {
+        Uint8List signatureBytes = base64Decode(widget.signatureData!['signatureImage']);
+        Image.memory(signatureBytes);
+      }
+    }
 
     _signatureController.addListener(() {
       setState(() {
@@ -148,8 +168,8 @@ class _SignatureFormViewState extends State<SignatureFormView> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> signatureTitles = [AppLocalizations.of(context)!.aboutSignature, AppLocalizations.of(context)!.digitalSignature, AppLocalizations.of(context)!.drawSignature];
-    List<String> signatureInfo = [AppLocalizations.of(context)!.aboutSignatureInfo, AppLocalizations.of(context)!.digitalSignatureInfo, AppLocalizations.of(context)!.drawSignatureInfo];
+    List<String> signatureTitles = [AppLocalizations.of(context)!.aboutSignature, AppLocalizations.of(context)!.digitalSignature, AppLocalizations.of(context)!.drawSignature, ""];
+    List<String> signatureInfo = [AppLocalizations.of(context)!.aboutSignatureInfo, AppLocalizations.of(context)!.digitalSignatureInfo, AppLocalizations.of(context)!.drawSignatureInfo, ""];
 
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
@@ -214,7 +234,7 @@ class _SignatureFormViewState extends State<SignatureFormView> {
                     ),
                   ),
                   _currentStep == 0
-                      ? PrimaryButton(buttonText: AppLocalizations.of(context)!.continueNext, onButtonPressed: () => _nextStep(), isButtonEnabled: true)
+                      ? Padding(padding: EdgeInsets.symmetric(horizontal: 24.0), child: PrimaryButton(buttonText: AppLocalizations.of(context)!.continueNext, onButtonPressed: () => _nextStep(), isButtonEnabled: true, hasPadding: false,))
                       : _currentStep == 1
                       ? _buildUserInfoForm()
                       : _currentStep == 2
@@ -237,19 +257,19 @@ class _SignatureFormViewState extends State<SignatureFormView> {
           children: [
             TextFormField(
               controller: _nameController,
-              decoration: _buildDecoration("Nombre"),
+              decoration: _buildDecoration(AppLocalizations.of(context)!.name),
               validator: (value) => value!.isEmpty ? "Required" : null,
             ),
             VerticalSpacing(16.0),
             TextFormField(
               controller: _surnameController,
-              decoration: _buildDecoration("Apellido"),
+              decoration: _buildDecoration(AppLocalizations.of(context)!.lastName),
               validator: (value) => value!.isEmpty ? "Required" : null,
             ),
             VerticalSpacing(16.0),
             DropdownButtonFormField<String>(
               value: _documentType,
-              decoration: _buildDecoration("Tipo de Documento"),
+              decoration: _buildDecoration(AppLocalizations.of(context)!.documentType),
               items: ["CC", "TI", "Pasaporte"]
                   .map((type) =>
                       DropdownMenuItem(value: type, child: Text(type)))
@@ -260,14 +280,14 @@ class _SignatureFormViewState extends State<SignatureFormView> {
             VerticalSpacing(16.0),
             TextFormField(
               controller: _documentNumberController,
-              decoration: _buildDecoration("Número de Documento"),
+              decoration: _buildDecoration(AppLocalizations.of(context)!.documentNumber),
               validator: (value) => value!.isEmpty ? "Required" : null,
             ),
             VerticalSpacing(16.0),
             DropdownButtonFormField<String>(
               value: _role,
-              decoration: _buildDecoration("Afiliación"),
-              items: ["Estudiante", "Profesor"]
+              decoration: _buildDecoration(AppLocalizations.of(context)!.affiliation),
+              items: [AppLocalizations.of(context)!.student, AppLocalizations.of(context)!.teacher]
                   .map((role) =>
                       DropdownMenuItem(value: role, child: Text(role)))
                   .toList(),
@@ -283,12 +303,13 @@ class _SignatureFormViewState extends State<SignatureFormView> {
                   _nextStep();
                 }
               },
-              buttonText: "Continuar",
+              buttonText: AppLocalizations.of(context)!.continueNext,
               isButtonEnabled: _nameController.text.isNotEmpty &&
                   _surnameController.text.isNotEmpty &&
                   _documentType != null &&
                   _documentNumberController.text.isNotEmpty &&
                   _role != null,
+              hasPadding: false,
             ),
           ],
         ),

@@ -7,6 +7,7 @@ import 'package:simup_up/views/components/action_card.dart';
 import 'package:simup_up/views/components/attendance_status.dart';
 import 'package:simup_up/views/history-view.dart';
 import 'package:simup_up/views/qr_attendance_view.dart';
+import 'package:simup_up/views/signature_view.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:simup_up/views/utils/attendance_service.dart';
 import 'package:simup_up/views/utils/custom-page-router.dart';
@@ -191,7 +192,9 @@ class _AttendanceViewState extends State<AttendanceView> {
                     ),
                     VerticalSpacing(8.0),
                     ActionCard(
-                      onSchedulesTap: (){},
+                      onSchedulesTap: (){
+                        Navigator.of(context).push(CustomPageRoute(SignatureView()));
+                      },
                       subtitle: AppLocalizations.of(context)!.signature,
                       title: AppLocalizations.of(context)!.goToSignature,
                     ),
