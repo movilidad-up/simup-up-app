@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simup_up/views/components/checkbox-item.dart';
 import 'package:simup_up/views/components/option-item.dart';
 import 'package:simup_up/views/privacy_view.dart';
-import 'package:simup_up/views/special_view.dart';
+import 'package:simup_up/views/developer_view.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:simup_up/views/terms_view.dart';
 import 'package:simup_up/views/utils/custom-page-router.dart';
@@ -79,11 +79,11 @@ class _SettingsViewState extends State<SettingsView> {
                   child: Text(AppLocalizations.of(context)!.otherSection, textAlign: TextAlign.start, style: Theme.of(context).textTheme.headlineSmall, textScaler: const TextScaler.linear(1.0),),
                 ),
                 OptionItem(
-                    label: AppLocalizations.of(context)!.specialLabel,
-                    description: AppLocalizations.of(context)!.specialDescription,
+                    label: AppLocalizations.of(context)!.developmentLabel,
+                    description: AppLocalizations.of(context)!.developmentDescription,
                     isClickable: true,
                     onTap: (){
-                      Navigator.of(context).push(CustomPageRoute(const SpecialView()));
+                      Navigator.of(context).push(CustomPageRoute(const DeveloperView()));
                     }),
                 VerticalSpacing(16.0)
               ]),
