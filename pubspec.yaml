@@ -1,5 +1,5 @@
 name: simup_up
-description: "Aplicación informativa para el SIMUP Unipamplona."
+description: "Aplicación informativa para el Sistema Integrado de Transporte de una Universidad."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -27,6 +27,9 @@ environment:
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
+dependency_overrides:
+  fading_edge_scrollview: 4.1.1
+
 dependencies:
   flutter:
     sdk: flutter
@@ -34,12 +37,32 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.8
   flutter_localizations:
     sdk: flutter
   intl: any
-  flutter_svg: ^2.0.9
-  rename_app: ^1.3.2
+  flutter_svg: ^2.0.10+1
+  zoom_widget: ^2.0.1
+  shared_preferences: ^2.2.3
+  rx_shared_preferences: ^4.0.0
+  flutter_timezone: ^3.0.1
+  scrollable_positioned_list: 0.3.8
+  flutter_local_notifications: ^18.0.1
+  sqflite: ^2.3.3+1
+  skeletonizer: ^1.4.2
+  cron: ^0.6.1
+  marquee: ^2.3.0
+  showcaseview: ^4.0.1
+  flutter_styled_toast: 2.2.1
+  flutter_dotenv: ^5.0.2
+  flutter_blue_plus: ^1.35.3
+  internet_connection_checker_plus: ^2.7.0
+  mobile_scanner: ^6.0.6
+  signature: ^6.0.0
+  encrypt: ^5.0.3
+  path_provider: ^2.1.5
+  firebase_core: ^3.12.0
+  cloud_firestore: ^5.6.4
 
 dev_dependencies:
   flutter_test:
@@ -50,7 +73,9 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^5.0.0
+  device_preview: ^1.2.0
+  change_app_package_name: ^1.5.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -64,10 +89,42 @@ flutter:
   uses-material-design: true
 
   assets:
+    - .env
     - assets/
     - assets/images/illustrations/get-started-routes.svg
+    - assets/images/illustrations/get-started-routes-dark.svg
     - assets/images/illustrations/get-started-displacement.svg
+    - assets/images/illustrations/get-started-displacement-dark.svg
     - assets/images/illustrations/get-started-notifications.svg
+    - assets/images/illustrations/get-started-notifications-dark.svg
+    - assets/images/illustrations/route-lines.svg
+    - assets/images/illustrations/route-lines-dark.svg
+    - assets/images/illustrations/route-one-icon.svg
+    - assets/images/illustrations/route-one-icon-dark.svg
+    - assets/images/illustrations/route-two-icon.svg
+    - assets/images/illustrations/route-two-icon-dark.svg
+    - assets/images/illustrations/station-line-enabled.svg
+    - assets/images/illustrations/station-line-enabled-dark.svg
+    - assets/images/illustrations/station-line-disabled.svg
+    - assets/images/illustrations/station-line-disabled-dark.svg
+    - assets/images/illustrations/empty-reminders.svg
+    - assets/images/illustrations/empty-reminders-dark.svg
+    - assets/images/illustrations/empty-routes.svg
+    - assets/images/illustrations/empty-routes-dark.svg
+    - assets/images/illustrations/simup-map-system.svg
+    - assets/images/illustrations/simup-map-system-dark.svg
+    - assets/images/illustrations/lionel.png
+    - assets/images/stations/palustre-cover.jpg
+    - assets/images/stations/terminal-cover.jpg
+    - assets/images/stations/cread-cover.jpg
+    - assets/images/stations/fuente-cover.jpg
+    - assets/images/stations/republica-cover.jpg
+    - assets/images/stations/sanMateo-cover.jpg
+    - assets/images/stations/toyota-cover.jpg
+    - assets/images/stations/lomitas-cover.jpg
+    - assets/images/stations/villa-cover.jpg
+    - assets/images/stations/iglesia-cover.jpg
+    - assets/images/stations/salud-cover.jpg
 
   fonts:
     - family: Inter

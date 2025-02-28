@@ -1,12 +1,34 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:showcaseview/showcaseview.dart';
+import 'package:simup_up/views/utils/shared_prefs.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
+import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:simup_up/views/dashboard_view.dart';
 import 'package:simup_up/views/onboarding_view.dart';
+import 'package:simup_up/views/styles/themes.dart';
+import 'package:simup_up/views/utils/local_notification_service.dart';
+import 'firebase_options.dart';
 import 'l10n/l10n.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  tz.initializeTimeZones();
+  final String timeZone = await FlutterTimezone.getLocalTimezone();
+  tz.setLocalLocation(tz.getLocation(timeZone));
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await dotenv.load();
+  await LocalNotificationService().init();
+  await SharedPrefs().init();
+  String? userName = SharedPrefs().prefs.getString('userName');
+  bool validUser = (userName != null);
 
   SystemChrome.setPreferredOrientations(
       [
@@ -16,12 +38,14 @@ Future<void> main() async {
   );
 
   runApp(
-    MyApp(),
+      MyApp(userExists: validUser)
   );
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final bool userExists;
+
+  const MyApp({Key? key, required this.userExists}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -37,8 +61,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Movilidad UP',
+      title: 'Movilidad',
       debugShowCheckedModeBanner: false,
+      theme: AppThemes.defaultLight,
+      darkTheme: AppThemes.defaultDark,
       supportedLocales: L10n.all,
       localizationsDelegates: const [
         AppLocalizations.delegate,
@@ -46,7 +72,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: const OnboardingView(),
+      home: widget.userExists ? ShowCaseWidget(
+          builder: (context) => const DashboardView(),
+      ) : const OnboardingView(),
     );
   }
 }
