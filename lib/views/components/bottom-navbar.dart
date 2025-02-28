@@ -18,6 +18,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
   bool isTourCompleted = true;
   GlobalKey homeNavKey = GlobalKey();
   GlobalKey routesNavKey = GlobalKey();
+  GlobalKey attendanceNavKey = GlobalKey();
   GlobalKey remindersNavKey = GlobalKey();
   GlobalKey mapNavKey = GlobalKey();
 
@@ -42,7 +43,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
   void _startShowcase() {
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       ShowCaseWidget.of(widget.context).startShowCase(
-        [homeNavKey, routesNavKey, remindersNavKey, mapNavKey],
+        [homeNavKey, routesNavKey, attendanceNavKey, remindersNavKey, mapNavKey],
       );
     });
   }
@@ -127,6 +128,37 @@ class _BottomNavbarState extends State<BottomNavbar> {
               ),
             ),
             Showcase(
+              key: attendanceNavKey,
+              title: AppLocalizations.of(context)!.tourRoutes,
+              tooltipBorderRadius: BorderRadius.circular(24.0),
+              tooltipPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+              targetPadding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
+              targetBorderRadius: BorderRadius.circular(24.0),
+              tooltipBackgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+              titlePadding: const EdgeInsets.only(bottom: 8.0),
+              scaleAnimationCurve: Curves.ease,
+              titleTextStyle: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 16.0,
+                fontFamily: 'Inter',
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+              descTextStyle: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 14.0,
+                fontFamily: 'Inter',
+                color: Theme.of(context).colorScheme.tertiary,
+              ),
+              description: AppLocalizations.of(context)!.tourRoutesDescription,
+              child: GestureDetector(
+                onTap: () => widget.onTap(2),
+                child: NavButton(
+                  icon: Icons.draw_rounded,
+                  selected: widget.currentIndex == 2,
+                ),
+              ),
+            ),
+            Showcase(
               key: remindersNavKey,
               title: AppLocalizations.of(context)!.tourReminders,
               tooltipBorderRadius: BorderRadius.circular(24.0),
@@ -150,10 +182,10 @@ class _BottomNavbarState extends State<BottomNavbar> {
               ),
               description: AppLocalizations.of(context)!.tourRemindersDescription,
               child: GestureDetector(
-                onTap: () => widget.onTap(2),
+                onTap: () => widget.onTap(3),
                 child: NavButton(
                   icon: Icons.notifications_rounded,
-                  selected: widget.currentIndex == 2,
+                  selected: widget.currentIndex == 3,
                 ),
               ),
             ),
@@ -185,10 +217,10 @@ class _BottomNavbarState extends State<BottomNavbar> {
               ),
               description: AppLocalizations.of(context)!.tourMapDescription,
               child: GestureDetector(
-                onTap: () => widget.onTap(3),
+                onTap: () => widget.onTap(4),
                 child: NavButton(
                   icon: Icons.map_rounded,
-                  selected: widget.currentIndex == 3,
+                  selected: widget.currentIndex == 4,
                 ),
               ),
             ),

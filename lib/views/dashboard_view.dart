@@ -1,5 +1,6 @@
 import 'package:cron/cron.dart';
 import 'package:flutter/material.dart';
+import 'package:simup_up/views/attendance_view.dart';
 import 'package:simup_up/views/components/bottom-navbar.dart';
 import 'package:simup_up/views/home_view.dart';
 import 'package:simup_up/views/notifications_view.dart';
@@ -11,7 +12,8 @@ import 'package:simup_up/views/utils/update-observable.dart';
 import 'map_view.dart';
 
 class DashboardView extends StatefulWidget {
-  const DashboardView({super.key});
+  final int customIndex;
+  const DashboardView({super.key, this.customIndex = 0});
 
   @override
   State<DashboardView> createState() => _DashboardViewState();
@@ -28,6 +30,7 @@ class _DashboardViewState extends State<DashboardView> {
   @override
   void initState() {
     updateObservable = UpdateObservable();
+    _currentIndex = widget.customIndex;
     _handleTimeUpdate();
     super.initState();
   }
@@ -71,6 +74,7 @@ class _DashboardViewState extends State<DashboardView> {
         updateObservable: updateObservable,
       ),
       const RoutesView(),
+      const AttendanceView(),
       const NotificationsView(),
       const MapView(),
     ];

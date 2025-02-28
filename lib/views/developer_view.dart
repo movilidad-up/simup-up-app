@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class SpecialView extends StatelessWidget {
-  const SpecialView({super.key});
+class DeveloperView extends StatelessWidget {
+  const DeveloperView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class SpecialView extends StatelessWidget {
               backgroundColor: Theme.of(context).colorScheme.surface,
               scrolledUnderElevation: 0.4,
               title: Text(
-                AppLocalizations.of(context)!.devLetterTitle,
+                AppLocalizations.of(context)!.developmentLabel,
                 style: Theme.of(context).textTheme.labelLarge,
                 textScaler: const TextScaler.linear(1.0),
               ),
@@ -46,14 +46,31 @@ class SpecialView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        AppLocalizations.of(context)!.thisLetterIsSpecial,
+                        AppLocalizations.of(context)!.developedBy,
                         style: Theme.of(context).textTheme.headlineMedium,
                         textScaler: const TextScaler.linear(1.0),
                       ),
-                      VerticalSpacing(16.0),
+                      VerticalSpacing(8.0),
+                      Text(
+                        "Joel Torres",
+                        style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
+                      ),
+                      VerticalSpacing(4.0),
+                      Text(
+                        "Estudiante de Ingenieria de Sistemas\nUniversidad de Pamplona\nSede Villa del Rosario",
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
+                      VerticalSpacing(8.0),
+                      Text(
+                        "Un mensaje especial",
+                        style: Theme.of(context).textTheme.headlineMedium,
+                        textScaler: const TextScaler.linear(1.0),
+                      ),
+                      VerticalSpacing(4.0),
                       Text(
                         AppLocalizations.of(context)!.devLetter,
-                        style: Theme.of(context).textTheme.bodySmall,
+                        style: Theme.of(context).textTheme.labelLarge,
                         textScaler: const TextScaler.linear(1.0),
                       ),
                       VerticalSpacing(24.0),

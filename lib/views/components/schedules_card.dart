@@ -44,7 +44,12 @@ class _SchedulesCardState extends State<SchedulesCard> {
                             ),
                             Text(
                               AppLocalizations.of(context)!.goToSchedules,
-                              style: Theme.of(context).textTheme.displayMedium,
+                              style: TextStyle(
+                                  color: Theme.of(context).colorScheme.onSurface,
+                                  fontSize: 20.0,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w600
+                              ),
                               textScaler: const TextScaler.linear(1.0),
                             ),
                           ],

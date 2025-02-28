@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "547834831531",
+    "firebase_url": "https://movilidad-up-default-rtdb.firebaseio.com",
+    "project_id": "movilidad-up",
+    "storage_bucket": "movilidad-up.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547834831531:android:20703b40c39f7cb0b88dee",
+        "android_client_info": {
+          "package_name": "com.joeltorres.movilidad"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0dk3McxABY9CbJlz-wMjM0c_5APwlLh8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

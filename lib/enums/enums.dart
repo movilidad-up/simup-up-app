@@ -100,3 +100,20 @@ enum Status {
   operational,
   nonOperational
 }
+
+enum SendStatus {
+  sent,
+  awaiting,
+  queue
+}
+
+enum RadarStatus {
+  ready,
+  scanning,
+  sending,
+  tooFar,
+  noSignal,
+  bluetoothDisabled,
+  success,
+  successQueue
+}

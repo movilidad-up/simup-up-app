@@ -19,7 +19,7 @@ class _NavButtonState extends State<NavButton> {
         borderRadius: BorderRadius.circular(24.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
         child: Icon(
           widget.icon,
           color: widget.selected ? Theme.of(context).colorScheme.onSurface : Theme.of(context).colorScheme.surface,
