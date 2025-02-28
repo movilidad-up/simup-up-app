@@ -13,8 +13,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class SignatureFormView extends StatefulWidget {
   final int startStep;
   final Map<String, dynamic>? signatureData;
+  final VoidCallback onSignatureSaved;
 
-  SignatureFormView({this.signatureData, this.startStep = 0});
+  SignatureFormView({this.signatureData, this.startStep = 0, required this.onSignatureSaved});
 
   @override
   _SignatureFormViewState createState() => _SignatureFormViewState();
@@ -136,6 +137,7 @@ class _SignatureFormViewState extends State<SignatureFormView> {
       // Save encrypted data to file
       final file = File(filePath);
       await file.writeAsBytes(encryptedData);
+      widget.onSignatureSaved();
 
       print("Virtual Signature saved successfully at: $filePath");
     } catch (e) {
@@ -270,7 +272,7 @@ class _SignatureFormViewState extends State<SignatureFormView> {
             DropdownButtonFormField<String>(
               value: _documentType,
               decoration: _buildDecoration(AppLocalizations.of(context)!.documentType),
-              items: ["CC", "TI", "Pasaporte"]
+              items: ["CC", "TI", "PEP", AppLocalizations.of(context)!.passport]
                   .map((type) =>
                       DropdownMenuItem(value: type, child: Text(type)))
                   .toList(),
@@ -287,7 +289,7 @@ class _SignatureFormViewState extends State<SignatureFormView> {
             DropdownButtonFormField<String>(
               value: _role,
               decoration: _buildDecoration(AppLocalizations.of(context)!.affiliation),
-              items: [AppLocalizations.of(context)!.student, AppLocalizations.of(context)!.teacher]
+              items: [AppLocalizations.of(context)!.student, AppLocalizations.of(context)!.management, AppLocalizations.of(context)!.teacher]
                   .map((role) =>
                       DropdownMenuItem(value: role, child: Text(role)))
                   .toList(),
@@ -338,12 +340,12 @@ class _SignatureFormViewState extends State<SignatureFormView> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.redAccent,
               ),
-              child: Text("Clear Signature", style: TextStyle(color: Colors.white)),
+              child: Text(AppLocalizations.of(context)!.clear, style: TextStyle(color: Colors.white)),
             ),
             SizedBox(width: 16),
             ElevatedButton(
               onPressed: _isSignatureDrawn ? _nextStep : null,
-              child: Text("Save & Continue"),
+              child: Text(AppLocalizations.of(context)!.save),
             ),
           ],
         ),
@@ -374,7 +376,7 @@ class _SignatureFormViewState extends State<SignatureFormView> {
             VerticalSpacing(16.0),
             PrimaryButton(
               onButtonPressed: () => Navigator.pop(context),
-              buttonText: "Return to Dashboard",
+              buttonText: AppLocalizations.of(context)!.goBack,
               hasPadding: false,
               isButtonEnabled: true,
             ),

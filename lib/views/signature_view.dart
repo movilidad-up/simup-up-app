@@ -180,7 +180,9 @@ class _SignatureViewState extends State<SignatureView> {
                                 ? ActionCard(
                                     onSchedulesTap: () {
                                       Navigator.of(context).push(
-                                          CustomPageRoute(SignatureFormView()));
+                                          CustomPageRoute(SignatureFormView(
+                                            onSignatureSaved: _loadSignature,
+                                          )));
                                     },
                                     subtitle: AppLocalizations.of(context)!
                                         .myAttendance,
@@ -200,6 +202,7 @@ class _SignatureViewState extends State<SignatureView> {
                                 MaterialPageRoute(
                                   builder: (context) => SignatureFormView(
                                       signatureData: _signatureData,
+                                      onSignatureSaved: _loadSignature,
                                       startStep: 1),
                                 ),
                               );

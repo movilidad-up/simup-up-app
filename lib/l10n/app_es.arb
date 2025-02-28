@@ -84,8 +84,8 @@
 
   "settingsTitle": "Configuración",
   "notificationsSection": "Notificaciones",
-  "taskReminderLabel": "Recordatorio de tareas",
-  "taskReminderDescription": "Avisarme cuando tenga tareas pendientes.",
+  "routeReminderLabel": "Recordatorio de rutas",
+  "routeReminderDescription": "Permitir notificaciones sobre recordatorios.",
   "aboutSection": "Acerca de Movilidad",
   "versionLabel": "Versión",
   "versionDescription": "1.0.0 - Villa",
@@ -232,6 +232,10 @@
   "affiliation": "Afiliación",
   "student": "Estudiante",
   "teacher": "Profesor",
+  "save": "Guardar",
+  "clear": "Borrar",
+  "passport": "Pasaporte",
+  "management": "Administrativo",
 
   "monday": "Lunes",
   "tuesday": "Martes",

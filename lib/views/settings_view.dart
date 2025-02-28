@@ -54,8 +54,8 @@ class _SettingsViewState extends State<SettingsView> {
                   child: Text(AppLocalizations.of(context)!.notificationsSection, textAlign: TextAlign.start, style: Theme.of(context).textTheme.headlineSmall, textScaler: const TextScaler.linear(1.0),),
                 ),
                 CheckboxItem(
-                  label: AppLocalizations.of(context)!.taskReminderLabel,
-                  description: AppLocalizations.of(context)!.taskReminderDescription,
+                  label: AppLocalizations.of(context)!.routeReminderLabel,
+                  description: AppLocalizations.of(context)!.routeReminderDescription,
                   preferenceKey: 'enableReminders',
                 ),
                 Padding(
