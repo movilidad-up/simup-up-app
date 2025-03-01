@@ -64,6 +64,8 @@
   "tourHomeDescription": "Welcome to your starting point! Here you can quickly and timely see the current station.",
   "tourRoutes": "Routes",
   "tourRoutesDescription": "Explore travel options! Discover the estimated arrival times at each station and view the entire route system.",
+  "tourAttendance": "Attendance",
+  "tourAttendanceDescription": "Easily record your attendance! Use Bluetooth or QR codes to register your presence on the university transport.",
   "tourReminders": "Reminders",
   "tourRemindersDescription": "Never miss the bus again. Schedule reminders to arrive on time for your commitments at the University!",
   "tourMap": "System Map",
