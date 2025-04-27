@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simup_up/enums/enums.dart';
 import 'package:simup_up/views/beacon_attendance_view.dart';
@@ -7,6 +10,7 @@ import 'package:simup_up/views/components/action_card.dart';
 import 'package:simup_up/views/components/attendance_status.dart';
 import 'package:simup_up/views/history-view.dart';
 import 'package:simup_up/views/qr_attendance_view.dart';
+import 'package:simup_up/views/signature_form_view.dart';
 import 'package:simup_up/views/signature_view.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:simup_up/views/utils/attendance_service.dart';
@@ -21,11 +25,19 @@ class AttendanceView extends StatefulWidget {
 
 class _AttendanceViewState extends State<AttendanceView> {
   bool canCheckAttendance = true;
+  bool _signatureExists = true;
 
   @override
   void initState() {
     super.initState();
+    _checkSignature();
     _loadAttendanceStatus();
+  }
+
+  void _onSignatureSaved() {
+    setState(() {
+      _signatureExists = true;
+    });
   }
 
   Future<Map<String, dynamic>> getAttendanceStatus() async {
@@ -61,10 +73,26 @@ class _AttendanceViewState extends State<AttendanceView> {
     });
   }
 
+  Future<void> _checkSignature() async {
+    try {
+      final directory = await getApplicationDocumentsDirectory();
+      final filePath = '${directory.path}/virtual_signature.enc';
+      final file = File(filePath);
+
+      bool fileExists = await file.exists();
+      setState(() {
+        _signatureExists = fileExists;
+      });
+    } catch (e) {
+      print("Error loading Virtual Signature: $e");
+      setState(() {
+        _signatureExists = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
@@ -81,7 +109,7 @@ class _AttendanceViewState extends State<AttendanceView> {
                       AppLocalizations.of(context)!.myAttendance,
                       style: Theme.of(context).textTheme.displayMedium,
                     ),
-                    SizedBox(height: 8.0),
+                    VerticalSpacing(8.0),
                     Text(
                       AppLocalizations.of(context)!.myAttendanceDescription,
                       style: Theme.of(context).textTheme.bodySmall,
@@ -94,7 +122,7 @@ class _AttendanceViewState extends State<AttendanceView> {
               padding: EdgeInsets.symmetric(horizontal: 24.0),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Column(
+                child: _signatureExists ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -113,9 +141,9 @@ class _AttendanceViewState extends State<AttendanceView> {
                       builder: (context, snapshot) {
                         if (!snapshot.hasData) return CircularProgressIndicator();
 
-                        String lastDate = snapshot.data!['lastDate'];
-                        String lastTime = snapshot.data!['lastTime'];
-                        String state = snapshot.data!['state'];
+                        String lastDate = snapshot.data!['lastDate'] ?? "";
+                        String lastTime = snapshot.data!['lastTime'] ?? "";
+                        String state = snapshot.data!['state'] ?? "";
 
                         if (lastDate == null) {
                           return AttendanceStatus(status: SendStatus.awaiting);
@@ -137,7 +165,7 @@ class _AttendanceViewState extends State<AttendanceView> {
                       ),
                       textScaler: const TextScaler.linear(1.0),
                     ),
-                    SizedBox(height: 4.0),
+                    VerticalSpacing(4.0),
                     Text(
                       AppLocalizations.of(context)!.manualSubmitDescription,
                       style: Theme.of(context).textTheme.bodySmall,
@@ -157,7 +185,7 @@ class _AttendanceViewState extends State<AttendanceView> {
                       title: AppLocalizations.of(context)!.submitMyBeaconAttendance,
                       icon: Icons.send_rounded,
                     ),
-                    VerticalSpacing(16.0),
+                    VerticalSpacing(8.0),
                     ActionCard(
                       isEnabled: canCheckAttendance,
                       onSchedulesTap: () {
@@ -200,7 +228,34 @@ class _AttendanceViewState extends State<AttendanceView> {
                     ),
                     VerticalSpacing(24.0),
                   ],
-                ),
+                ) : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.createYourSignature,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w600,
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
+                      textScaler: const TextScaler.linear(1.0),
+                    ),
+                    VerticalSpacing(16.0),
+                    ActionCard(
+                      onSchedulesTap: () {
+                        Navigator.of(context)
+                            .push(CustomPageRoute(SignatureFormView(
+                          onSignatureSaved: _onSignatureSaved,
+                        )));
+                      },
+                      subtitle: AppLocalizations.of(context)!.myAttendance,
+                      title:
+                      AppLocalizations.of(context)!.createYourSignature,
+                      isPrimaryAction: true,
+                    ),
+                  ],
+                )
               ),
             ),
           ],

@@ -111,6 +111,8 @@ flutter:
     - assets/images/illustrations/empty-reminders-dark.svg
     - assets/images/illustrations/empty-routes.svg
     - assets/images/illustrations/empty-routes-dark.svg
+    - assets/images/illustrations/success-signature.svg
+    - assets/images/illustrations/success-signature-dark.svg
     - assets/images/illustrations/simup-map-system.svg
     - assets/images/illustrations/simup-map-system-dark.svg
     - assets/images/illustrations/lionel.png

@@ -1,5 +1,3 @@
-
-
 import 'package:simup_up/enums/enums.dart';
 
 class UserData {
