@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:simup_up/views/components/checkbox-item.dart';
 import 'package:simup_up/views/components/option-item.dart';
 import 'package:simup_up/views/privacy_view.dart';
-import 'package:simup_up/views/developer_view.dart';
 import 'package:simup_up/views/styles/spaces.dart';
 import 'package:simup_up/views/terms_view.dart';
 import 'package:simup_up/views/utils/custom-page-router.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'developer_view.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({Key? key}) : super(key: key);

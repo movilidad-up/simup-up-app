@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:simup_up/enums/enums.dart';
 import 'package:simup_up/models/UserData.dart';
 import 'package:simup_up/views/components/get_started_name.dart';
+import 'package:simup_up/views/components/get_started_terms.dart';
 import 'package:simup_up/views/components/get_started_zone.dart';
 import 'package:simup_up/views/components/onboarding_outro.dart';
 import 'package:simup_up/views/components/primary_button.dart';
@@ -44,7 +45,7 @@ class _OnboardingFrameState extends State<OnboardingFrame> with SingleTickerProv
   void _increaseProgress() {
     if (progressValue < 1.0) {
       setState(() {
-        progressValue += (100 / 2) / 100;
+        progressValue += (100 / 3) / 100;
       });
     }
   }
@@ -52,7 +53,7 @@ class _OnboardingFrameState extends State<OnboardingFrame> with SingleTickerProv
   void _decreaseProgress() {
     if (progressValue > 0.0) {
       setState(() {
-        progressValue -= (100 / 2) / 100;
+        progressValue -= (100 / 3) / 100;
       });
     }
   }
@@ -65,6 +66,9 @@ class _OnboardingFrameState extends State<OnboardingFrame> with SingleTickerProv
           break;
         case 1:
           userData.userZone = value;
+          break;
+        case 2:
+          userData.termsAccepted = value as bool;
           break;
       }
     });
@@ -85,7 +89,7 @@ class _OnboardingFrameState extends State<OnboardingFrame> with SingleTickerProv
 
   void _nextStep() {
     if (_isValidInput()) {
-      if (currentStep < 1) {
+      if (currentStep < 2) {
         setState(() {
           _increaseProgress();
           currentStep++;
@@ -103,6 +107,8 @@ class _OnboardingFrameState extends State<OnboardingFrame> with SingleTickerProv
         return userData.userName.isNotEmpty;
       case 1:
         return userData.userZone != Zone.unknown;;
+      case 2:
+        return userData.termsAccepted == true;
       default:
         return false;
     }
@@ -111,6 +117,7 @@ class _OnboardingFrameState extends State<OnboardingFrame> with SingleTickerProv
   void _saveUserData() async {
     await SharedPrefs().prefs.setString('userName', userData.userName);
     await SharedPrefs().prefs.setInt('userZone', userData.userZone.index);
+    await SharedPrefs().prefs.setBool('termsAccepted', userData.termsAccepted);
     await SharedPrefs().prefs.setBool('enableReminders', true);
     await SharedPrefs().prefs.setBool('tourCompleted', false);
     await SharedPrefs().reload();
@@ -122,6 +129,8 @@ class _OnboardingFrameState extends State<OnboardingFrame> with SingleTickerProv
         return userData.userName.isNotEmpty;
       case 1:
         return userData.userZone != Zone.unknown;
+      case 2:
+        return userData.termsAccepted == true;
       default:
         return false;
     }
@@ -171,6 +180,11 @@ class _OnboardingFrameState extends State<OnboardingFrame> with SingleTickerProv
         return GetStartedZone(
           userData: userData,
           onZoneChanged: _updateStep,
+        );
+      case 2:
+        return GetStartedTerms(
+          userData: userData,
+          onTermsAccepted: _updateStep,
         );
       default:
         return Container();

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:signature/signature.dart';
@@ -172,6 +173,7 @@ class _SignatureFormViewState extends State<SignatureFormView> {
   Widget build(BuildContext context) {
     List<String> signatureTitles = [AppLocalizations.of(context)!.aboutSignature, AppLocalizations.of(context)!.digitalSignature, AppLocalizations.of(context)!.drawSignature, ""];
     List<String> signatureInfo = [AppLocalizations.of(context)!.aboutSignatureInfo, AppLocalizations.of(context)!.digitalSignatureInfo, AppLocalizations.of(context)!.drawSignatureInfo, ""];
+    double screenHeight = MediaQuery.of(context).size.height * 0.6;
 
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
@@ -220,6 +222,7 @@ class _SignatureFormViewState extends State<SignatureFormView> {
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -236,12 +239,18 @@ class _SignatureFormViewState extends State<SignatureFormView> {
                     ),
                   ),
                   _currentStep == 0
-                      ? Padding(padding: EdgeInsets.symmetric(horizontal: 24.0), child: PrimaryButton(buttonText: AppLocalizations.of(context)!.continueNext, onButtonPressed: () => _nextStep(), isButtonEnabled: true, hasPadding: false,))
+                      ? Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+                          child: PrimaryButton(buttonText: AppLocalizations.of(context)!.continueNext,
+                          onButtonPressed: () => _nextStep(),
+                          isButtonEnabled: true,
+                          hasPadding: false,)
+                      )
                       : _currentStep == 1
                       ? _buildUserInfoForm()
                       : _currentStep == 2
                           ? _buildSignaturePad()
-                          : _buildSuccessScreen(),
+                          : SizedBox(height: screenHeight, child: Center(child: _buildSuccessScreen())),
                   VerticalSpacing(16.0)
                 ]),
               ),
@@ -354,34 +363,39 @@ class _SignatureFormViewState extends State<SignatureFormView> {
   }
 
   Widget _buildSuccessScreen() {
-    return Center(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              AppLocalizations.of(context)!.allDone,
-              style: Theme.of(context).textTheme.displayMedium,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(Theme.of(context)
+              .colorScheme
+              .brightness ==
+              Brightness.light
+              ? "assets/images/illustrations/success-signature.svg"
+              : "assets/images/illustrations/success-signature-dark.svg"),
+          VerticalSpacing(24.0),
+          Text(
+            AppLocalizations.of(context)!.allDone,
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          VerticalSpacing(8.0),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: Text(
+              AppLocalizations.of(context)!.allDoneInfo,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
-            VerticalSpacing(8.0),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: Text(
-                AppLocalizations.of(context)!.allDoneInfo,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-            ),
-            VerticalSpacing(16.0),
-            PrimaryButton(
-              onButtonPressed: () => Navigator.pop(context),
-              buttonText: AppLocalizations.of(context)!.goBack,
-              hasPadding: false,
-              isButtonEnabled: true,
-            ),
-          ],
-        ),
+          ),
+          VerticalSpacing(24.0),
+          PrimaryButton(
+            onButtonPressed: () => Navigator.pop(context),
+            buttonText: AppLocalizations.of(context)!.goBack,
+            hasPadding: false,
+            isButtonEnabled: true,
+          ),
+        ],
       ),
     );
   }
